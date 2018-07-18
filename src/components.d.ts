@@ -25,6 +25,112 @@ declare global {
   interface HTMLAttributes {}
 }
 
+import {
+  ISchemaItem,
+} from './components/json-schema-designer/schema';
+
+declare global {
+
+  namespace StencilComponents {
+    interface AppItemDetails {
+      'item': ISchemaItem;
+    }
+  }
+
+  interface HTMLAppItemDetailsElement extends StencilComponents.AppItemDetails, HTMLStencilElement {}
+
+  var HTMLAppItemDetailsElement: {
+    prototype: HTMLAppItemDetailsElement;
+    new (): HTMLAppItemDetailsElement;
+  };
+  interface HTMLElementTagNameMap {
+    'app-item-details': HTMLAppItemDetailsElement;
+  }
+  interface ElementTagNameMap {
+    'app-item-details': HTMLAppItemDetailsElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'app-item-details': JSXElements.AppItemDetailsAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AppItemDetailsAttributes extends HTMLAttributes {
+      'item'?: ISchemaItem;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface JsonSchemaDesigner {
+      'inputSchema': any;
+      'outputSchemaCallback': any;
+    }
+  }
+
+  interface HTMLJsonSchemaDesignerElement extends StencilComponents.JsonSchemaDesigner, HTMLStencilElement {}
+
+  var HTMLJsonSchemaDesignerElement: {
+    prototype: HTMLJsonSchemaDesignerElement;
+    new (): HTMLJsonSchemaDesignerElement;
+  };
+  interface HTMLElementTagNameMap {
+    'json-schema-designer': HTMLJsonSchemaDesignerElement;
+  }
+  interface ElementTagNameMap {
+    'json-schema-designer': HTMLJsonSchemaDesignerElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'json-schema-designer': JSXElements.JsonSchemaDesignerAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface JsonSchemaDesignerAttributes extends HTMLAttributes {
+      'inputSchema'?: any;
+      'outputSchemaCallback'?: any;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AppSchemaRow {
+      'item': ISchemaItem;
+      'parent': any;
+    }
+  }
+
+  interface HTMLAppSchemaRowElement extends StencilComponents.AppSchemaRow, HTMLStencilElement {}
+
+  var HTMLAppSchemaRowElement: {
+    prototype: HTMLAppSchemaRowElement;
+    new (): HTMLAppSchemaRowElement;
+  };
+  interface HTMLElementTagNameMap {
+    'app-schema-row': HTMLAppSchemaRowElement;
+  }
+  interface ElementTagNameMap {
+    'app-schema-row': HTMLAppSchemaRowElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'app-schema-row': JSXElements.AppSchemaRowAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AppSchemaRowAttributes extends HTMLAttributes {
+      'item'?: ISchemaItem;
+      'parent'?: any;
+    }
+  }
+}
+
 
 declare global {
 

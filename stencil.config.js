@@ -1,3 +1,5 @@
+const less = require('@stencil/less');
+
 exports.config = {
   namespace: 'mycomponent',
   outputTargets:[
@@ -8,5 +10,9 @@ exports.config = {
       type: 'www',
       serviceWorker: false
     }
-  ]
+  ],
+  plugins: [
+    less()
+  ],
+  globalScript: 'src/global/index.ts'
 };
