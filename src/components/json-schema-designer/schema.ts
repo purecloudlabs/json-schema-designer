@@ -3,6 +3,7 @@ export interface ISchemaItem {
   type: string;
   description: string;
   isRequired: boolean;
+  isNullable: boolean;
   parent: IHasChildren;
   default: string;
   enum: any[];
@@ -14,6 +15,10 @@ export interface ISchemaItem {
 
   jsonSchema(): any
   changeType(type: string): void
+
+  addEnumValue(): void
+
+  removeEnumValue(index: number) : void
 }
 
 export interface IHasChildren {

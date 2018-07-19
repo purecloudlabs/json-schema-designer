@@ -32,31 +32,33 @@ import {
 declare global {
 
   namespace StencilComponents {
-    interface AppItemDetails {
+    interface ItemDetails {
       'item': ISchemaItem;
+      'parent': any;
     }
   }
 
-  interface HTMLAppItemDetailsElement extends StencilComponents.AppItemDetails, HTMLStencilElement {}
+  interface HTMLItemDetailsElement extends StencilComponents.ItemDetails, HTMLStencilElement {}
 
-  var HTMLAppItemDetailsElement: {
-    prototype: HTMLAppItemDetailsElement;
-    new (): HTMLAppItemDetailsElement;
+  var HTMLItemDetailsElement: {
+    prototype: HTMLItemDetailsElement;
+    new (): HTMLItemDetailsElement;
   };
   interface HTMLElementTagNameMap {
-    'app-item-details': HTMLAppItemDetailsElement;
+    'item-details': HTMLItemDetailsElement;
   }
   interface ElementTagNameMap {
-    'app-item-details': HTMLAppItemDetailsElement;
+    'item-details': HTMLItemDetailsElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'app-item-details': JSXElements.AppItemDetailsAttributes;
+      'item-details': JSXElements.ItemDetailsAttributes;
     }
   }
   namespace JSXElements {
-    export interface AppItemDetailsAttributes extends HTMLAttributes {
+    export interface ItemDetailsAttributes extends HTMLAttributes {
       'item'?: ISchemaItem;
+      'parent'?: any;
     }
   }
 }
@@ -127,41 +129,6 @@ declare global {
     export interface AppSchemaRowAttributes extends HTMLAttributes {
       'item'?: ISchemaItem;
       'parent'?: any;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface MyComponent {
-      'first': string;
-      'last': string;
-    }
-  }
-
-  interface HTMLMyComponentElement extends StencilComponents.MyComponent, HTMLStencilElement {}
-
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
-  };
-  interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
-  }
-  interface ElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'my-component': JSXElements.MyComponentAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface MyComponentAttributes extends HTMLAttributes {
-      'first'?: string;
-      'last'?: string;
     }
   }
 }

@@ -29,18 +29,15 @@ export class SchemaRowComponent {
   }
 
   render() {
-    //Computed Classes
+    //Computed CSS Classes
     const rowClass: string = this.showDetailsPan ? 'js-row t_bg' : 'js-row';
     let requiredIconClass: string = this.item.isRequired ? 'fas fa-asterisk model-required text-danger' : 'fas fa-asterisk model-required';
     requiredIconClass += this.item.isRoot ? ' disabled' : '';
     const typeDisplayClass: string = 'badge badge-pill badge-primary ' + this.item.type;
-    // const expandChildElement: HTMLElement; //TODO
-    // const titleElement = this.item.isDefinition ?
-    //
+
+    //Handle Child Elements
     const objectItem = this.item as SchemaObject;
-    const propCountDisplay: string = objectItem.properties ? '(' + objectItem.getChildren().length + ')' : '';
-
-
+    const propCountDisplay: string = objectItem.properties ? '(' + objectItem.getChildren().length + ')' : '(0)';
     let showChildrenElement: JSX.Element;
     let children: ISchemaItem[];
     if (objectItem.getChildren) {
@@ -103,7 +100,7 @@ export class SchemaRowComponent {
                           <option value="array" selected={this.item.type === 'array'} class="badge badge-pill badge-primary array">ARRAY</option>
                           <option value="boolean" selected={this.item.type === 'boolean'} class="badge badge-pill badge-primary boolean">BOOLEAN</option>
                           <option value="null" selected={this.item.type === 'null'} class="badge badge-pill badge-primary null">NULL</option>
-                          <option value="$ref" selected={this.item.type === 'ref'} class="badge badge-pill badge-primary $ref">$ref</option>
+                          <option value="$ref" selected={this.item.type === '$ref'} class="badge badge-pill badge-primary $ref">$ref</option>
                     </select>
                 }
                 <i class={requiredIconClass} title="required-tooltip" onClick={ () => {
@@ -137,10 +134,14 @@ export class SchemaRowComponent {
               </div>
             </div>
           </div>
+          {this.showDetailsPan
+            ? <item-details class="item-details" item={this.item} parent={this}></item-details>
+            : <div></div>
+          }
         </div>
         <div class="indent">
           {children.map((child) =>
-              <app-schema-row item={child} parent={this} ></app-schema-row>
+              <app-schema-row item={child} parent={this}></app-schema-row>
           )}
         </div>
       </div>
