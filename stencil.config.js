@@ -13,6 +13,5 @@ exports.config = {
   ],
   plugins: [
     less()
-  ],
-  globalScript: 'src/global/index.ts'
+  ]
 };

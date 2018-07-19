@@ -9,7 +9,7 @@ import { SchemaObject, ISchemaItem } from './schema';
 export class DesignerComponent {
   @Prop() inputSchema: any;
   @Prop() outputSchemaCallback: any;
-  @State() rerenderTickle: number;
+  @State() _tickle: number = 0;
 
   workingSchema: any;
 
@@ -20,7 +20,6 @@ export class DesignerComponent {
   }
 
   componentWillLoad() {
-    this.rerenderTickle = 0;
     const testData = {
       "$schema": "http://json-schema.org/draft-04/schema#",
       "title": "Skype for Business Application Properties",
@@ -79,7 +78,7 @@ export class DesignerComponent {
   }
 
   rerender() {
-    this.rerenderTickle += 1;
+    this._tickle++;
   }
 
   render() {
@@ -90,14 +89,13 @@ export class DesignerComponent {
         <div class="row">
           <div class="col-lg-6">
             <h5> Schema </h5>
-              <app-schema-row item={ this.workingSchema } parent={this}></app-schema-row>
+              <schema-row item={ this.workingSchema } parent={this}></schema-row>
             <h5> Definitions </h5>
             {definitions.map((definition) =>
-                <app-schema-row item={definition} parent={this} ></app-schema-row>
+                <schema-row item={definition} parent={this} ></schema-row>
             )}
             <div class="text-center">
               <button class="btn btn-secondary btn-sm" onClick={()=> {
-                console.log('add definition');
                 this.workingSchema.addDefinition();
                 this.rerender();
               }}><i class="fas fa-plus"></i> Add Definition</button>
@@ -116,27 +114,3 @@ export class DesignerComponent {
     );
   }
 }
-//
-// <div class="container">
-//   <div class="row">
-//     <div class="col-lg-6"> <!-- Left Pane -->
-//       <h5> Schema </h5>
-//       <app-schema-row [item]="schemaReaderService.workingSchema"></app-schema-row>
-//       <h5> Definitions </h5>
-//       <div *ngFor="let definition of schemaReaderService.workingSchema.getDefinitions()">
-//         <app-schema-row [item]="definition"></app-schema-row>
-//       </div>
-//       <div class="text-center">
-//         <button class="btn btn-secondary btn-sm" (click)="schemaReaderService.workingSchema.addDefinition()"><fa-icon icon="plus"></fa-icon> Add Definition</button>
-//       </div>
-//     </div>
-//     <div class="col-lg-6"> <!-- Right Pane -->
-//       <div class="card card-body bg-light">
-//         <div class="text-center">
-//           <button class="btn btn-secondary btn-sm" (click)="exportSchema()"><fa-icon></fa-icon> Export </button>
-//         </div>
-//         <pre *ngIf="schemaReaderService.workingSchema"> {{schemaReaderService.workingSchema.jsonSchemaString()}}</pre>
-//       </div>
-//     </div>
-//   </div>
-// </div>

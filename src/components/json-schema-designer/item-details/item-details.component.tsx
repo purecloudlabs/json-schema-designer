@@ -35,6 +35,111 @@ export class ItemDetailsComponent {
 
     const enums = this.item.enum ? this.item.enum : [];
 
+    const basicFields: JSX.Element = (
+      <div class="col border-right">
+        <div class="t_color bold"> General </div>
+        <div>
+          <form class="form-horizontal form-compact model-detail-form" name="detailForm" role="form">
+            <div class="form-group">
+              <label class="control-label col-xs-2"> Title </label>
+              <div class="col-xs-9">
+                <input type="text" class="form-control sm detail-ip" id="foldName" value={this.item.title} name="title" onInput={(event) => {
+                  const input = event.target as HTMLInputElement;
+                  this.item.title = input.value;
+                  this.rerender();
+                }}/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-2"> Description </label>
+              <div class="col-xs-9">
+                <textarea class="form-control" value={this.item.description} onInput={(event) => {
+                  const input = event.target as HTMLInputElement;
+                  this.item.description = input.value;
+                  this.rerender();
+                }}></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-2"> Default </label>
+              <div class="col-xs-9">
+                <input type="text" class="form-control sm detail-ip" value={this.item.default} onInput={(event) => {
+                  const input = event.target as HTMLInputElement;
+                  this.item.default = input.value;
+                  this.rerender();
+                }}/>
+              </div>
+            </div>
+            {this.item.type === 'null'
+              ? <div></div>
+              : <div>
+                  <div class={requiredCheckBoxStyle}>
+                    <label><input type="checkbox" checked={this.item.isRequired} onInput={(event) => {
+                      if (this.item.isRoot) return;
+                      const input = event.target as HTMLInputElement;
+                      this.item.isRequired = input.checked;
+                      this.rerender();
+                    }}/> Required </label>
+                  </div>
+                  <div class="form-check">
+                    <label><input type="checkbox" checked={this.item.isNullable} onInput={(event) => {
+                      if (this.item.isRoot) return;
+                      const input = event.target as HTMLInputElement;
+                      this.item.isNullable = input.checked;
+                      this.rerender();
+                    }}/> Nullable </label>
+                  </div>
+                  <div>
+                    <div class="enum-control-bar" onClick={() => {
+                        this.enumCtrlExpanded = !this.enumCtrlExpanded;
+                    }}>
+                      {this.enumCtrlExpanded
+                        ? <i class="btn fas fa-chevron-down"></i>
+                        : <i class="btn fas fa-chevron-right"></i>
+                      }
+                      <label> Enumerated Values </label>
+                    </div>
+                    {this.enumCtrlExpanded
+                      ? <div>
+                          <div class="enum-row">
+                            {enums.map((enumObject, index) =>
+                              <div>
+                                <input type={enumObject.type} class="form-control form-control-sm" value={enumObject.value} onInput={(event) => {
+                                  const input = event.target as HTMLInputElement;
+                                  this.item.enum[index].value = input.value;
+                                  this.rerender();
+                                }}/>
+                                <select class="custom-select custom-select-sm" onInput={(event) => {
+                                  const input = event.target as HTMLInputElement;
+                                  this.item.enum[index].type = input.value;
+                                  this.rerender();
+                                }}>
+                                  <option>string</option>
+                                  <option>number</option>
+                                </select>
+                                <i class="btn fas fa-times" onClick={() => {
+                                  this.item.removeEnumValue(index);
+                                  this.rerender();
+                                }}></i>
+                              </div>
+                            )}
+                          </div>
+                          <div class="text-center">
+                            <button type="button" class="btn btn-secondary btn-sm" onClick={() => {
+                              this.item.addEnumValue();
+                              this.rerender();
+                            }}> Add Value <i class="fas fa-plus"></i></button>
+                          </div>
+                        </div>
+                      : <div></div>
+                    }
+                  </div>
+                </div>
+            }
+          </form>
+        </div>
+      </div>
+    );
     const stringFields: JSX.Element = (
       <div class="col">
         <form>
@@ -265,106 +370,11 @@ export class ItemDetailsComponent {
     return (
       <div class="model-det-cont container">
           {this.item.type === '$ref'
-            ? <div class="row"> {refFields} </div>
+            ? <div class="row">
+                {refFields}
+              </div>
             : <div class="row">
-                <div class="col border-right">
-                  <div class="t_color bold"> General </div>
-                  <div>
-                    <form class="form-horizontal form-compact model-detail-form" name="detailForm" role="form">
-                      <div class="form-group">
-                        <label class="control-label col-xs-2"> Title </label>
-                        <div class="col-xs-9">
-                          <input type="text" class="form-control sm detail-ip" id="foldName" value={this.item.title} name="title" onInput={(event) => {
-                            const input = event.target as HTMLInputElement;
-                            this.item.title = input.value;
-                            this.rerender();
-                          }}/>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-xs-2"> Description </label>
-                        <div class="col-xs-9">
-                          <textarea class="form-control" value={this.item.description} onInput={(event) => {
-                            const input = event.target as HTMLInputElement;
-                            this.item.description = input.value;
-                            this.rerender();
-                          }}></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-xs-2"> Default </label>
-                        <div class="col-xs-9">
-                          <input type="text" class="form-control sm detail-ip" value={this.item.default} onInput={(event) => {
-                            const input = event.target as HTMLInputElement;
-                            this.item.default = input.value;
-                            this.rerender();
-                          }}/>
-                        </div>
-                      </div>
-                      <div class={requiredCheckBoxStyle}>
-                        <label><input type="checkbox" checked={this.item.isRequired} onInput={(event) => {
-                          if (this.item.isRoot) return;
-                          const input = event.target as HTMLInputElement;
-                          this.item.isRequired = input.checked;
-                          this.rerender();
-                        }}/> Required </label>
-                      </div>
-                      <div class="form-check">
-                        <label><input type="checkbox" checked={this.item.isNullable} onInput={(event) => {
-                          if (this.item.isRoot) return;
-                          const input = event.target as HTMLInputElement;
-                          this.item.isNullable = input.checked;
-                          this.rerender();
-                        }}/> Nullable </label>
-                      </div>
-                      <div>
-                        <div class="enum-control-bar" onClick={() => {
-                            this.enumCtrlExpanded = !this.enumCtrlExpanded;
-                        }}>
-                          {this.enumCtrlExpanded
-                            ? <i class="btn fas fa-chevron-down"></i>
-                            : <i class="btn fas fa-chevron-right"></i>
-                          }
-                          <label> Enumerated Values </label>
-                        </div>
-                        {this.enumCtrlExpanded
-                          ? <div>
-                              <div class="enum-row">
-                                {enums.map((enumObject, index) =>
-                                  <div>
-                                    <input type={enumObject.type} class="form-control form-control-sm" value={enumObject.value} onInput={(event) => {
-                                      const input = event.target as HTMLInputElement;
-                                      this.item.enum[index].value = input.value;
-                                      this.rerender();
-                                    }}/>
-                                    <select class="custom-select custom-select-sm" onInput={(event) => {
-                                      const input = event.target as HTMLInputElement;
-                                      this.item.enum[index].type = input.value;
-                                      this.rerender();
-                                    }}>
-                                      <option>string</option>
-                                      <option>number</option>
-                                    </select>
-                                    <i class="btn fas fa-times" onClick={() => {
-                                      this.item.removeEnumValue(index);
-                                      this.rerender();
-                                    }}></i>
-                                  </div>
-                                )}
-                              </div>
-                              <div class="text-center">
-                                <button type="button" class="btn btn-secondary btn-sm" onClick={() => {
-                                  this.item.addEnumValue();
-                                  this.rerender();
-                                }}> Add Value <i class="fas fa-plus"></i></button>
-                              </div>
-                            </div>
-                          : <div></div>
-                        }
-                      </div>
-                    </form>
-                  </div>
-                </div>
+                {basicFields}
                 {typeSpecificFields}
               </div>
           }

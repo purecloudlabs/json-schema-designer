@@ -102,31 +102,31 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface AppSchemaRow {
+    interface SchemaRow {
       'item': ISchemaItem;
       'parent': any;
     }
   }
 
-  interface HTMLAppSchemaRowElement extends StencilComponents.AppSchemaRow, HTMLStencilElement {}
+  interface HTMLSchemaRowElement extends StencilComponents.SchemaRow, HTMLStencilElement {}
 
-  var HTMLAppSchemaRowElement: {
-    prototype: HTMLAppSchemaRowElement;
-    new (): HTMLAppSchemaRowElement;
+  var HTMLSchemaRowElement: {
+    prototype: HTMLSchemaRowElement;
+    new (): HTMLSchemaRowElement;
   };
   interface HTMLElementTagNameMap {
-    'app-schema-row': HTMLAppSchemaRowElement;
+    'schema-row': HTMLSchemaRowElement;
   }
   interface ElementTagNameMap {
-    'app-schema-row': HTMLAppSchemaRowElement;
+    'schema-row': HTMLSchemaRowElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'app-schema-row': JSXElements.AppSchemaRowAttributes;
+      'schema-row': JSXElements.SchemaRowAttributes;
     }
   }
   namespace JSXElements {
-    export interface AppSchemaRowAttributes extends HTMLAttributes {
+    export interface SchemaRowAttributes extends HTMLAttributes {
       'item'?: ISchemaItem;
       'parent'?: any;
     }

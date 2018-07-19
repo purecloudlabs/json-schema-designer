@@ -2,7 +2,7 @@ import { Component, Prop, State } from '@stencil/core';
 import { ISchemaItem, IHasChildren, SchemaObject } from '../schema';
 
 @Component({
-  tag: 'app-schema-row'
+  tag: 'schema-row'
 })
 export class SchemaRowComponent {
   @Prop() item: ISchemaItem;
@@ -12,7 +12,7 @@ export class SchemaRowComponent {
   @State() showChildren: boolean = true;
   @State() showDetailsPan: boolean = false;
 
-  @State() tickle: number = 0;
+  @State() _tickle: number = 0;
 
 
   removeItem(item: ISchemaItem): void {
@@ -24,7 +24,7 @@ export class SchemaRowComponent {
   }
 
   rerender() {
-    this.tickle++;
+    this._tickle++;
     this.parent.rerender();
   }
 
@@ -141,7 +141,7 @@ export class SchemaRowComponent {
         </div>
         <div class="indent">
           {children.map((child) =>
-              <app-schema-row item={child} parent={this}></app-schema-row>
+              <schema-row item={child} parent={this}></schema-row>
           )}
         </div>
       </div>
