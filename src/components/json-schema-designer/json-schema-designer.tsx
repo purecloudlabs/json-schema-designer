@@ -8,7 +8,9 @@ import { SchemaObject, ISchemaItem } from './schema';
 })
 export class DesignerComponent {
   @Prop() inputSchema: any;
+  @Prop() inputTranslations: any;
   @Prop() outputSchemaCallback: any;
+  @Prop({ context: 'i18n' }) private i18n: any;
   @State() _tickle: number = 0;
 
   workingSchema: any;
@@ -74,7 +76,7 @@ export class DesignerComponent {
       }
     };
     this.workingSchema = new SchemaObject(testData, null);
-    console.log('workingSchema:', this.workingSchema);
+    if (this.inputTranslations) this.i18n.transtions = this.inputTranslations;
   }
 
   rerender() {
@@ -89,6 +91,9 @@ export class DesignerComponent {
         <div class="row">
           <div class="col-lg-6">
             <h5> Schema </h5>
+            <div>
+              Translations Test: {this.i18n.translate('json-schema-desinger.test-translation')}
+            </div>
               <schema-row item={ this.workingSchema } parent={this}></schema-row>
             <h5> Definitions </h5>
             {definitions.map((definition) =>
