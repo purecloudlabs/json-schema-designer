@@ -23,6 +23,7 @@ export class ItemDetailsComponent {
       this.enumCtrlExpanded = true;
     }
   }
+
   render() {
     //computed classes
     const requiredCheckBoxStyle = this.item.isRoot ? 'form-check disabled' : 'form-check'; //TODO: style="padding: 2px 0;"
@@ -102,34 +103,35 @@ export class ItemDetailsComponent {
                     </div>
                     {this.enumCtrlExpanded
                       ? <div>
-                          <div class="enum-row">
-                            {enums.map((enumObject, index) =>
-                              <div>
-                                <input type={enumObject.type} class="form-control form-control-sm" value={enumObject.value} onInput={(event) => {
-                                  const input = event.target as HTMLInputElement;
-                                  this.item.enum[index].value = input.value;
-                                  this.rerender();
-                                }}/>
-                                <select class="custom-select custom-select-sm" onInput={(event) => {
-                                  const input = event.target as HTMLInputElement;
-                                  this.item.enum[index].type = input.value;
-                                  this.rerender();
-                                }}>
-                                  <option value='string'>{this.i18n.translate('json-schema-designer.string')}</option>
-                                  <option value='number'>{this.i18n.translate('json-schema-designer.number')}</option>
-                                </select>
-                                <i class="btn fas fa-times" onClick={() => {
-                                  this.item.removeEnumValue(index);
-                                  this.rerender();
-                                }}></i>
-                              </div>
+                          {enums.map((enumObject, index) =>
+                            <div class="enum-row">
+                              <input type={enumObject.type} class="form-control form-control-sm" value={enumObject.value} onInput={(event) => {
+                                const input = event.target as HTMLInputElement;
+                                this.item.enum[index].value = input.value;
+                                this.rerender();
+                              }}/>
+                              <select class="custom-select custom-select-sm" onInput={(event) => {
+                                const input = event.target as HTMLInputElement;
+                                this.item.enum[index].type = input.value;
+                                this.rerender();
+                              }}>
+                                <option value='string'>{this.i18n.translate('json-schema-designer.string')}</option>
+                                <option value='number'>{this.i18n.translate('json-schema-designer.number')}</option>
+                              </select>
+                              <i class="btn fas fa-times" onClick={() => {
+                                this.item.removeEnumValue(index);
+                                this.rerender();
+                              }}></i>
+                            </div>
                             )}
-                          </div>
                           <div class="text-center">
                             <button type="button" class="btn btn-secondary btn-sm" onClick={() => {
                               this.item.addEnumValue();
                               this.rerender();
-                            }}> {this.i18n.translate('json-schema-designer.add-value')} <i class="fas fa-plus"></i></button>
+                            }}>
+                              <i class="fas fa-plus"></i>
+                              {this.i18n.translate('json-schema-designer.add-value')}
+                            </button>
                           </div>
                         </div>
                       : <div></div>
@@ -365,8 +367,6 @@ export class ItemDetailsComponent {
       default:
         typeSpecificFields = (<div></div>);
     }
-
-    //TODO: put style="border-right:1px solid #9E9E9E"
 
     return (
       <div class="model-det-cont container">

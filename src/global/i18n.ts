@@ -18,6 +18,7 @@ const defaultTranslations: any = {
     "description": "Description",
     "default": "Default",
     "required": "Required",
+    "not-required": "Not Required",
     "nullable": "Nullable",
     "enumerated-values": "Enumerated Values",
     "add-value": "Add Value",

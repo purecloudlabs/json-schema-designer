@@ -1,6 +1,8 @@
 import { Component, Prop, State } from '@stencil/core';
 import { SchemaObject, ISchemaItem } from './schema';
 
+declare var $: any;
+
 @Component({
   tag: 'json-schema-designer',
   styleUrl: 'json-schema-designer.less',
@@ -79,6 +81,11 @@ export class DesignerComponent {
     };
     this.workingSchema = new SchemaObject(testData, null);
     if (this.inputTranslations) this.i18n.transtions = this.inputTranslations;
+  }
+
+  componentDidLoad() {
+    console.log('Component has been rendered');
+    $('[data-toggle="tooltip"]').tooltip();
   }
 
   rerender() {

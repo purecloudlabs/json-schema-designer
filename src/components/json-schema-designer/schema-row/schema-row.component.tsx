@@ -34,6 +34,9 @@ export class SchemaRowComponent {
     let requiredIconClass: string = this.item.isRequired ? 'fas fa-asterisk model-required text-danger' : 'fas fa-asterisk model-required';
     requiredIconClass += this.item.isRoot ? ' disabled' : '';
     const typeDisplayClass: string = 'badge badge-pill badge-primary ' + this.item.type;
+    const descriptionIconClass: string = this.item.description ? 'fas fa-comment-alt model-comment pointer' : 'fas fa-comment-alt model-comment pointer disabled';
+
+    const requiredTooltip: string = this.item.isRequired ? this.i18n.translate('json-schema-designer.required') : this.i18n.translate('json-schema-designer.not-required');
 
     //Handle Child Elements
     const objectItem = this.item as SchemaObject;
@@ -103,12 +106,12 @@ export class SchemaRowComponent {
                           <option value="$ref" selected={this.item.type === '$ref'} class="badge badge-pill badge-primary $ref">{this.i18n.translate('json-schema-designer.$ref').toUpperCase()}</option>
                     </select>
                 }
-                <i class={requiredIconClass} onClick={ () => {
+                <i class={requiredIconClass} data-toggle="tooltip" data-placement="top" data-original-title={requiredTooltip} onClick={ () => {
                   if (this.item.isRoot) return;
                   this.item.isRequired = !this.item.isRequired;
                   this.rerender();
                  }} ></i>
-                <i class="fas fa-comment-alt model-comment pointer"></i>
+                <i class={descriptionIconClass} data-toggle="tooltip" data-placement="top" data-original-title={this.item.description}></i>
               </div>
               <div class="model-actions">
                 {objectItem.getChildren
