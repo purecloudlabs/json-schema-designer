@@ -17,6 +17,7 @@ log.txt
 .sass-cache/
 .versions/
 node_modules/
+bower_components/
 $RECYCLE.BIN/
 
 .DS_Store
