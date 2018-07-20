@@ -10,7 +10,9 @@ export class DesignerComponent {
   @Prop() inputSchema: any;
   @Prop() inputTranslations: any;
   @Prop() outputSchemaCallback: any;
+
   @Prop({ context: 'i18n' }) private i18n: any;
+
   @State() _tickle: number = 0;
 
   workingSchema: any;
@@ -90,12 +92,9 @@ export class DesignerComponent {
       <div class="json-schema-builder container">
         <div class="row">
           <div class="col-lg-6">
-            <h5> Schema </h5>
-            <div>
-              Translations Test: {this.i18n.translate('json-schema-desinger.test-translation')}
-            </div>
+            <h5> {this.i18n.translate('json-schema-designer.schema')} </h5>
               <schema-row item={ this.workingSchema } parent={this}></schema-row>
-            <h5> Definitions </h5>
+            <h5> {this.i18n.translate('json-schema-designer.definitions')} </h5>
             {definitions.map((definition) =>
                 <schema-row item={definition} parent={this} ></schema-row>
             )}
@@ -103,13 +102,13 @@ export class DesignerComponent {
               <button class="btn btn-secondary btn-sm" onClick={()=> {
                 this.workingSchema.addDefinition();
                 this.rerender();
-              }}><i class="fas fa-plus"></i> Add Definition</button>
+              }}><i class="fas fa-plus"></i> {this.i18n.translate('json-schema-designer.add-definition')}</button>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="card card-body bg-light">
               <div class="text-center">
-                <button class="btn btn-secondary btn-sm" onClick={() => this.exportSchema()}> Export </button>
+                <button class="btn btn-secondary btn-sm" onClick={() => this.exportSchema()}> {this.i18n.translate('json-schema-designer.export')} </button>
               </div>
               <pre> { jsonOutput }</pre>
             </div>

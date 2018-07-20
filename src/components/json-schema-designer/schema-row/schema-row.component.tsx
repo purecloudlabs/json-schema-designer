@@ -6,12 +6,12 @@ import { ISchemaItem, IHasChildren, SchemaObject } from '../schema';
 })
 export class SchemaRowComponent {
   @Prop() item: ISchemaItem;
-  @Prop({context: 'workingSchema' }) workingSchema: any;
   @Prop() parent: any;
+
+  @Prop({ context: 'i18n' }) private i18n: any;
 
   @State() showChildren: boolean = true;
   @State() showDetailsPan: boolean = false;
-
   @State() _tickle: number = 0;
 
 
@@ -85,7 +85,7 @@ export class SchemaRowComponent {
                         this.item.changeType(input.value);
                         this.rerender();
                       }}>
-                      <option value="object" class="badge badge-pill badge-primary object">OBJECT {propCountDisplay}</option>
+                      <option value="object" class="badge badge-pill badge-primary object"> {this.i18n.translate('json-schema-designer.object').toUpperCase()} {propCountDisplay}</option>
 
                     </select>
                   : <select class={typeDisplayClass} onInput={(event) => {
@@ -93,17 +93,17 @@ export class SchemaRowComponent {
                         this.item.changeType(input.value);
                         this.rerender();
                        }}>
-                          <option value="string" selected={this.item.type === 'string'} class="badge badge-pill badge-primar string">STRING</option>
-                          <option value="number" selected={this.item.type === 'number'} class="badge badge-pill badge-primary number">NUMBER</option>
-                          <option value="interger" selected={this.item.type === 'interger'} class="badge badge-pill badge-primary interger">INTEGER</option>
-                          <option value="object" selected={this.item.type === 'object'} class="badge badge-pill badge-primary object">OBJECT {propCountDisplay}</option>
-                          <option value="array" selected={this.item.type === 'array'} class="badge badge-pill badge-primary array">ARRAY</option>
-                          <option value="boolean" selected={this.item.type === 'boolean'} class="badge badge-pill badge-primary boolean">BOOLEAN</option>
-                          <option value="null" selected={this.item.type === 'null'} class="badge badge-pill badge-primary null">NULL</option>
-                          <option value="$ref" selected={this.item.type === '$ref'} class="badge badge-pill badge-primary $ref">$ref</option>
+                          <option value="string" selected={this.item.type === 'string'} class="badge badge-pill badge-primar string">{this.i18n.translate('json-schema-designer.string').toUpperCase()}</option>
+                          <option value="number" selected={this.item.type === 'number'} class="badge badge-pill badge-primary number">{this.i18n.translate('json-schema-designer.number').toUpperCase()}</option>
+                          <option value="interger" selected={this.item.type === 'interger'} class="badge badge-pill badge-primary interger">{this.i18n.translate('json-schema-designer.integer').toUpperCase()}</option>
+                          <option value="object" selected={this.item.type === 'object'} class="badge badge-pill badge-primary object">{this.i18n.translate('json-schema-designer.object').toUpperCase()} {propCountDisplay}</option>
+                          <option value="array" selected={this.item.type === 'array'} class="badge badge-pill badge-primary array">{this.i18n.translate('json-schema-designer.array').toUpperCase()}</option>
+                          <option value="boolean" selected={this.item.type === 'boolean'} class="badge badge-pill badge-primary boolean">{this.i18n.translate('json-schema-designer.boolean').toUpperCase()}</option>
+                          <option value="null" selected={this.item.type === 'null'} class="badge badge-pill badge-primary null">{this.i18n.translate('json-schema-designer.null').toUpperCase()}</option>
+                          <option value="$ref" selected={this.item.type === '$ref'} class="badge badge-pill badge-primary $ref">{this.i18n.translate('json-schema-designer.$ref').toUpperCase()}</option>
                     </select>
                 }
-                <i class={requiredIconClass} title="required-tooltip" onClick={ () => {
+                <i class={requiredIconClass} onClick={ () => {
                   if (this.item.isRoot) return;
                   this.item.isRequired = !this.item.isRequired;
                   this.rerender();
