@@ -39,7 +39,8 @@ const defaultTranslations: any = {
     "minimum-items": "Minimum Items",
     "maximum-items": "Maximum Items",
     "unique-items": "Unique Items",
-    "reference": "Reference"
+    "reference": "Reference",
+    "view-mode-not-supported": "View Mode Not Supported"
   }
 };
 

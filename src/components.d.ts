@@ -71,6 +71,7 @@ declare global {
       'inputSchema': any;
       'inputTranslations': any;
       'outputSchemaCallback': any;
+      'viewMode': string;
     }
   }
 
@@ -96,6 +97,7 @@ declare global {
       'inputSchema'?: any;
       'inputTranslations'?: any;
       'outputSchemaCallback'?: any;
+      'viewMode'?: string;
     }
   }
 }
