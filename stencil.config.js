@@ -1,7 +1,7 @@
 const less = require('@stencil/less');
 
 exports.config = {
-  namespace: 'mycomponent',
+  namespace: 'jsonschemadesigner',
   outputTargets:[
     {
       type: 'dist'

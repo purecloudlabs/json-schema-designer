@@ -22,10 +22,10 @@ a.btn.round-btn:hover{
     color: #0a6ebd;
     outline: none;
 }
-.btn .caret, .caret{
+.btn .caret, .caret {
     margin-left: 5px;
 }
-pre{
+pre {
     margin: 15px;
     line-height: 15px;
 }
