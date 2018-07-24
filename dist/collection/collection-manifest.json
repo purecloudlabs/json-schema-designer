@@ -1,0 +1,132 @@
+{
+  "components": [
+    {
+      "tag": "item-details",
+      "dependencies": [],
+      "componentClass": "ItemDetailsComponent",
+      "componentPath": "components/json-schema-designer/item-details/item-details.component.js",
+      "styles": {},
+      "props": [
+        {
+          "name": "item",
+          "attr": "item"
+        },
+        {
+          "name": "parent",
+          "type": "Any",
+          "attr": "parent"
+        }
+      ],
+      "states": [
+        {
+          "name": "_tickle"
+        },
+        {
+          "name": "enumCtrlExpanded"
+        }
+      ],
+      "context": [
+        {
+          "name": "i18n",
+          "id": "i18n"
+        }
+      ]
+    },
+    {
+      "tag": "json-schema-designer",
+      "dependencies": [
+        "schema-row"
+      ],
+      "componentClass": "DesignerComponent",
+      "componentPath": "components/json-schema-designer/json-schema-designer.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/json-schema-designer/json-schema-designer.less"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "inputSchema",
+          "type": "Any",
+          "attr": "input-schema"
+        },
+        {
+          "name": "inputTranslations",
+          "type": "Any",
+          "attr": "input-translations"
+        },
+        {
+          "name": "outputSchemaCallback",
+          "type": "Any",
+          "attr": "output-schema-callback"
+        },
+        {
+          "name": "viewMode",
+          "type": "String",
+          "attr": "view-mode"
+        }
+      ],
+      "states": [
+        {
+          "name": "_tickle"
+        },
+        {
+          "name": "activeTab"
+        }
+      ],
+      "context": [
+        {
+          "name": "i18n",
+          "id": "i18n"
+        }
+      ]
+    },
+    {
+      "tag": "schema-row",
+      "dependencies": [
+        "item-details"
+      ],
+      "componentClass": "SchemaRowComponent",
+      "componentPath": "components/json-schema-designer/schema-row/schema-row.component.js",
+      "styles": {},
+      "props": [
+        {
+          "name": "item",
+          "attr": "item"
+        },
+        {
+          "name": "parent",
+          "type": "Any",
+          "attr": "parent"
+        }
+      ],
+      "states": [
+        {
+          "name": "_tickle"
+        },
+        {
+          "name": "showChildren"
+        },
+        {
+          "name": "showDetailsPan"
+        }
+      ],
+      "context": [
+        {
+          "name": "i18n",
+          "id": "i18n"
+        }
+      ]
+    }
+  ],
+  "collections": [],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "0.10.0",
+    "typescriptVersion": "2.9.2"
+  },
+  "bundles": [],
+  "global": "global/index.js"
+}

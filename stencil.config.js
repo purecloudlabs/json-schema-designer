@@ -14,5 +14,6 @@ exports.config = {
   plugins: [
     less()
   ],
-  globalScript: 'src/global/index.ts'
+  globalScript: 'src/global/index.ts',
+  generateDistribution: true
 };

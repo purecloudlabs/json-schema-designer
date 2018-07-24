@@ -1,0 +1,1 @@
+// jsonschemadesigner: CommonJS Main
