@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "description": "Build JSON Schema using a GUI",
   "module": "dist/esm/index.js",
-  "main": "dist/jsonschemadesigner.js",
+  "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "files": [
@@ -18,7 +18,7 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@stencil/core": "^0.10.0",
+    "@stencil/core": "^0.9.0",
     "@stencil/less": "0.0.1",
     "@types/jest": "^21.1.1",
     "jest": "^21.2.1"
