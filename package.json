@@ -1,6 +1,6 @@
 {
   "name": "json-schema-designer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Build JSON Schema using a GUI",
   "module": "dist/esm/index.js",
   "main": "dist/jsonschemadesigner.js",
