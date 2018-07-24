@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "Build JSON Schema using a GUI",
   "module": "dist/esm/index.js",
-  "main": "dist/index.js",
+  "main": "dist/jsonschemadesigner.js",
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "files": [
