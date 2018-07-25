@@ -100,7 +100,7 @@ export class DesignerComponent {
       const desingerPillClass: string = this.activeTab === 'designer' ? 'nav-link active' : 'nav-link';
       const outputPillClass: string = this.activeTab === 'output' ? 'nav-link active' : 'nav-link';
       return (
-        <div class="json-schema-builder container">
+        <div id="json-schema-designer" class="container">
           <div class="p-3">
             <ul class="nav nav-pills justify-content-center">
               <li class="btn nav-item">
@@ -124,7 +124,7 @@ export class DesignerComponent {
                     <button class="btn btn-secondary btn-sm" onClick={()=> {
                       this.workingSchema.addDefinition();
                       this.rerender();
-                    }}><i class="fas fa-plus"></i> {this.i18n.translate('json-schema-designer.add-definition')}</button>
+                    }}><i class="fa fa-plus"></i> {this.i18n.translate('json-schema-designer.add-definition')}</button>
                   </div>
                 </div>
               : <div class="col-lg-12">
@@ -155,7 +155,7 @@ export class DesignerComponent {
                 <button class="btn btn-secondary btn-sm" onClick={()=> {
                   this.workingSchema.addDefinition();
                   this.rerender();
-                }}><i class="fas fa-plus"></i> {this.i18n.translate('json-schema-designer.add-definition')}</button>
+                }}><i class="fa fa-plus"></i> {this.i18n.translate('json-schema-designer.add-definition')}</button>
               </div>
             </div>
             <div class="col-lg-6">

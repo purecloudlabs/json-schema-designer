@@ -31,10 +31,10 @@ export class SchemaRowComponent {
   render() {
     //Computed CSS Classes
     const rowClass: string = this.showDetailsPan ? 'js-row t_bg' : 'js-row';
-    let requiredIconClass: string = this.item.isRequired ? 'fas fa-asterisk model-required text-danger' : 'fas fa-asterisk model-required';
+    let requiredIconClass: string = this.item.isRequired ? 'fa fa-asterisk model-required text-danger' : 'fa fa-asterisk model-required';
     requiredIconClass += this.item.isRoot ? ' disabled' : '';
     const typeDisplayClass: string = 'badge badge-pill badge-primary ' + this.item.type;
-    const descriptionIconClass: string = this.item.description ? 'fas fa-comment-alt model-comment pointer' : 'fas fa-comment-alt model-comment pointer disabled';
+    const descriptionIconClass: string = this.item.description ? 'fa fa-comment-alt model-comment pointer' : 'fa fa-comment-alt model-comment pointer disabled';
 
     const requiredTooltip: string = this.item.isRequired ? this.i18n.translate('json-schema-designer.required') : this.i18n.translate('json-schema-designer.not-required');
 
@@ -46,10 +46,10 @@ export class SchemaRowComponent {
     if (objectItem.getChildren) {
       // Has Children
       if (this.showChildren) {
-        showChildrenElement = <i class="t_color fas fa-chevron-down"></i>;
+        showChildrenElement = <i class="t_color fa fa-chevron-down"></i>;
         children = objectItem.getChildren();
       } else {
-        showChildrenElement = <i class="t_color fas fa-chevron-right"></i>;
+        showChildrenElement = <i class="t_color fa fa-chevron-right"></i>;
         children = [];
       }
     } else {
@@ -115,19 +115,19 @@ export class SchemaRowComponent {
               </div>
               <div class="model-actions">
                 {objectItem.getChildren
-                  ? <i class="fas fa-plus obj-add" onClick={() => {
+                  ? <i class="fa fa-plus obj-add" onClick={() => {
                       this.addNewProp(objectItem);
                       this.rerender();
                     }}></i>
-                  : <i class="fas fa-plus obj-add disabled"></i>
+                  : <i class="fa fa-plus obj-add disabled"></i>
                 }
                 {this.showDetailsPan
-                  ? <i class="fas fa-check model-done text-success" onClick={() => { this.showDetailsPan = false; }}></i>
-                  : <i class="fas fa-pencil-alt model-detail" onClick={() => { this.showDetailsPan = true; }}></i>
+                  ? <i class="fa fa-check model-done text-success" onClick={() => { this.showDetailsPan = false; }}></i>
+                  : <i class="fa fa-pencil-alt model-detail" onClick={() => { this.showDetailsPan = true; }}></i>
                 }
                 {this.item.isRoot
-                  ? <i class="fas fa-times model-remove disabled"></i>
-                  : <i class="fas fa-times model-remove" onClick={() => {
+                  ? <i class="fa fa-times model-remove disabled"></i>
+                  : <i class="fa fa-times model-remove" onClick={() => {
                       if (this.item.isRoot) return;
                       this.removeItem(this.item)
                       this.rerender();
