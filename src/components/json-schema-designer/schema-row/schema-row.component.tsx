@@ -123,7 +123,7 @@ export class SchemaRowComponent {
                 }
                 {this.showDetailsPan
                   ? <i class="fa fa-check model-done text-success" onClick={() => { this.showDetailsPan = false; }}></i>
-                  : <i class="fa fa-pencil-alt model-detail" onClick={() => { this.showDetailsPan = true; }}></i>
+                  : <i class="fa fa-pencil model-detail" onClick={() => { this.showDetailsPan = true; }}></i>
                 }
                 {this.item.isRoot
                   ? <i class="fa fa-times model-remove disabled"></i>

@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "description": "Build JSON Schema using a GUI",
   "module": "dist/esm/index.js",
-  "main": "dist/jsonschemadesigner.js",
+  "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "files": [
@@ -13,9 +13,11 @@
     "build": "stencil build",
     "start": "stencil build --dev --watch --serve",
     "test": "jest",
-    "test.watch": "jest --watch"
+    "test.watch": "jest --watch",
+    "postinstall": "./scripts/post-install.sh"
   },
   "dependencies": {
+    "font-awesome": "^4.7.0"
   },
   "devDependencies": {
     "@stencil/core": "^0.10.0",

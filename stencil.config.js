@@ -11,6 +11,9 @@ exports.config = {
       serviceWorker: false
     }
   ],
+  copy: [
+    { src: 'assets' }
+  ],
   plugins: [
     less()
   ],
