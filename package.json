@@ -17,7 +17,7 @@
     "postinstall": "./scripts/post-install.sh"
   },
   "dependencies": {
-    "font-awesome": "^4.7.0"
+    "@fortawesome/fontawesome-free": "^5.2.0"
   },
   "devDependencies": {
     "@stencil/core": "^0.10.0",

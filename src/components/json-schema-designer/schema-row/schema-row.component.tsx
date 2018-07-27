@@ -115,19 +115,19 @@ export class SchemaRowComponent {
               </div>
               <div class="model-actions">
                 {objectItem.getChildren
-                  ? <i class="fa fa-plus obj-add" onClick={() => {
+                  ? <i class="fas fa-plus obj-add" onClick={() => {
                       this.addNewProp(objectItem);
                       this.rerender();
                     }}></i>
-                  : <i class="fa fa-plus obj-add disabled"></i>
+                  : <i class="fas fa-plus obj-add disabled"></i>
                 }
                 {this.showDetailsPan
-                  ? <i class="fa fa-check model-done text-success" onClick={() => { this.showDetailsPan = false; }}></i>
-                  : <i class="fa fa-pencil model-detail" onClick={() => { this.showDetailsPan = true; }}></i>
+                  ? <i class="fas fa-check model-done text-success" onClick={() => { this.showDetailsPan = false; }}></i>
+                  : <i class="fas fa-pencil-alt model-detail" onClick={() => { this.showDetailsPan = true; }}></i>
                 }
                 {this.item.isRoot
-                  ? <i class="fa fa-times model-remove disabled"></i>
-                  : <i class="fa fa-times model-remove" onClick={() => {
+                  ? <i class="fas fa-times model-remove disabled"></i>
+                  : <i class="fas fa-times model-remove" onClick={() => {
                       if (this.item.isRoot) return;
                       this.removeItem(this.item)
                       this.rerender();

@@ -96,8 +96,8 @@ export class ItemDetailsComponent {
                         this.enumCtrlExpanded = !this.enumCtrlExpanded;
                     }}>
                       {this.enumCtrlExpanded
-                        ? <i class="btn fa fa-chevron-down"></i>
-                        : <i class="btn fa fa-chevron-right"></i>
+                        ? <div class='btn'><i class="fa fa-chevron-down"></i></div>
+                        : <div class='btn'><i class="fa fa-chevron-right"></i></div>
                       }
                       <label> {this.i18n.translate('json-schema-designer.enumerated-values')} </label>
                     </div>
@@ -118,10 +118,10 @@ export class ItemDetailsComponent {
                                 <option value='string'>{this.i18n.translate('json-schema-designer.string')}</option>
                                 <option value='number'>{this.i18n.translate('json-schema-designer.number')}</option>
                               </select>
-                              <i class="btn fa fa-times" onClick={() => {
+                              <div class='btn'><i class="fa fa-times" onClick={() => {
                                 this.item.removeEnumValue(index);
                                 this.rerender();
-                              }}></i>
+                              }}></i></div>
                             </div>
                             )}
                           <div class="text-center">
