@@ -68,10 +68,11 @@ declare global {
 
   namespace StencilComponents {
     interface JsonSchemaDesigner {
-      'inputSchema': any;
-      'inputTranslations': any;
+      'debugmode': boolean;
+      'inputschema': any;
+      'inputtranslations': any;
       'outputSchemaCallback': any;
-      'viewMode': string;
+      'viewmode': string;
     }
   }
 
@@ -94,10 +95,11 @@ declare global {
   }
   namespace JSXElements {
     export interface JsonSchemaDesignerAttributes extends HTMLAttributes {
-      'inputSchema'?: any;
-      'inputTranslations'?: any;
+      'debugmode'?: boolean;
+      'inputschema'?: any;
+      'inputtranslations'?: any;
       'outputSchemaCallback'?: any;
-      'viewMode'?: string;
+      'viewmode'?: string;
     }
   }
 }

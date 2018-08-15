@@ -9,12 +9,14 @@ declare var $: any;
   shadow: false
 })
 export class DesignerComponent {
-  @Prop() inputSchema: any;
-  @Prop() inputTranslations: any;
+  @Prop() inputschema: any;
+  @Prop() inputtranslations: any;
   @Prop() outputSchemaCallback: any;
-  @Prop() viewMode: string = 'tabs';
+  @Prop() viewmode: string = 'tabs';
+  @Prop() debugmode: boolean = false;
 
   @Prop({ context: 'i18n' }) private i18n: any;
+
 
   @State() activeTab: string = 'designer';
   @State() _tickle: number = 0;
@@ -81,12 +83,25 @@ export class DesignerComponent {
         }
       }
     };
-    this.workingSchema = this.inputSchema ? new SchemaObject(this.inputSchema, null) : new SchemaObject(testData, null);
-    if (this.inputTranslations) this.i18n.transtions = this.inputTranslations;
+
+    //Load Translations
+    if (typeof(this.inputtranslations) === 'string') {
+      this.i18n.translations = JSON.parse(this.inputtranslations);
+    } else if (this.inputtranslations) {
+      this.i18n.translations = this.inputtranslations;
+    }
+
+    //Load Schema
+    let startingSchema = this.debugmode ? testData : {};
+    if (typeof(this.inputschema) === 'string') {
+      startingSchema = JSON.parse(this.inputschema);
+    }
+    this.workingSchema = new SchemaObject(startingSchema, null);
   }
 
   componentDidLoad() {
     $('[data-toggle="tooltip"]').tooltip();
+    console.log('Properties', 'inputschema:', this.inputschema, 'outputschemaCallback', this.outputSchemaCallback, 'viewmode', this.viewmode );
   }
 
   rerender() {
@@ -96,7 +111,7 @@ export class DesignerComponent {
   render() {
     const jsonOutput: string = this.workingSchema ? this.workingSchema.jsonSchemaString() : "";
     const definitions: ISchemaItem[] = this.workingSchema ? this.workingSchema.getDefinitions() : [];
-    if (this.viewMode === 'tabs') {
+    if (this.viewmode === 'tabs') {
       const desingerPillClass: string = this.activeTab === 'designer' ? 'nav-link active' : 'nav-link';
       const outputPillClass: string = this.activeTab === 'output' ? 'nav-link active' : 'nav-link';
       return (
@@ -140,7 +155,7 @@ export class DesignerComponent {
         </div>
 
       );
-    } else if (this.viewMode === 'columns') {
+    } else if (this.viewmode === 'columns') {
       return (
         <div class="json-schema-builder container">
           <div class="row">
@@ -170,7 +185,7 @@ export class DesignerComponent {
         </div>
       );
     } else {
-      console.error('view mode:', '"' + this.viewMode + '"', 'not supported');
+      console.error('view mode:', '"' + this.viewmode + '"', 'not supported');
       return (
         <div class="container">
           <h4 class='text-danger'> {this.i18n.translate('json-schema-designer.view-mode-not-supported')}</h4>
