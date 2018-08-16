@@ -9,14 +9,18 @@ declare var $: any;
   shadow: false
 })
 export class DesignerComponent {
-  @Prop() inputschema: any;
-  @Prop() inputtranslations: any;
-  @Prop() outputSchemaCallback: any;
+  @Prop() inputschema: string;
+  @Prop() inputtranslations: string;
   @Prop() viewmode: string = 'tabs';
   @Prop() debugmode: boolean = false;
 
-  @Prop({ context: 'i18n' }) private i18n: any;
+  @Method()
+  exportSchema() {
+    console.log('inside of web component');
+    return this.workingSchema.jsonSchemaString()
+  }
 
+  @Prop({ context: 'i18n' }) private i18n: any;
 
   @State() activeTab: string = 'designer';
   @State() _tickle: number = 0;
@@ -24,10 +28,6 @@ export class DesignerComponent {
   workingSchema: any;
 
   constructor() {}
-
-  exportSchema() {
-    this.outputSchemaCallback && this.outputSchemaCallback(this.workingSchema.jsonSchemaString());
-  }
 
   componentWillLoad() {
     const testData = {
@@ -101,7 +101,6 @@ export class DesignerComponent {
 
   componentDidLoad() {
     $('[data-toggle="tooltip"]').tooltip();
-    console.log('Properties', 'inputschema:', this.inputschema, 'outputschemaCallback', this.outputSchemaCallback, 'viewmode', this.viewmode );
   }
 
   rerender() {
