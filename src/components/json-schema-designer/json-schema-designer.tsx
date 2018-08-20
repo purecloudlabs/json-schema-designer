@@ -1,8 +1,6 @@
 import { Component, Prop, State, Method } from '@stencil/core';
 import { SchemaObject, ISchemaItem } from './schema';
 
-declare var $: any;
-
 @Component({
   tag: 'json-schema-designer',
   styleUrl: 'json-schema-designer.less',

@@ -38,7 +38,7 @@ export class ItemDetailsComponent {
     const enums = this.item.enum ? this.item.enum : [];
 
     const basicFields: JSX.Element = (
-      <div class="col border-right">
+      <div class="col-lg-6 border-right">
         <div class="t_color bold"> {this.i18n.translate('json-schema-designer.general')} </div>
         <div>
           <form class="form-horizontal form-compact model-detail-form" name="detailForm" role="form">
@@ -76,20 +76,25 @@ export class ItemDetailsComponent {
               ? <div></div>
               : <div>
                   <div class={requiredCheckBoxStyle}>
-                    <label><input type="checkbox" checked={this.item.isRequired} onInput={(event) => {
-                      if (this.item.isRoot) return;
-                      const input = event.target as HTMLInputElement;
-                      this.item.isRequired = input.checked;
-                      this.rerender();
-                    }}/> {this.i18n.translate('json-schema-designer.required')} </label>
+                    <label>
+                      <input type="checkbox" checked={this.item.isRequired} onInput={(event) => {
+                        if (this.item.isRoot) return;
+                        const input = event.target as HTMLInputElement;
+                        this.item.isRequired = input.checked;
+                        this.rerender();
+                      }}/>
+                      {this.i18n.translate('json-schema-designer.required')}
+                      </label>
                   </div>
                   <div class="form-check">
-                    <label><input type="checkbox" checked={this.item.isNullable} onInput={(event) => {
-                      if (this.item.isRoot) return;
-                      const input = event.target as HTMLInputElement;
-                      this.item.isNullable = input.checked;
-                      this.rerender();
-                    }}/> {this.i18n.translate('json-schema-designer.nullable')} </label>
+                    <label>
+                      <input type="checkbox" checked={this.item.isNullable} onInput={(event) => {
+                        if (this.item.isRoot) return;
+                        const input = event.target as HTMLInputElement;
+                        this.item.isNullable = input.checked;
+                        this.rerender();
+                      }}/> {this.i18n.translate('json-schema-designer.nullable')}
+                    </label>
                   </div>
                   <div>
                     <div class="enum-control-bar" onClick={() => {
@@ -144,7 +149,7 @@ export class ItemDetailsComponent {
       </div>
     );
     const stringFields: JSX.Element = (
-      <div class="col">
+      <div class="col-lg-6">
         <form>
           <div class="t_color bold"> {this.i18n.translate('json-schema-designer.numeric')} </div>
           <div class="form-group row">
@@ -187,7 +192,7 @@ export class ItemDetailsComponent {
       </div>
     );
     const numberFields: JSX.Element = (
-      <div class="col">
+      <div class="col-lg-6">
         <form>
           <div class="t_color bold"> {this.i18n.translate('json-schema-designer.numeric')} </div>
           <div class="form-group row">
@@ -199,17 +204,20 @@ export class ItemDetailsComponent {
                 this.rerender();
               }}/>
             </div>
-            <div class="form-check">
-              <label><input type="checkbox" checked={numberItem.exclusiveMinimum} onInput={(event) => {
+            <div class="form-check col-sm-6">
+              <label>
+                <input type="checkbox" checked={numberItem.exclusiveMinimum} onInput={(event) => {
                 const input = event.target as HTMLInputElement;
                 numberItem.exclusiveMinimum = input.checked;
                 this.rerender();
-              }}/> {this.i18n.translate('json-schema-designer.exclusive')} </label>
+                }}/>
+                {this.i18n.translate('json-schema-designer.exclusive')}
+              </label>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-6 col-form-label">{this.i18n.translate('json-schema-designer.maximum')}</label>
-            <div class="col-sm-6 ">
+            <div class="col-sm-6">
               <input type="number" class="form-control form-control-sm" value={numberItem.maximum} onInput={(event) => {
                 const input = event.target as HTMLInputElement;
                 numberItem.maximum = Number(input.value);
@@ -237,7 +245,7 @@ export class ItemDetailsComponent {
     );
 
     const objectFields: JSX.Element = (
-      <div class="col">
+      <div class="col-lg-6">
         <form>
           <div class="t_color bold"> Object </div>
           <div class="form-group">
@@ -290,7 +298,7 @@ export class ItemDetailsComponent {
     );
 
     const arrayFields: JSX.Element = (
-      <div class="col">
+      <div class="col-lg-6">
         <form>
           <div class="t_color bold"> {this.i18n.translate('json-schema-designer.array')} </div>
           <div class="form-group row">
@@ -336,7 +344,7 @@ export class ItemDetailsComponent {
     );
 
     const refFields: JSX.Element = (
-      <div class="col">
+      <div class="col-lg-6">
         <div class="form-group">
           <label class="control-label col-xs-2"> {this.i18n.translate('json-schema-designer.reference')}: </label>
           <div class="col-xs-9">
@@ -355,6 +363,7 @@ export class ItemDetailsComponent {
       case 'string':
         typeSpecificFields = stringFields;
         break;
+      case 'integer':
       case 'number':
         typeSpecificFields = numberFields;
         break;

@@ -1,6 +1,8 @@
 import { Component, Prop, State } from '@stencil/core';
 import { ISchemaItem, IHasChildren, SchemaObject } from '../schema';
 
+declare var $: any;
+
 @Component({
   tag: 'schema-row'
 })
@@ -38,7 +40,7 @@ export class SchemaRowComponent {
     let requiredIconClass: string = this.item.isRequired ? 'fa fa-asterisk model-required text-danger' : 'fa fa-asterisk model-required';
     requiredIconClass += this.item.isRoot ? ' disabled' : '';
     const typeDisplayClass: string = 'badge badge-pill badge-primary ' + this.item.type;
-    const descriptionIconClass: string = this.item.description ? 'fa fa-sticky-note model-comment pointer' : 'fa fa-sticky-note model-comment pointer disabled';
+    const descriptionIconClass: string = this.item.description ? 'fa fa-comment model-comment pointer' : 'fa fa-comment model-comment pointer disabled';
 
     const requiredTooltip: string = this.item.isRequired ? this.i18n.translate('json-schema-designer.required') : this.i18n.translate('json-schema-designer.not-required');
 
