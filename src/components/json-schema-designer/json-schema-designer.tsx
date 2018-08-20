@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop, State, Method } from '@stencil/core';
 import { SchemaObject, ISchemaItem } from './schema';
 
 declare var $: any;
@@ -97,10 +97,6 @@ export class DesignerComponent {
       startingSchema = JSON.parse(this.inputschema);
     }
     this.workingSchema = new SchemaObject(startingSchema, null);
-  }
-
-  componentDidLoad() {
-    $('[data-toggle="tooltip"]').tooltip();
   }
 
   rerender() {
