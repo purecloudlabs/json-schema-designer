@@ -25,9 +25,6 @@ export class ItemDetailsComponent {
   }
 
   render() {
-    //computed classes
-    const requiredCheckBoxStyle = this.item.isRoot ? 'form-check disabled' : 'form-check'; //TODO: style="padding: 2px 0;"
-
     //Item Casts for Specific Fields
     const refItem = this.item as SchemaReference;
     const stringItem = this.item as SchemaString;
@@ -40,112 +37,127 @@ export class ItemDetailsComponent {
     const basicFields: JSX.Element = (
       <div class="col-lg-6 border-right">
         <div class="t_color bold"> {this.i18n.translate('json-schema-designer.general')} </div>
-        <div>
-          <form class="form-horizontal form-compact model-detail-form" name="detailForm" role="form">
-            <div class="form-group">
-              <label class="control-label col-xs-2"> {this.i18n.translate('json-schema-designer.title')} </label>
-              <div class="col-xs-9">
-                <input type="text" class="form-control sm detail-ip" id="foldName" value={this.item.title} name="title" onInput={(event) => {
-                  const input = event.target as HTMLInputElement;
-                  this.item.title = input.value;
-                  this.rerender();
-                }}/>
-              </div>
+        <form class="form-horizontal" name="detailForm" role="form">
+          <div class="form-group">
+            <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.title')} </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="foldName" value={this.item.title} name="title" onInput={(event) => {
+                const input = event.target as HTMLInputElement;
+                this.item.title = input.value;
+                this.rerender();
+              }}/>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-2"> {this.i18n.translate('json-schema-designer.description')} </label>
-              <div class="col-xs-9">
-                <textarea class="form-control" value={this.item.description} onInput={(event) => {
-                  const input = event.target as HTMLInputElement;
-                  this.item.description = input.value;
-                  this.rerender();
-                }}></textarea>
-              </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.description')} </label>
+            <div class="col-sm-10">
+              <textarea class="form-control" value={this.item.description} onInput={(event) => {
+                const input = event.target as HTMLInputElement;
+                this.item.description = input.value;
+                this.rerender();
+              }}></textarea>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-2"> {this.i18n.translate('json-schema-designer.default')} </label>
-              <div class="col-xs-9">
-                <input type="text" class="form-control sm detail-ip" value={this.item.default} onInput={(event) => {
-                  const input = event.target as HTMLInputElement;
-                  this.item.default = input.value;
-                  this.rerender();
-                }}/>
-              </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.default')} </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control sm detail-ip" value={this.item.default} onInput={(event) => {
+                const input = event.target as HTMLInputElement;
+                this.item.default = input.value;
+                this.rerender();
+              }}/>
             </div>
-            {this.item.type === 'null'
-              ? <div></div>
-              : <div>
-                  <div class={requiredCheckBoxStyle}>
-                    <label>
-                      <input type="checkbox" checked={this.item.isRequired} onInput={(event) => {
-                        if (this.item.isRoot) return;
-                        const input = event.target as HTMLInputElement;
-                        this.item.isRequired = input.checked;
-                        this.rerender();
-                      }}/>
-                      {this.i18n.translate('json-schema-designer.required')}
+          </div>
+          {this.item.type === 'null'
+            ? <div></div>
+            : <div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" checked={this.item.isRequired} onInput={(event) => {
+                          if (this.item.isRoot) return;
+                          const input = event.target as HTMLInputElement;
+                          this.item.isRequired = input.checked;
+                          this.rerender();
+                        }} disabled={this.item.isRoot}/> {this.i18n.translate('json-schema-designer.required')}
                       </label>
-                  </div>
-                  <div class="form-check">
-                    <label>
-                      <input type="checkbox" checked={this.item.isNullable} onInput={(event) => {
-                        if (this.item.isRoot) return;
-                        const input = event.target as HTMLInputElement;
-                        this.item.isNullable = input.checked;
-                        this.rerender();
-                      }}/> {this.i18n.translate('json-schema-designer.nullable')}
-                    </label>
-                  </div>
-                  <div>
-                    <div class="enum-control-bar" onClick={() => {
-                        this.enumCtrlExpanded = !this.enumCtrlExpanded;
-                    }}>
-                      {this.enumCtrlExpanded
-                        ? <i class="btn fa fa-chevron-down"></i>
-                        : <i class="btn fa fa-chevron-right"></i>
-                      }
-                      <label> {this.i18n.translate('json-schema-designer.enumerated-values')} </label>
                     </div>
-                    {this.enumCtrlExpanded
-                      ? <div>
-                          {enums.map((enumObject, index) =>
-                            <div class="enum-row">
-                              <input type={enumObject.type} class="form-control form-control-sm" value={enumObject.value} onInput={(event) => {
-                                const input = event.target as HTMLInputElement;
-                                this.item.enum[index].value = input.value;
-                                this.rerender();
-                              }}/>
-                              <select class="custom-select custom-select-sm" onInput={(event) => {
-                                const input = event.target as HTMLInputElement;
-                                this.item.enum[index].type = input.value;
-                                this.rerender();
-                              }}>
-                                <option value='string'>{this.i18n.translate('json-schema-designer.string')}</option>
-                                <option value='number'>{this.i18n.translate('json-schema-designer.number')}</option>
-                              </select>
-                              <i class="btn fa fa-times" onClick={() => {
-                                this.item.removeEnumValue(index);
-                                this.rerender();
-                              }}></i>
-                            </div>
-                            )}
-                          <div class="text-center">
-                            <button type="button" class="btn btn-secondary btn-sm" onClick={() => {
-                              this.item.addEnumValue();
-                              this.rerender();
-                            }}>
-                              <i class="fa fa-plus"></i>
-                              {this.i18n.translate('json-schema-designer.add-value')}
-                            </button>
-                          </div>
-                        </div>
-                      : <div></div>
-                    }
                   </div>
                 </div>
-            }
-          </form>
-        </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" checked={this.item.isNullable} onInput={(event) => {
+                          if (this.item.isRoot) return;
+                          const input = event.target as HTMLInputElement;
+                          this.item.isNullable = input.checked;
+                          this.rerender();
+                        }}/> {this.i18n.translate('json-schema-designer.nullable')}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.enumerated-values')} </label>
+                  <div class="col-sm-10">
+                    <button type="button" class="btn btn-secondary btn-sm" onClick={() => {
+                      this.item.addEnumValue();
+                      this.rerender();
+                    }}>
+                      <i class="fa fa-plus"></i>
+                      {this.i18n.translate('json-schema-designer.add-value')}
+                    </button>  
+                  </div>
+                  <div class="enum-control-bar" onClick={() => {
+                      this.enumCtrlExpanded = !this.enumCtrlExpanded;
+                  }}>
+                    {this.enumCtrlExpanded
+                      ? <i class="btn fa fa-chevron-down"></i>
+                      : <i class="btn fa fa-chevron-right"></i>
+                    }
+                    <label> {this.i18n.translate('json-schema-designer.enumerated-values')} </label>
+                  </div>
+                  {this.enumCtrlExpanded
+                    ? <div>
+                        {enums.map((enumObject, index) =>
+                          <div class="enum-row">
+                            <input type={enumObject.type} class="form-control form-control-sm" value={enumObject.value} onInput={(event) => {
+                              const input = event.target as HTMLInputElement;
+                              this.item.enum[index].value = input.value;
+                              this.rerender();
+                            }}/>
+                            <select class="custom-select custom-select-sm" onInput={(event) => {
+                              const input = event.target as HTMLInputElement;
+                              this.item.enum[index].type = input.value;
+                              this.rerender();
+                            }}>
+                              <option value='string'>{this.i18n.translate('json-schema-designer.string')}</option>
+                              <option value='number'>{this.i18n.translate('json-schema-designer.number')}</option>
+                            </select>
+                            <i class="btn fa fa-times" onClick={() => {
+                              this.item.removeEnumValue(index);
+                              this.rerender();
+                            }}></i>
+                          </div>
+                          )}
+                        <div class="text-center">
+                          <button type="button" class="btn btn-secondary btn-sm" onClick={() => {
+                            this.item.addEnumValue();
+                            this.rerender();
+                          }}>
+                            <i class="fa fa-plus"></i>
+                            {this.i18n.translate('json-schema-designer.add-value')}
+                          </button>
+                        </div>
+                      </div>
+                    : <div></div>
+                  }
+                </div>
+              </div>
+          }
+        </form>
       </div>
     );
     const stringFields: JSX.Element = (
@@ -346,8 +358,8 @@ export class ItemDetailsComponent {
     const refFields: JSX.Element = (
       <div class="col-lg-6">
         <div class="form-group">
-          <label class="control-label col-xs-2"> {this.i18n.translate('json-schema-designer.reference')}: </label>
-          <div class="col-xs-9">
+          <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.reference')}: </label>
+          <div class="col-sm-10">
             <input type="text" value={refItem.$ref} class="form-control sm detail-ip" onInput={(event) => {
               const input = event.target as HTMLInputElement;
               refItem.$ref = input.value;

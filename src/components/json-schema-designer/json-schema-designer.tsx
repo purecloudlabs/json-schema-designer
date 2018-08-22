@@ -10,7 +10,7 @@ export class DesignerComponent {
   @Prop() inputschema: string;
   @Prop() inputtranslations: string;
   @Prop() viewmode: string = 'tabs';
-  @Prop() debugmode: boolean = false;
+  @Prop() debugmode: boolean = true;
 
   @Method()
   exportSchema() {
