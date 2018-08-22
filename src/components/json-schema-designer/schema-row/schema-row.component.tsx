@@ -104,7 +104,7 @@ export class SchemaRowComponent {
                        }}>
                           <option value="string" selected={this.item.type === 'string'} class="badge badge-pill badge-primar string">{this.i18n.translate('json-schema-designer.string').toUpperCase()}</option>
                           <option value="number" selected={this.item.type === 'number'} class="badge badge-pill badge-primary number">{this.i18n.translate('json-schema-designer.number').toUpperCase()}</option>
-                          <option value="interger" selected={this.item.type === 'integer'} class="badge badge-pill badge-primary interger">{this.i18n.translate('json-schema-designer.integer').toUpperCase()}</option>
+                          <option value="integer" selected={this.item.type === 'integer'} class="badge badge-pill badge-primary interger">{this.i18n.translate('json-schema-designer.integer').toUpperCase()}</option>
                           <option value="object" selected={this.item.type === 'object'} class="badge badge-pill badge-primary object">{this.i18n.translate('json-schema-designer.object').toUpperCase()} {propCountDisplay}</option>
                           <option value="array" selected={this.item.type === 'array'} class="badge badge-pill badge-primary array">{this.i18n.translate('json-schema-designer.array').toUpperCase()}</option>
                           <option value="boolean" selected={this.item.type === 'boolean'} class="badge badge-pill badge-primary boolean">{this.i18n.translate('json-schema-designer.boolean').toUpperCase()}</option>
