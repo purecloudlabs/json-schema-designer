@@ -13,7 +13,7 @@ export class SchemaRowComponent {
   @Prop({ context: 'i18n' }) private i18n: any;
 
   @State() showChildren: boolean = true;
-  @State() showDetailsPan: boolean = true;
+  @State() showDetailsPan: boolean = false;
   @State() _tickle: number = 0;
 
 

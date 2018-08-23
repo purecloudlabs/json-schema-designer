@@ -9,7 +9,7 @@ import { SchemaObject, ISchemaItem } from './schema';
 export class DesignerComponent {
   @Prop() inputschema: string;
   @Prop() inputtranslations: string;
-  @Prop() viewmode: string = 'tabs';
+  @Prop() viewmode: string = 'designerOnly'; //tabs, columns, designerOnly
   @Prop() debugmode: boolean = true;
 
   @Method()
@@ -104,75 +104,66 @@ export class DesignerComponent {
   render() {
     const jsonOutput: string = this.workingSchema ? this.workingSchema.jsonSchemaString() : "";
     const definitions: ISchemaItem[] = this.workingSchema ? this.workingSchema.getDefinitions() : [];
+    const designer: JSX.Element = (
+      <div>
+        <h5> {this.i18n.translate('json-schema-designer.schema')} </h5>
+          <schema-row item={ this.workingSchema } parent={this}></schema-row>
+        <h5> {this.i18n.translate('json-schema-designer.definitions')} </h5>
+        {definitions.map((definition) =>
+            <schema-row item={definition} parent={this} ></schema-row>
+        )}
+          <div class="text-center">
+          <button class="btn btn-default btn-xs width100" onClick={()=> {
+            this.workingSchema.addDefinition();
+            this.rerender();
+          }}>
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    );
     if (this.viewmode === 'tabs') {
-      const desingerPillClass: string = this.activeTab === 'designer' ? 'nav-link active' : 'nav-link';
-      const outputPillClass: string = this.activeTab === 'output' ? 'nav-link active' : 'nav-link';
+      const desingerPillClass: string = this.activeTab === 'designer' ? 'btn btn-primary' : 'btn btn-default';
+      const outputPillClass: string = this.activeTab === 'output' ? 'btn btn-primary' : 'btn btn-default';
       return (
         <div id="json-schema-designer" class="container">
-          <div class="p-3">
-            <ul class="nav nav-pills justify-content-center">
-              <li class="btn nav-item">
-                <div class={desingerPillClass} onClick={() => { this.activeTab = 'designer' }}> Designer </div>
-              </li>
-              <li class="btn nav-item">
-                <div class={outputPillClass} onClick={() => { this.activeTab = 'output' }}> Output </div>
-              </li>
-            </ul>
+          <div class="row">
+            <div class="tabs">
+              <div class={desingerPillClass} onClick={() => { this.activeTab = 'designer' }}> Designer </div>
+              <div class={outputPillClass} onClick={() => { this.activeTab = 'output' }}> Output </div>
+            </div>
           </div>
           <div class="row">
             {this.activeTab === 'designer'
               ? <div class="col-lg-12">
-                  <h5> {this.i18n.translate('json-schema-designer.schema')} </h5>
-                    <schema-row item={ this.workingSchema } parent={this}></schema-row>
-                  <h5> {this.i18n.translate('json-schema-designer.definitions')} </h5>
-                  {definitions.map((definition) =>
-                      <schema-row item={definition} parent={this} ></schema-row>
-                  )}
-                  <div class="text-center">
-                    <button class="btn btn-secondary btn-sm" onClick={()=> {
-                      this.workingSchema.addDefinition();
-                      this.rerender();
-                    }}><i class="fa fa-plus"></i> {this.i18n.translate('json-schema-designer.add-definition')}</button>
-                  </div>
+                { designer }
                 </div>
               : <div class="col-lg-12">
-                  <div class="card card-body bg-light">
-                    <div class="text-center">
-                      <button class="btn btn-secondary btn-sm" onClick={() => this.exportSchema()}> {this.i18n.translate('json-schema-designer.export')} </button>
-                    </div>
-                    <pre> { jsonOutput }</pre>
-                  </div>
+                  <pre> { jsonOutput }</pre>
                 </div>
             }
           </div>
         </div>
-
       );
     } else if (this.viewmode === 'columns') {
       return (
-        <div class="json-schema-builder container">
+        <div id="json-schema-designer" class="container">
           <div class="row">
             <div class="col-lg-6">
-              <h5> {this.i18n.translate('json-schema-designer.schema')} </h5>
-                <schema-row item={ this.workingSchema } parent={this}></schema-row>
-              <h5> {this.i18n.translate('json-schema-designer.definitions')} </h5>
-              {definitions.map((definition) =>
-                  <schema-row item={definition} parent={this} ></schema-row>
-              )}
-              <div class="text-center">
-                <button class="btn btn-secondary btn-sm" onClick={()=> {
-                  this.workingSchema.addDefinition();
-                  this.rerender();
-                }}><i class="fa fa-plus"></i> {this.i18n.translate('json-schema-designer.add-definition')}</button>
-              </div>
+              { designer }
             </div>
             <div class="col-lg-6">
-              <div class="card card-body bg-light">
-                <div class="text-center">
-                  <button class="btn btn-secondary btn-sm" onClick={() => this.exportSchema()}> {this.i18n.translate('json-schema-designer.export')} </button>
-                </div>
-                <pre> { jsonOutput }</pre>
-              </div>
+              <pre> { jsonOutput }</pre>
+            </div>
+          </div>
+        </div>
+      );
+    } else if (this.viewmode === 'designerOnly') {
+      return (
+        <div id="json-schema-designer" class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              { designer }
             </div>
           </div>
         </div>
