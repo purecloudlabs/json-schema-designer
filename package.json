@@ -10,11 +10,10 @@
     "dist/"
   ],
   "scripts": {
-    "build": "stencil build",
-    "start": "stencil build --dev --watch --serve",
+    "build": "./scripts/copy-fonts.sh && stencil build",
+    "start": "./scripts/copy-fonts.sh && stencil build --dev --watch --serve",
     "test": "jest",
-    "test.watch": "jest --watch",
-    "postinstall": "./scripts/post-install.sh"
+    "test.watch": "jest --watch"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.2.0"
