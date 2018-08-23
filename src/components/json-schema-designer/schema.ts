@@ -272,6 +272,7 @@ export class SchemaObject extends SchemaBasic implements ISchemaItem, IHasChildr
 
   constructor (json: any, parent: IHasChildren) {
     super(json, parent);
+    this.type = 'object';
     this.schema = json.$schema;
 
     this.properties = {};
@@ -336,6 +337,10 @@ export class SchemaObject extends SchemaBasic implements ISchemaItem, IHasChildr
         }
     });
 
+    if (output.required.length === 0) {
+      delete output.required;
+    }
+
     if (this.definitions && Object.values(this.definitions).length) {
       output.definitions = {}
       Object.entries(this.definitions).forEach((keyValue) => {
@@ -380,6 +385,8 @@ export class SchemaObject extends SchemaBasic implements ISchemaItem, IHasChildr
   }
 
   addDefinition() {
+    if (!this.definitions) this.definitions = {};
+
     const newDef = new SchemaBasic({}, this);
     newDef.isDefinition = true;
     this.definitions[newDef._id] = newDef

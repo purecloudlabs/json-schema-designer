@@ -26,16 +26,14 @@
 #json-schema-designer {
   width: 100%;
 
-	ul {
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-	}
-	li {
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-	}
+  .tabs {
+    display: flex;
+    justify-content: center;
+
+    .btn {
+      margin: 5px;
+    }
+  }
 
   button.wrapper-only {
     border:none;
@@ -46,6 +44,10 @@
 
   i {
     color: black;
+
+    &.text-danger {
+      color: red;
+    }
 
     &:hover {
       cursor: pointer;
@@ -59,6 +61,10 @@
         cursor: auto;
       }
     }
+  }
+
+  .width100 {
+    width: 100%;
   }
 
 	.js-row {
@@ -200,6 +206,7 @@
       background: #f5f5f5;
       padding: 10px;
       min-width: 450px;
+      width: 100%;
     }
 
     .enum-control-bar {
@@ -222,16 +229,16 @@
 		.control-label {
 			padding: 0 5px;
 		}
-		.detail-ip {
-			font-size: 13px;
-			background-color: @white;
-			padding: 0 5px;
-			height: 25px;
-			color: @dark_grey;
-		}
-		select.detail-ip {
-			padding-right: 20px;
-		}
+		// .detail-ip {
+		// 	font-size: 13px;
+		// 	background-color: @white;
+		// 	padding: 0 5px;
+		// 	height: 25px;
+		// 	color: @dark_grey;
+		// }
+		// select.detail-ip {
+		// 	padding-right: 20px;
+		// }
 		textarea {
 			font-size: 13px;
 			background: #fff;

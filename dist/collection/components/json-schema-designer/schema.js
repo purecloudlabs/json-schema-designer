@@ -194,6 +194,7 @@ export class SchemaObject extends SchemaBasic {
     //dependancies: any; TODO: Advanced Feature
     constructor(json, parent) {
         super(json, parent);
+        this.type = 'object';
         this.schema = json.$schema;
         this.properties = {};
         this.isRoot = !parent;
@@ -253,6 +254,9 @@ export class SchemaObject extends SchemaBasic {
                 output.required.push(property.title);
             }
         });
+        if (output.required.length === 0) {
+            delete output.required;
+        }
         if (this.definitions && Object.values(this.definitions).length) {
             output.definitions = {};
             Object.entries(this.definitions).forEach((keyValue) => {
@@ -292,6 +296,8 @@ export class SchemaObject extends SchemaBasic {
         return this.definitions ? Object.values(this.definitions) : [];
     }
     addDefinition() {
+        if (!this.definitions)
+            this.definitions = {};
         const newDef = new SchemaBasic({}, this);
         newDef.isDefinition = true;
         this.definitions[newDef._id] = newDef;
