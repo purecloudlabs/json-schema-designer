@@ -1,12 +1,14 @@
 import { SchemaObject } from './schema';
 export class DesignerComponent {
     constructor() {
-        this.viewMode = 'tabs';
+        this.viewmode = 'designerOnly'; //tabs, columns, designerOnly
+        this.debugmode = true;
         this.activeTab = 'designer';
         this._tickle = 0;
     }
     exportSchema() {
-        this.outputSchemaCallback && this.outputSchemaCallback(this.workingSchema.jsonSchemaString());
+        console.log('inside of web component');
+        return this.workingSchema.jsonSchemaString();
     }
     componentWillLoad() {
         const testData = {
@@ -62,12 +64,19 @@ export class DesignerComponent {
                 }
             }
         };
-        this.workingSchema = this.inputSchema ? new SchemaObject(this.inputSchema, null) : new SchemaObject(testData, null);
-        if (this.inputTranslations)
-            this.i18n.transtions = this.inputTranslations;
-    }
-    componentDidLoad() {
-        $('[data-toggle="tooltip"]').tooltip();
+        //Load Translations
+        if (typeof (this.inputtranslations) === 'string') {
+            this.i18n.translations = JSON.parse(this.inputtranslations);
+        }
+        else if (this.inputtranslations) {
+            this.i18n.translations = this.inputtranslations;
+        }
+        //Load Schema
+        let startingSchema = this.debugmode ? testData : {};
+        if (typeof (this.inputschema) === 'string') {
+            startingSchema = JSON.parse(this.inputschema);
+        }
+        this.workingSchema = new SchemaObject(startingSchema, null);
     }
     rerender() {
         this._tickle++;
@@ -75,82 +84,54 @@ export class DesignerComponent {
     render() {
         const jsonOutput = this.workingSchema ? this.workingSchema.jsonSchemaString() : "";
         const definitions = this.workingSchema ? this.workingSchema.getDefinitions() : [];
-        if (this.viewMode === 'tabs') {
-            const desingerPillClass = this.activeTab === 'designer' ? 'nav-link active' : 'nav-link';
-            const outputPillClass = this.activeTab === 'output' ? 'nav-link active' : 'nav-link';
-            return (h("div", { class: "json-schema-builder container" },
-                h("div", { class: "p-3" },
-                    h("ul", { class: "nav nav-pills justify-content-center" },
-                        h("li", { class: "btn nav-item" },
-                            h("div", { class: desingerPillClass, onClick: () => { this.activeTab = 'designer'; } }, " Designer ")),
-                        h("li", { class: "btn nav-item" },
-                            h("div", { class: outputPillClass, onClick: () => { this.activeTab = 'output'; } }, " Output ")))),
-                h("div", { class: "row" }, this.activeTab === 'designer'
-                    ? h("div", { class: "col-lg-12" },
-                        h("h5", null,
-                            " ",
-                            this.i18n.translate('json-schema-designer.schema'),
-                            " "),
-                        h("schema-row", { item: this.workingSchema, parent: this }),
-                        h("h5", null,
-                            " ",
-                            this.i18n.translate('json-schema-designer.definitions'),
-                            " "),
-                        definitions.map((definition) => h("schema-row", { item: definition, parent: this })),
-                        h("div", { class: "text-center" },
-                            h("button", { class: "btn btn-secondary btn-sm", onClick: () => {
-                                    this.workingSchema.addDefinition();
-                                    this.rerender();
-                                } },
-                                h("i", { class: "fas fa-plus" }),
-                                " ",
-                                this.i18n.translate('json-schema-designer.add-definition'))))
-                    : h("div", { class: "col-lg-12" },
-                        h("div", { class: "card card-body bg-light" },
-                            h("div", { class: "text-center" },
-                                h("button", { class: "btn btn-secondary btn-sm", onClick: () => this.exportSchema() },
-                                    " ",
-                                    this.i18n.translate('json-schema-designer.export'),
-                                    " ")),
-                            h("pre", null,
-                                " ",
-                                jsonOutput))))));
-        }
-        else if (this.viewMode === 'columns') {
-            return (h("div", { class: "json-schema-builder container" },
+        const designer = (h("div", null,
+            h("h5", null,
+                " ",
+                this.i18n.translate('json-schema-designer.schema'),
+                " "),
+            h("schema-row", { item: this.workingSchema, parent: this }),
+            h("h5", null,
+                " ",
+                this.i18n.translate('json-schema-designer.definitions'),
+                " "),
+            definitions.map((definition) => h("schema-row", { item: definition, parent: this })),
+            h("div", { class: "text-center" },
+                h("button", { class: "btn btn-default btn-xs width100", onClick: () => {
+                        this.workingSchema.addDefinition();
+                        this.rerender();
+                    } },
+                    h("i", { class: "fa fa-plus" })))));
+        if (this.viewmode === 'tabs') {
+            const desingerPillClass = this.activeTab === 'designer' ? 'btn btn-primary' : 'btn btn-default';
+            const outputPillClass = this.activeTab === 'output' ? 'btn btn-primary' : 'btn btn-default';
+            return (h("div", { id: "json-schema-designer", class: "container" },
                 h("div", { class: "row" },
-                    h("div", { class: "col-lg-6" },
-                        h("h5", null,
+                    h("div", { class: "tabs" },
+                        h("div", { class: desingerPillClass, onClick: () => { this.activeTab = 'designer'; } }, " Designer "),
+                        h("div", { class: outputPillClass, onClick: () => { this.activeTab = 'output'; } }, " Output "))),
+                h("div", { class: "row" }, this.activeTab === 'designer'
+                    ? h("div", { class: "col-lg-12" }, designer)
+                    : h("div", { class: "col-lg-12" },
+                        h("pre", null,
                             " ",
-                            this.i18n.translate('json-schema-designer.schema'),
-                            " "),
-                        h("schema-row", { item: this.workingSchema, parent: this }),
-                        h("h5", null,
-                            " ",
-                            this.i18n.translate('json-schema-designer.definitions'),
-                            " "),
-                        definitions.map((definition) => h("schema-row", { item: definition, parent: this })),
-                        h("div", { class: "text-center" },
-                            h("button", { class: "btn btn-secondary btn-sm", onClick: () => {
-                                    this.workingSchema.addDefinition();
-                                    this.rerender();
-                                } },
-                                h("i", { class: "fas fa-plus" }),
-                                " ",
-                                this.i18n.translate('json-schema-designer.add-definition')))),
+                            jsonOutput)))));
+        }
+        else if (this.viewmode === 'columns') {
+            return (h("div", { id: "json-schema-designer", class: "container" },
+                h("div", { class: "row" },
+                    h("div", { class: "col-lg-6" }, designer),
                     h("div", { class: "col-lg-6" },
-                        h("div", { class: "card card-body bg-light" },
-                            h("div", { class: "text-center" },
-                                h("button", { class: "btn btn-secondary btn-sm", onClick: () => this.exportSchema() },
-                                    " ",
-                                    this.i18n.translate('json-schema-designer.export'),
-                                    " ")),
-                            h("pre", null,
-                                " ",
-                                jsonOutput))))));
+                        h("pre", null,
+                            " ",
+                            jsonOutput)))));
+        }
+        else if (this.viewmode === 'designerOnly') {
+            return (h("div", { id: "json-schema-designer", class: "container" },
+                h("div", { class: "row" },
+                    h("div", { class: "col-lg-12" }, designer))));
         }
         else {
-            console.error('view mode:', '"' + this.viewMode + '"', 'not supported');
+            console.error('view mode:', '"' + this.viewmode + '"', 'not supported');
             return (h("div", { class: "container" },
                 h("h4", { class: 'text-danger' },
                     " ",
@@ -165,24 +146,27 @@ export class DesignerComponent {
         "activeTab": {
             "state": true
         },
+        "debugmode": {
+            "type": Boolean,
+            "attr": "debugmode"
+        },
+        "exportSchema": {
+            "method": true
+        },
         "i18n": {
             "context": "i18n"
         },
-        "inputSchema": {
-            "type": "Any",
-            "attr": "input-schema"
-        },
-        "inputTranslations": {
-            "type": "Any",
-            "attr": "input-translations"
-        },
-        "outputSchemaCallback": {
-            "type": "Any",
-            "attr": "output-schema-callback"
-        },
-        "viewMode": {
+        "inputschema": {
             "type": String,
-            "attr": "view-mode"
+            "attr": "inputschema"
+        },
+        "inputtranslations": {
+            "type": String,
+            "attr": "inputtranslations"
+        },
+        "viewmode": {
+            "type": String,
+            "attr": "viewmode"
         }
     }; }
     static get style() { return "/**style-placeholder:json-schema-designer:**/"; }

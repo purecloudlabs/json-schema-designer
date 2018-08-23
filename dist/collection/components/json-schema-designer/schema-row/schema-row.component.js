@@ -14,13 +14,16 @@ export class SchemaRowComponent {
         this._tickle++;
         this.parent.rerender();
     }
+    componentDidLoad() {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
     render() {
         //Computed CSS Classes
         const rowClass = this.showDetailsPan ? 'js-row t_bg' : 'js-row';
-        let requiredIconClass = this.item.isRequired ? 'fas fa-asterisk model-required text-danger' : 'fas fa-asterisk model-required';
+        let requiredIconClass = this.item.isRequired ? 'fa fa-asterisk model-required text-danger' : 'fa fa-asterisk model-required';
         requiredIconClass += this.item.isRoot ? ' disabled' : '';
         const typeDisplayClass = 'badge badge-pill badge-primary ' + this.item.type;
-        const descriptionIconClass = this.item.description ? 'fas fa-comment-alt model-comment pointer' : 'fas fa-comment-alt model-comment pointer disabled';
+        const descriptionIconClass = this.item.description ? 'fa fa-comment model-comment pointer' : 'fa fa-comment model-comment pointer disabled';
         const requiredTooltip = this.item.isRequired ? this.i18n.translate('json-schema-designer.required') : this.i18n.translate('json-schema-designer.not-required');
         //Handle Child Elements
         const objectItem = this.item;
@@ -30,11 +33,11 @@ export class SchemaRowComponent {
         if (objectItem.getChildren) {
             // Has Children
             if (this.showChildren) {
-                showChildrenElement = h("i", { class: "t_color fas fa-chevron-down" });
+                showChildrenElement = h("i", { class: "t_color fa fa-chevron-down" });
                 children = objectItem.getChildren();
             }
             else {
-                showChildrenElement = h("i", { class: "t_color fas fa-chevron-right" });
+                showChildrenElement = h("i", { class: "t_color fa fa-chevron-right" });
                 children = [];
             }
         }
@@ -79,7 +82,7 @@ export class SchemaRowComponent {
                                     } },
                                     h("option", { value: "string", selected: this.item.type === 'string', class: "badge badge-pill badge-primar string" }, this.i18n.translate('json-schema-designer.string').toUpperCase()),
                                     h("option", { value: "number", selected: this.item.type === 'number', class: "badge badge-pill badge-primary number" }, this.i18n.translate('json-schema-designer.number').toUpperCase()),
-                                    h("option", { value: "interger", selected: this.item.type === 'interger', class: "badge badge-pill badge-primary interger" }, this.i18n.translate('json-schema-designer.integer').toUpperCase()),
+                                    h("option", { value: "integer", selected: this.item.type === 'integer', class: "badge badge-pill badge-primary interger" }, this.i18n.translate('json-schema-designer.integer').toUpperCase()),
                                     h("option", { value: "object", selected: this.item.type === 'object', class: "badge badge-pill badge-primary object" },
                                         this.i18n.translate('json-schema-designer.object').toUpperCase(),
                                         " ",
@@ -97,17 +100,17 @@ export class SchemaRowComponent {
                             h("i", { class: descriptionIconClass, "data-toggle": "tooltip", "data-placement": "top", "data-original-title": this.item.description })),
                         h("div", { class: "model-actions" },
                             objectItem.getChildren
-                                ? h("i", { class: "fas fa-plus obj-add", onClick: () => {
+                                ? h("i", { class: "fa fa-plus obj-add", onClick: () => {
                                         this.addNewProp(objectItem);
                                         this.rerender();
                                     } })
-                                : h("i", { class: "fas fa-plus obj-add disabled" }),
+                                : h("i", { class: "fa fa-plus obj-add disabled" }),
                             this.showDetailsPan
-                                ? h("i", { class: "fas fa-check model-done text-success", onClick: () => { this.showDetailsPan = false; } })
-                                : h("i", { class: "fas fa-pencil-alt model-detail", onClick: () => { this.showDetailsPan = true; } }),
+                                ? h("i", { class: "fa fa-check model-done text-success", onClick: () => { this.showDetailsPan = false; } })
+                                : h("i", { class: "fa fa-pencil model-detail", onClick: () => { this.showDetailsPan = true; } }),
                             this.item.isRoot
-                                ? h("i", { class: "fas fa-times model-remove disabled" })
-                                : h("i", { class: "fas fa-times model-remove", onClick: () => {
+                                ? h("i", { class: "fa fa-times model-remove disabled" })
+                                : h("i", { class: "fa fa-times model-remove", onClick: () => {
                                         if (this.item.isRoot)
                                             return;
                                         this.removeItem(this.item);

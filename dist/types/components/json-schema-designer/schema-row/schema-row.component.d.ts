@@ -10,5 +10,6 @@ export declare class SchemaRowComponent {
     removeItem(item: ISchemaItem): void;
     addNewProp(item: IHasChildren): void;
     rerender(): void;
+    componentDidLoad(): void;
     render(): JSX.Element;
 }

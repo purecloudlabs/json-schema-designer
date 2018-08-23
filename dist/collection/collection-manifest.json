@@ -48,24 +48,24 @@
       },
       "props": [
         {
-          "name": "inputSchema",
-          "type": "Any",
-          "attr": "input-schema"
+          "name": "debugmode",
+          "type": "Boolean",
+          "attr": "debugmode"
         },
         {
-          "name": "inputTranslations",
-          "type": "Any",
-          "attr": "input-translations"
-        },
-        {
-          "name": "outputSchemaCallback",
-          "type": "Any",
-          "attr": "output-schema-callback"
-        },
-        {
-          "name": "viewMode",
+          "name": "inputschema",
           "type": "String",
-          "attr": "view-mode"
+          "attr": "inputschema"
+        },
+        {
+          "name": "inputtranslations",
+          "type": "String",
+          "attr": "inputtranslations"
+        },
+        {
+          "name": "viewmode",
+          "type": "String",
+          "attr": "viewmode"
         }
       ],
       "states": [
@@ -74,6 +74,11 @@
         },
         {
           "name": "activeTab"
+        }
+      ],
+      "methods": [
+        {
+          "name": "exportSchema"
         }
       ],
       "context": [
@@ -124,7 +129,7 @@
   "collections": [],
   "compiler": {
     "name": "@stencil/core",
-    "version": "0.9.11",
+    "version": "0.10.10",
     "typescriptVersion": "2.9.2"
   },
   "bundles": [],

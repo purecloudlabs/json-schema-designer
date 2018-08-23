@@ -1,6 +1,5 @@
 const defaultTranslations = {
     "json-schema-designer": {
-        "test-translation": "translation successfull",
         "schema": "Schema",
         "definitions": "Definitions",
         "add-definition": "Add Definition",
@@ -47,16 +46,24 @@ export default (function () {
     const i18n = {
         translations: defaultTranslations,
         translate(untranslated) {
-            let path = untranslated.split('.');
-            let translationBranch = this.translations;
-            for (let i = 0; i < path.length; i++) {
-                translationBranch = translationBranch[path[i]];
-                if (!translationBranch) {
-                    console.error('translation not found for', untranslated);
-                    return untranslated;
-                }
+            // translation can be in json or table format
+            // do translation table lookup
+            if (this.translations[untranslated]) {
+                return this.translations[untranslated];
             }
-            return translationBranch;
+            else {
+                // parse the json
+                let path = untranslated.split('.');
+                let translationBranch = this.translations;
+                for (let i = 0; i < path.length; i++) {
+                    translationBranch = translationBranch[path[i]];
+                    if (!translationBranch) {
+                        console.error('translation not found for', untranslated);
+                        return untranslated;
+                    }
+                }
+                return translationBranch;
+            }
         }
     };
     return i18n;
