@@ -28,6 +28,21 @@ export class DesignerComponent {
   constructor() {}
 
   componentWillLoad() {
+    const testDefinitions = {
+      "purecloudGroupIdFilterList": {
+        "type": [
+          "null",
+          "array"
+        ],
+        "title": "Group Filtering",
+        "description": "Limit visibility of permissioned users to selected groups. Leaving blank will allow visibility for all users in this integration's defined permissions.",
+        "items": {
+          "type": "string",
+          "title": "Group GUID",
+          "pattern": "^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$"
+        }
+      }
+    };
     const testData = {
       "$schema": "http://json-schema.org/draft-04/schema#",
       "title": "Skype for Business Application Properties",
@@ -65,21 +80,7 @@ export class DesignerComponent {
         "displayType",
         "groupFilter"
       ],
-      "definitions": {
-        "purecloudGroupIdFilterList": {
-          "type": [
-            "null",
-            "array"
-          ],
-          "title": "Group Filtering",
-          "description": "Limit visibility of permissioned users to selected groups. Leaving blank will allow visibility for all users in this integration's defined permissions.",
-          "items": {
-            "type": "string",
-            "title": "Group GUID",
-            "pattern": "^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$"
-          }
-        }
-      }
+      "definitions": []
     };
 
     //Load Translations
@@ -108,18 +109,22 @@ export class DesignerComponent {
       <div>
         <h5> {this.i18n.translate('json-schema-designer.schema')} </h5>
           <schema-row item={ this.workingSchema } parent={this}></schema-row>
-        <h5> {this.i18n.translate('json-schema-designer.definitions')} </h5>
-        {definitions.map((definition) =>
-            <schema-row item={definition} parent={this} ></schema-row>
-        )}
-          <div class="text-center">
-          <button class="btn btn-default btn-xs width100" onClick={()=> {
-            this.workingSchema.addDefinition();
-            this.rerender();
-          }}>
-            <i class="fa fa-plus"></i>
-          </button>
-        </div>
+        { definitions.length
+          ? <div>
+              <h5> {this.i18n.translate('json-schema-designer.definitions')} </h5>
+              {definitions.map((definition) =>
+                  <schema-row item={definition} parent={this} ></schema-row>
+              )}
+            </div>
+          : <div></div>
+        }
+        <button class="btn btn-link btn-xs pull-right" onClick={()=> {
+          this.workingSchema.addDefinition();
+          this.rerender();
+        }}>
+          <span> Add Definition </span>
+          <i class="fa fa-plus"></i>
+        </button>
       </div>
     );
     if (this.viewmode === 'tabs') {
