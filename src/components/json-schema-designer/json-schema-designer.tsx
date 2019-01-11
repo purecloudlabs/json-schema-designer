@@ -9,7 +9,7 @@ import { SchemaObject, ISchemaItem } from './schema';
 export class DesignerComponent {
   @Prop() inputschema: string;
   @Prop() inputtranslations: string;
-  @Prop() viewmode: string = 'designerOnly'; //tabs, columns, designerOnly
+  @Prop() viewmode: string = 'tabs'; //tabs, columns, designerOnly
   @Prop() debugmode: boolean = true;
 
   @Method()
@@ -41,6 +41,13 @@ export class DesignerComponent {
           "title": "Group GUID",
           "pattern": "^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$"
         }
+      },
+      "definition2": {
+        "type": [
+          "string"
+        ],
+        "title": "definition2",
+        "description": "this is a definition"
       }
     };
     const testData = {
@@ -80,7 +87,7 @@ export class DesignerComponent {
         "displayType",
         "groupFilter"
       ],
-      "definitions": []
+      "definitions": testDefinitions
     };
 
     //Load Translations
@@ -108,12 +115,12 @@ export class DesignerComponent {
     const designer: JSX.Element = (
       <div>
         <h5> {this.i18n.translate('json-schema-designer.schema')} </h5>
-          <schema-row item={ this.workingSchema } parent={this}></schema-row>
+          <schema-row item={ this.workingSchema } parent={ this } definitions={ definitions }></schema-row>
         { definitions.length
           ? <div>
               <h5> {this.i18n.translate('json-schema-designer.definitions')} </h5>
               {definitions.map((definition) =>
-                  <schema-row item={definition} parent={this} ></schema-row>
+                  <schema-row item={definition} parent={this} definitions={ definitions }></schema-row>
               )}
             </div>
           : <div></div>

@@ -9,6 +9,7 @@ declare var $: any;
 export class SchemaRowComponent {
   @Prop() item: ISchemaItem;
   @Prop() parent: any;
+  @Prop() definitions: any;
 
   @Prop({ context: 'i18n' }) private i18n: any;
 
@@ -102,7 +103,7 @@ export class SchemaRowComponent {
                         this.item.changeType(input.value);
                         this.rerender();
                        }}>
-                          <option value="string" selected={this.item.type === 'string'} class="badge badge-pill badge-primar string">{this.i18n.translate('json-schema-designer.string').toUpperCase()}</option>
+                          <option value="string" selected={this.item.type === 'string'} class="badge badge-pill badge-primary string">{this.i18n.translate('json-schema-designer.string').toUpperCase()}</option>
                           <option value="number" selected={this.item.type === 'number'} class="badge badge-pill badge-primary number">{this.i18n.translate('json-schema-designer.number').toUpperCase()}</option>
                           <option value="integer" selected={this.item.type === 'integer'} class="badge badge-pill badge-primary interger">{this.i18n.translate('json-schema-designer.integer').toUpperCase()}</option>
                           <option value="object" selected={this.item.type === 'object'} class="badge badge-pill badge-primary object">{this.i18n.translate('json-schema-designer.object').toUpperCase()} {propCountDisplay}</option>
@@ -144,13 +145,13 @@ export class SchemaRowComponent {
             </div>
           </div>
           {this.showDetailsPan
-            ? <item-details class="item-details" item={this.item} parent={this}></item-details>
+            ? <item-details class="item-details" item={ this.item } definitions={ this.definitions } parent={ this }></item-details>
             : <div></div>
           }
         </div>
         <div class="indent">
           {children.map((child) =>
-              <schema-row item={child} parent={this}></schema-row>
+              <schema-row item={ child } definitions={ this.definitions } parent={ this }></schema-row>
           )}
         </div>
       </div>
