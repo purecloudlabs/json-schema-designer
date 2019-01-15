@@ -14,6 +14,7 @@ const defaultTranslations: any = {
     "$ref": "$ref",
     "general": "General",
     "title": "Title",
+    "delete?": "Delete?",
     "description": "Description",
     "default": "Default",
     "required": "Required",
