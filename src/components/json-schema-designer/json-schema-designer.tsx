@@ -1,5 +1,97 @@
-import { Component, Prop, State, Method } from '@stencil/core';
-import { SchemaObject, ISchemaItem } from './schema';
+import { Component, Prop, State, Method, Watch } from '@stencil/core';
+import { ISchemaItem, SchemaRoot, createAppropriateSchemaItem } from './schema';
+
+const testDefinitions = {
+  "purecloudGroupIdFilterList": {
+    "type": [
+      "null",
+      "array"
+    ],
+    "title": "Group Filtering",
+    "description": "Limit visibility of permissioned users to selected groups. Leaving blank will allow visibility for all users in this integration's defined permissions.",
+    "items": {
+      "type": "string",
+      "title": "Group GUID",
+      "pattern": "^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$"
+    }
+  },
+  "definition2": {
+    "type": [
+      "string"
+    ],
+    "title": "definition2",
+    "description": "this is a definition"
+  }
+};
+
+const testData = {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Skype for Business Application Properties",
+  "description": "Defines the basic configuration for the Skype for Business client",
+  "type": "object",
+  "properties": {
+    "displayType": {
+      "default": "widget",
+      "description": "Dictates the way the application will appear and function inside of PureCloud",
+      "type": "string",
+      "title": "Application Type",
+      "enum": [
+        "widget",
+        "panda",
+        "armpit"
+      ]
+    },
+    "groupFilter": {
+      "$ref": "#/definitions/purecloudGroupIdFilterList"
+    },
+    "numbertype": {
+      "default": "widget",
+      "description": "Dictates the way the application will appear and function inside of PureCloud",
+      "type": "number",
+      "title": "Application Type",
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "displayOrder": [
+    "displayType",
+    "groupFilter"
+  ],
+  "definitions": testDefinitions
+};
+
+const testData2 = {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "properties": {},
+  "items": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Account",
+    "type": "object",
+    "description": "A Salesforce account.",
+    "required": [ "Id" ],
+    "properties": {
+      "Id": {
+        "type": "string",
+        "description": "The ID of the account."
+      },
+      "Name": {
+        "type": "string",
+        "description": "The name of the account."
+      },
+      "AccountNumber": {
+        "type": "string",
+        "description": "The account number."
+      },
+      "Phone": {
+        "type": "string",
+        "description": "The phone number associated with the account."
+      },
+      "BillingStreet": { "type": "string", "description": "The billing street address." }, "BillingCity": { "type": "string", "description": "The billing city." }, "BillingState": { "type": "string", "description": "The billing state." }, "BillingPostalCode": { "type": "string", "description": "The billing postal code." }, "BillingCountry": { "type": "string", "description": "The billing country." }, "ShippingStreet": { "type": "string", "description": "The shipping street address." }, "ShippingCity": { "type": "string", "description": "The shipping city." }, "ShippingState": { "type": "string", "description": "The shipping state." }, "ShippingPostalCode": { "type": "string", "description": "The shipping postal code." }, "ShippingCountry": { "type": "string", "description": "The shipping country." } } } }
 
 @Component({
   tag: 'json-schema-designer',
@@ -14,8 +106,12 @@ export class DesignerComponent {
 
   @Method()
   exportSchema() {
-    console.log('inside of web component');
     return this.workingSchema.jsonSchemaString()
+  }
+
+  @Watch('inputschema')
+  watchHandler() {
+    this._loadSchema();
   }
 
   @Prop({ context: 'i18n' }) private i18n: any;
@@ -23,73 +119,11 @@ export class DesignerComponent {
   @State() activeTab: string = 'designer';
   @State() _tickle: number = 0;
 
-  workingSchema: any;
+  workingSchema: SchemaRoot;
 
   constructor() {}
 
   componentWillLoad() {
-    const testDefinitions = {
-      "purecloudGroupIdFilterList": {
-        "type": [
-          "null",
-          "array"
-        ],
-        "title": "Group Filtering",
-        "description": "Limit visibility of permissioned users to selected groups. Leaving blank will allow visibility for all users in this integration's defined permissions.",
-        "items": {
-          "type": "string",
-          "title": "Group GUID",
-          "pattern": "^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$"
-        }
-      },
-      "definition2": {
-        "type": [
-          "string"
-        ],
-        "title": "definition2",
-        "description": "this is a definition"
-      }
-    };
-    const testData = {
-      "$schema": "http://json-schema.org/draft-04/schema#",
-      "title": "Skype for Business Application Properties",
-      "description": "Defines the basic configuration for the Skype for Business client",
-      "type": "object",
-      "properties": {
-        "displayType": {
-          "default": "widget",
-          "description": "Dictates the way the application will appear and function inside of PureCloud",
-          "type": "string",
-          "title": "Application Type",
-          "enum": [
-            "widget",
-            "panda",
-            "armpit"
-          ]
-        },
-        "groupFilter": {
-          "$ref": "#/definitions/purecloudGroupIdFilterList"
-        },
-        "numbertype": {
-          "default": "widget",
-          "description": "Dictates the way the application will appear and function inside of PureCloud",
-          "type": "number",
-          "title": "Application Type",
-          "enum": [
-            1,
-            2,
-            3
-          ]
-        }
-      },
-      "additionalProperties": false,
-      "displayOrder": [
-        "displayType",
-        "groupFilter"
-      ],
-      "definitions": testDefinitions
-    };
-
     //Load Translations
     if (typeof(this.inputtranslations) === 'string') {
       this.i18n.translations = JSON.parse(this.inputtranslations);
@@ -98,15 +132,27 @@ export class DesignerComponent {
     }
 
     //Load Schema
-    let startingSchema = this.debugmode ? testData : {};
-    if (typeof(this.inputschema) === 'string') {
-      startingSchema = JSON.parse(this.inputschema);
-    }
-    this.workingSchema = new SchemaObject(startingSchema, null);
+    this._loadSchema();
   }
 
   rerender() {
     this._tickle++;
+  }
+
+  changeRootType(type: string) {
+    //grab definitions
+    let definitions = this.workingSchema.definitions;
+    let newRoot = this.workingSchema.copy(type) as SchemaRoot;
+    newRoot.definitions = definitions;
+    this.workingSchema = newRoot;
+  }
+
+  _loadSchema() {
+    let startingSchema = this.debugmode ? testData2 : {};
+    if (typeof(this.inputschema) === 'string') {
+      startingSchema = JSON.parse(this.inputschema);
+    }
+    this.workingSchema = createAppropriateSchemaItem(startingSchema, null) as SchemaRoot;
   }
 
   render() {

@@ -92,11 +92,11 @@ export class SchemaRowComponent {
                 {this.item.isRoot
                   ? <select class={typeDisplayClass} onInput={(event) => {
                         let input = event.target as HTMLInputElement;
-                        this.item.changeType(input.value);
+                        this.parent.changeRootType(input.value);
                         this.rerender();
                       }}>
                       <option value="object" class="badge badge-pill badge-primary object"> {this.i18n.translate('json-schema-designer.object').toUpperCase()} {propCountDisplay}</option>
-
+                      <option value="array" selected={this.item.type === 'array'} class="badge badge-pill badge-primary array">{this.i18n.translate('json-schema-designer.array').toUpperCase()}</option>
                     </select>
                   : <select class={typeDisplayClass} onInput={(event) => {
                         let input = event.target as HTMLInputElement;
