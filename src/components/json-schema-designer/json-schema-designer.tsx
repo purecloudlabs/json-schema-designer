@@ -173,13 +173,15 @@ export class DesignerComponent {
             </div>
           : <div></div>
         }
-        <button class="btn btn-link btn-xs pull-right" onClick={()=> {
-          this.workingSchema.addDefinition();
-          this.rerender();
-        }}>
-          <span> Add Definition </span>
-          <i class="fa fa-plus"></i>
-        </button>
+        <div class="row">
+          <button class="btn btn-link btn-xs pull-right" onClick={()=> {
+            this.workingSchema.addDefinition();
+            this.rerender();
+          }}>
+            <span> {this.i18n.translate('json-schema-designer.add-definition')} </span>
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
       </div>
     );
     if (this.viewmode === 'tabs') {
