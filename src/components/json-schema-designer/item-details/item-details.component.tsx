@@ -389,10 +389,10 @@ export class ItemDetailsComponent {
     );
 
     const refFields: JSX.Element = (
-      <div class="col-lg-6">
+      <div class="col-lg-12">
         <form class="form-horizontal">
           <div class="form-group">
-            <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.reference')} </label>
+            <label class="col-sm-2 control-label"> {this.i18n.translate('json-schema-designer.reference')} </label>
             <div class="col-sm-10">
               <select class="form-control input-sm" onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -400,11 +400,11 @@ export class ItemDetailsComponent {
                 refItem.$ref = definitionName;
                 this.rerender();
               }}>
-                {definitionReferences.map((name) =>
-                  <option>
-                    <option >{name}</option>
-                  </option>
-                )}
+              {definitionReferences.map((name) =>
+                <option>
+                  <option >{name}</option>
+                </option>
+              )}
               </select>
             </div>
           </div>

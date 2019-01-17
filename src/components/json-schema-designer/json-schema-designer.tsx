@@ -1,7 +1,7 @@
 import { Component, Prop, State, Method, Watch } from '@stencil/core';
 import { ISchemaItem, SchemaRoot, createAppropriateSchemaItem } from './schema';
 
-const testDefinitions = {
+const TEST_DEFINITIONS = {
   "purecloudGroupIdFilterList": {
     "type": [
       "null",
@@ -23,76 +23,78 @@ const testDefinitions = {
     "description": "this is a definition"
   }
 };
-
-const testData = {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Skype for Business Application Properties",
-  "description": "Defines the basic configuration for the Skype for Business client",
-  "type": "object",
-  "properties": {
-    "displayType": {
-      "default": "widget",
-      "description": "Dictates the way the application will appear and function inside of PureCloud",
-      "type": "string",
-      "title": "Application Type",
-      "enum": [
-        "widget",
-        "panda",
-        "armpit"
-      ]
-    },
-    "groupFilter": {
-      "$ref": "#/definitions/purecloudGroupIdFilterList"
-    },
-    "numbertype": {
-      "default": "widget",
-      "description": "Dictates the way the application will appear and function inside of PureCloud",
-      "type": "number",
-      "title": "Application Type",
-      "enum": [
-        1,
-        2,
-        3
-      ]
-    }
-  },
-  "additionalProperties": false,
-  "displayOrder": [
-    "displayType",
-    "groupFilter"
-  ],
-  "definitions": testDefinitions
-};
-
-const testData2 = {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "type": "array",
-  "properties": {},
-  "items": {
+const TEST_SCHEMAS = [
+  {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Account",
+    "title": "Skype for Business Application Properties",
+    "description": "Defines the basic configuration for the Skype for Business client",
     "type": "object",
-    "description": "A Salesforce account.",
-    "required": [ "Id" ],
     "properties": {
-      "Id": {
+      "displayType": {
+        "default": "widget",
+        "description": "Dictates the way the application will appear and function inside of PureCloud",
         "type": "string",
-        "description": "The ID of the account."
+        "title": "Application Type",
+        "enum": [
+          "widget",
+          "panda",
+          "armpit"
+        ]
       },
-      "Name": {
-        "type": "string",
-        "description": "The name of the account."
+      "groupFilter": {
+        "$ref": "#/definitions/purecloudGroupIdFilterList"
       },
-      "AccountNumber": {
-        "type": "string",
-        "description": "The account number."
-      },
-      "Phone": {
-        "type": "string",
-        "description": "The phone number associated with the account."
-      },
-      "BillingStreet": { "type": "string", "description": "The billing street address." }, "BillingCity": { "type": "string", "description": "The billing city." }, "BillingState": { "type": "string", "description": "The billing state." }, "BillingPostalCode": { "type": "string", "description": "The billing postal code." }, "BillingCountry": { "type": "string", "description": "The billing country." }, "ShippingStreet": { "type": "string", "description": "The shipping street address." }, "ShippingCity": { "type": "string", "description": "The shipping city." }, "ShippingState": { "type": "string", "description": "The shipping state." }, "ShippingPostalCode": { "type": "string", "description": "The shipping postal code." }, "ShippingCountry": { "type": "string", "description": "The shipping country." } } } }
-
+      "numbertype": {
+        "default": "widget",
+        "description": "Dictates the way the application will appear and function inside of PureCloud",
+        "type": "number",
+        "title": "Application Type",
+        "enum": [
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    "additionalProperties": false,
+    "displayOrder": [
+      "displayType",
+      "groupFilter"
+    ],
+    "definitions": TEST_DEFINITIONS
+  },
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "properties": {},
+    "items": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "title": "Account",
+      "type": "object",
+      "description": "A Salesforce account.",
+      "required": [ "Id" ],
+      "properties": {
+        "Id": {
+          "type": "string",
+          "description": "The ID of the account."
+        },
+        "Name": {
+          "type": "string",
+          "description": "The name of the account."
+        },
+        "AccountNumber": {
+          "type": "string",
+          "description": "The account number."
+        },
+        "Phone": {
+          "type": "string",
+          "description": "The phone number associated with the account."
+        },
+        "BillingStreet": { "type": "string", "description": "The billing street address." }, "BillingCity": { "type": "string", "description": "The billing city." }, "BillingState": { "type": "string", "description": "The billing state." }, "BillingPostalCode": { "type": "string", "description": "The billing postal code." }, "BillingCountry": { "type": "string", "description": "The billing country." }, "ShippingStreet": { "type": "string", "description": "The shipping street address." }, "ShippingCity": { "type": "string", "description": "The shipping city." }, "ShippingState": { "type": "string", "description": "The shipping state." }, "ShippingPostalCode": { "type": "string", "description": "The shipping postal code." }, "ShippingCountry": { "type": "string", "description": "The shipping country." }
+      }
+    }
+  }
+];
 @Component({
   tag: 'json-schema-designer',
   styleUrl: 'json-schema-designer.less',
@@ -101,7 +103,7 @@ const testData2 = {
 export class DesignerComponent {
   @Prop() inputschema: string;
   @Prop() inputtranslations: string;
-  @Prop() viewmode: string = 'tabs'; //tabs, columns, designerOnly
+  @Prop() viewmode: string = 'columns'; //tabs, columns, designerOnly
   @Prop() debugmode: boolean = true;
 
   @Method()
@@ -148,7 +150,7 @@ export class DesignerComponent {
   }
 
   _loadSchema() {
-    let startingSchema = this.debugmode ? testData2 : {};
+    let startingSchema = this.debugmode ? TEST_SCHEMAS[0] : {};
     if (typeof(this.inputschema) === 'string') {
       startingSchema = JSON.parse(this.inputschema);
     }

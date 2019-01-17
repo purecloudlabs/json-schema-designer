@@ -122,19 +122,19 @@ export class SchemaRowComponent {
               </div>
               <div class="model-actions">
                 {objectItem.getChildren
-                  ? <i class="fas fa-plus obj-add" onClick={() => {
+                  ? <i class="fa fa-plus obj-add" onClick={() => {
                       this.addNewProp(objectItem);
                       this.rerender();
                     }}></i>
-                  : <i class="fas fa-plus obj-add disabled"></i>
+                  : <i class="fa fa-plus obj-add disabled"></i>
                 }
                 {this.showDetailsPan
-                  ? <i class="fas fa-check model-done text-success" onClick={() => { this.showDetailsPan = false; }}></i>
-                  : <i class="fas fa-pencil-alt model-detail" onClick={() => { this.showDetailsPan = true; }}></i>
+                  ? <i class="fa fa-check model-done text-success" onClick={() => { this.showDetailsPan = false; }}></i>
+                  : <i class="fa fa-pencil model-detail" onClick={() => { this.showDetailsPan = true; }}></i>
                 }
                 {this.item.isRoot
-                  ? <i class="fas fa-times model-remove disabled"></i>
-                  : <i class="fas fa-times model-remove" onClick={() => {
+                  ? <i class="fa fa-times model-remove disabled"></i>
+                  : <i class="fa fa-times model-remove" onClick={() => {
                       this.showDeleleConfirmationMessage = true;
                       this.rerender();
                     }}>
@@ -146,14 +146,14 @@ export class SchemaRowComponent {
                         {this.i18n.translate('json-schema-designer.delete?')}
                       </div>
                       <div class="buttons">
-                        <i class="fas fa-check" onClick={() => {
+                        <i class="fa fa-check" onClick={() => {
                             if (this.item.isRoot) return;
                             this.removeItem(this.item);
                             this.showDeleleConfirmationMessage = false;
                             this.rerender();
                           }}>
                           </i>
-                        <i class="fas fa-times model-remove" onClick={() => {
+                        <i class="fa fa-times model-remove" onClick={() => {
                           this.showDeleleConfirmationMessage = false;
                           this.rerender();
                         }}></i>
