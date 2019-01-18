@@ -3,6 +3,7 @@ const defaultTranslations: any = {
     "schema": "Schema",
     "definitions": "Definitions",
     "add-definition": "Add Definition",
+    "select-definition": "Select Definition...",
     "export": "Export",
     "object": "Object",
     "string": "String",

@@ -29,7 +29,7 @@ export interface IHasChildren {
 }
 
 export function createAppropriateSchemaItem(json: any, parent: IHasChildren) : ISchemaItem {
-  if (json.$ref) {
+  if (json.$ref || json.type === '$ref') {
     return new SchemaReference(json, parent);
   } else {
     let mainType;

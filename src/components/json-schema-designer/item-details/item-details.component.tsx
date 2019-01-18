@@ -400,9 +400,10 @@ export class ItemDetailsComponent {
                 refItem.$ref = definitionName;
                 this.rerender();
               }}>
+              <option value="" disabled selected={!refItem.$ref}>{this.i18n.translate('json-schema-designer.select-definition')}</option>
               {definitionReferences.map((name) =>
                 <option>
-                  <option >{name}</option>
+                  <option selected={refItem.$ref === name}>{name}</option>
                 </option>
               )}
               </select>
