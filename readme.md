@@ -2,47 +2,62 @@
 
 # JSON Schema Designer
 
-<Description>
+The JSON Schema Designer is a web component that allows easy JSON Schema creation and configuration with a GUI point and click interface.
 
-## Getting Started
-
-```bash
-git clone https://github.com/ionic-team/stencil-component-starter.git my-component
-cd my-component
-git remote rm origin
-```
-
-and run:
-
-```bash
-npm install
-npm start
-```
-
-To build the component for production, run:
-
-```bash
-npm run build
-```
-
-To run the unit tests for the components, run:
-
-```bash
-npm test
-```
-
-Need help? Check out our docs [here](https://stenciljs.com/docs/my-first-component).
-
-
-## Using this component
-
-### Script tag
-
-- [Publish to NPM](https://docs.npmjs.com/getting-started/publishing-npm-packages)
-- Put a script tag similar to this `<script src='https://unpkg.com/my-component@0.0.1/dist/mycomponent.js'></script>` in the head of your index.html
+## Installation
+- Run `npm install json-schema-designer --save`
+- Put a script tag similar to this `<script src='node_modules/json-schema-designer/dist/jsonschemadesigner.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
 
-### Node Modules
-- Run `npm install my-component --save`
-- Put a script tag similar to this `<script src='node_modules/my-component/dist/mycomponent.js'></script>` in the head of your index.html
-- Then you can use the element anywhere in your template, JSX, html etc
+## Basic Usage
+
+### Properties
+* inputschema (optional) - an object containing the JSON Schema to load into the designer.
+* inputtranslation (optional) - an object containing translations for the strings within the designer.
+* viewmode (optional) - the view mode of the designer. options are "tabs", "columns" and "designerOnly" (default)
+
+Note: all properties passed to the component will be stringified.
+
+```html
+<json-schema-designer
+  id="json-designer"
+  viewmode="designerOnly"
+  inputschema={{schema}}
+  inputtranslations={{translations}}>
+</json-schema-designer>
+```
+
+### Methods
+
+* exportSchema - returns the stringified JSON object of the configured JSON Schema.
+
+Example Usage:
+```javascript
+let schemaDesigner = document.querySelector('#json-designer')
+let jsonSchema = JSON.parse(schemaDesigner.exportSchema())
+```
+
+
+## Advanced Usage
+
+To add your own translations to the designer, pass in a translations object with the following format:
+
+```javascript
+{
+  "json-schema-designer": {
+    "schema": "Schema",
+    "definitions": "Definitions",
+    "add-definition": "Add Definition"
+    ...
+  }
+}
+```
+Only translation found inside of the "json-schema-designer" key will be used.
+
+A list of all translatable strings can be found in  `src/global/i18n.ts`
+
+## References
+
+https://json-schema.org/
+
+https://stenciljs.com/docs/introduction/
