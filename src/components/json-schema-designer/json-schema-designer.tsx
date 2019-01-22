@@ -1,4 +1,4 @@
-import { Component, Prop, State, Method, Watch } from '@stencil/core';
+import { Component, Prop, State, Method, Watch, Event, EventEmitter } from '@stencil/core';
 import { ISchemaItem, SchemaRoot, createAppropriateSchemaItem } from './schema';
 
 const TEST_DEFINITIONS = {
@@ -93,7 +93,8 @@ const TEST_SCHEMAS = [
         "BillingStreet": { "type": "string", "description": "The billing street address." }, "BillingCity": { "type": "string", "description": "The billing city." }, "BillingState": { "type": "string", "description": "The billing state." }, "BillingPostalCode": { "type": "string", "description": "The billing postal code." }, "BillingCountry": { "type": "string", "description": "The billing country." }, "ShippingStreet": { "type": "string", "description": "The shipping street address." }, "ShippingCity": { "type": "string", "description": "The shipping city." }, "ShippingState": { "type": "string", "description": "The shipping state." }, "ShippingPostalCode": { "type": "string", "description": "The shipping postal code." }, "ShippingCountry": { "type": "string", "description": "The shipping country." }
       }
     }
-  }
+  },
+  {}
 ];
 
 @Component({
@@ -104,13 +105,19 @@ const TEST_SCHEMAS = [
 export class DesignerComponent {
   @Prop() inputschema: string;
   @Prop() inputtranslations: string;
-  @Prop() viewmode: string = 'columns'; //tabs, columns, designerOnly
-  @Prop() debugmode: boolean = true;
+  @Prop() viewmode: string = 'designerOnly'; //tabs, columns, designerOnly
+  @Prop() debugmode: boolean = false;
 
   @Method()
   exportSchema() {
-    return this.workingSchema.jsonSchemaString()
+    try {
+      return this.workingSchema.jsonSchemaString()
+    } catch (e) {
+      this.error.emit(e);
+    }
   }
+
+  @Event() error: EventEmitter;
 
   @Watch('inputschema')
   watchHandler() {
@@ -118,13 +125,9 @@ export class DesignerComponent {
   }
 
   @Prop({ context: 'i18n' }) private i18n: any;
-
   @State() activeTab: string = 'designer';
   @State() _tickle: number = 0;
-
   workingSchema: SchemaRoot;
-
-  constructor() {}
 
   componentWillLoad() {
     //Load Translations
@@ -148,13 +151,25 @@ export class DesignerComponent {
     let newRoot = this.workingSchema.copy(type) as SchemaRoot;
     newRoot.definitions = definitions;
     this.workingSchema = newRoot;
+
   }
 
   _loadSchema() {
-    let startingSchema = this.debugmode ? TEST_SCHEMAS[0] : {};
-    if (typeof(this.inputschema) === 'string') {
-      startingSchema = JSON.parse(this.inputschema);
+    let startingSchema: any = this.debugmode ? TEST_SCHEMAS[0] : this.inputschema;
+    try {
+      if (typeof(startingSchema) === 'string') {
+        startingSchema = JSON.parse(startingSchema);
+      }
+      if (startingSchema.type !== 'object' && startingSchema.type !== 'array') {
+        throw new Error('root schema must have type object or array. Loading empty object schema');
+      }
+    } catch (error) {
+      this.error.emit(error);
+      startingSchema = {
+        type: 'object'
+      }
     }
+
     this.workingSchema = createAppropriateSchemaItem(startingSchema, null) as SchemaRoot;
   }
 
