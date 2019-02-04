@@ -163,14 +163,12 @@ export class DesignerComponent {
       if (startingSchema.type !== 'object' && startingSchema.type !== 'array') {
         throw new Error('root schema must have type object or array. Loading empty object schema');
       }
+      this.workingSchema = createAppropriateSchemaItem(startingSchema, null) as SchemaRoot;
     } catch (error) {
       this.error.emit(error);
-      startingSchema = {
-        type: 'object'
-      }
+      startingSchema = { type: 'object' }
+      this.workingSchema = createAppropriateSchemaItem(startingSchema, null) as SchemaRoot;
     }
-
-    this.workingSchema = createAppropriateSchemaItem(startingSchema, null) as SchemaRoot;
   }
 
   render() {

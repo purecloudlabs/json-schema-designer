@@ -367,9 +367,13 @@ export class SchemaObject extends SchemaRoot implements ISchemaItem {
     }
     if (json.required) {
       json.required.forEach((requiredItemName: string) => {
-          Object.values(this.properties).find((property: ISchemaItem) => {
-              return property.title === requiredItemName;
-          }).isRequired = true;
+        let requiredItem: ISchemaItem= Object.values(this.properties).find((property: ISchemaItem) => {
+            return property.title === requiredItemName;
+        });
+        if (!requiredItem) {
+          throw new Error('required items must exist as properties. Item: ' + requiredItemName);
+        }
+        requiredItem.isRequired = true;
       });
     }
   }
