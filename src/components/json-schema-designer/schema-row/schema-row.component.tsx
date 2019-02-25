@@ -136,7 +136,6 @@ export class SchemaRowComponent {
                   ? <i class="fa fa-times model-remove disabled"></i>
                   : <i class="fa fa-times model-remove" onClick={() => {
                       this.showDeleleConfirmationMessage = true;
-                      this.rerender();
                     }}>
                     </i>
                 }
@@ -155,7 +154,6 @@ export class SchemaRowComponent {
                           </i>
                         <i class="fa fa-times model-remove" onClick={() => {
                           this.showDeleleConfirmationMessage = false;
-                          this.rerender();
                         }}></i>
                       </div>
                    </div>

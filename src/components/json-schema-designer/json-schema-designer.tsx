@@ -105,7 +105,7 @@ const TEST_SCHEMAS = [
 export class DesignerComponent {
   @Prop() inputschema: string;
   @Prop() inputtranslations: string;
-  @Prop() viewmode: string = 'designerOnly'; //tabs, columns, designerOnly
+  @Prop() viewmode: string = 'columns'; //tabs, columns, designerOnly
   @Prop() debugmode: boolean = false;
 
   @Method()
@@ -118,6 +118,7 @@ export class DesignerComponent {
   }
 
   @Event() error: EventEmitter;
+  @Event() change: EventEmitter;
 
   @Watch('inputschema')
   watchHandler() {
@@ -151,8 +152,9 @@ export class DesignerComponent {
     let newRoot = this.workingSchema.copy(type) as SchemaRoot;
     newRoot.definitions = definitions;
     this.workingSchema = newRoot;
-
   }
+
+  private lastOutput : String = ''
 
   _loadSchema() {
     let startingSchema: any = this.debugmode ? TEST_SCHEMAS[0] : this.inputschema;
@@ -173,6 +175,10 @@ export class DesignerComponent {
 
   render() {
     const jsonOutput: string = this.workingSchema ? this.workingSchema.jsonSchemaString() : "";
+    if (this.lastOutput !== jsonOutput) {
+      this.lastOutput = jsonOutput;
+      this.change.emit(jsonOutput);
+    }
     const definitions: ISchemaItem[] = this.workingSchema ? this.workingSchema.getDefinitions() : [];
     const designer: JSX.Element = (
       <div>
