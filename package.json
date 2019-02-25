@@ -16,7 +16,7 @@
     "test.watch": "jest --watch"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.2.0"
+    "font-awesome": "^4.5.0"
   },
   "devDependencies": {
     "@stencil/core": "^0.10.0",

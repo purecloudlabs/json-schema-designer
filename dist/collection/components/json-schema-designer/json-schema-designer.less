@@ -1,7 +1,4 @@
 @import './t_styles.css';
-// @fa-font-path: 'node_modules/@fortawesome/fontawesome-free/webfonts';
-// @import 'node_modules/@fortawesome/fontawesome-free/less/fontawesome.less';
-
 
 @import 'node_modules/font-awesome/less/font-awesome.less';
 @fa-font-path: '/assets/fonts';
@@ -137,6 +134,18 @@
 				.disabled {
 					opacity: 0.3;
 				}
+
+        .delete-confirmation-message {
+          position: absolute;
+          display: flex;
+          background: white;
+          flex-direction: column;
+
+          .buttons {
+            display: flex;
+            justify-content: space-around;
+          }
+        }
 			}
 			.model-type {
 				opacity: 0.3;

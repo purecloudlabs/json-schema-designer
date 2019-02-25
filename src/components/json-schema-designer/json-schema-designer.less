@@ -1,12 +1,7 @@
 @import './t_styles.css';
 
-@import "node_modules/@fortawesome/fontawesome-free/less/fontawesome";
-@import "node_modules/@fortawesome/fontawesome-free/less/brands";
-@import "node_modules/@fortawesome/fontawesome-free/less/regular";
-@import "node_modules/@fortawesome/fontawesome-free/less/solid";
-@import "node_modules/@fortawesome/fontawesome-free/less/v4-shims";
-
-@fa-font-path: '/assets/webfonts';
+@import 'node_modules/font-awesome/less/font-awesome.less';
+@fa-font-path: '/assets/fonts';
 
 @row-height: 40;
 @light_grey_blue: #7c9eb2;
@@ -139,6 +134,18 @@
 				.disabled {
 					opacity: 0.3;
 				}
+
+        .delete-confirmation-message {
+          position: absolute;
+          display: flex;
+          background: white;
+          flex-direction: column;
+
+          .buttons {
+            display: flex;
+            justify-content: space-around;
+          }
+        }
 			}
 			.model-type {
 				opacity: 0.3;

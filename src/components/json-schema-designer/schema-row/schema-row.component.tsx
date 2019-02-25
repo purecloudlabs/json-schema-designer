@@ -9,13 +9,14 @@ declare var $: any;
 export class SchemaRowComponent {
   @Prop() item: ISchemaItem;
   @Prop() parent: any;
+  @Prop() definitions: any;
 
   @Prop({ context: 'i18n' }) private i18n: any;
 
   @State() showChildren: boolean = true;
   @State() showDetailsPan: boolean = false;
+  @State() showDeleleConfirmationMessage: boolean = false;
   @State() _tickle: number = 0;
-
 
   removeItem(item: ISchemaItem): void {
     item.parent.removeChild(item._id);
@@ -91,18 +92,18 @@ export class SchemaRowComponent {
                 {this.item.isRoot
                   ? <select class={typeDisplayClass} onInput={(event) => {
                         let input = event.target as HTMLInputElement;
-                        this.item.changeType(input.value);
+                        this.parent.changeRootType(input.value);
                         this.rerender();
                       }}>
                       <option value="object" class="badge badge-pill badge-primary object"> {this.i18n.translate('json-schema-designer.object').toUpperCase()} {propCountDisplay}</option>
-
+                      <option value="array" selected={this.item.type === 'array'} class="badge badge-pill badge-primary array">{this.i18n.translate('json-schema-designer.array').toUpperCase()}</option>
                     </select>
                   : <select class={typeDisplayClass} onInput={(event) => {
                         let input = event.target as HTMLInputElement;
                         this.item.changeType(input.value);
                         this.rerender();
                        }}>
-                          <option value="string" selected={this.item.type === 'string'} class="badge badge-pill badge-primar string">{this.i18n.translate('json-schema-designer.string').toUpperCase()}</option>
+                          <option value="string" selected={this.item.type === 'string'} class="badge badge-pill badge-primary string">{this.i18n.translate('json-schema-designer.string').toUpperCase()}</option>
                           <option value="number" selected={this.item.type === 'number'} class="badge badge-pill badge-primary number">{this.i18n.translate('json-schema-designer.number').toUpperCase()}</option>
                           <option value="integer" selected={this.item.type === 'integer'} class="badge badge-pill badge-primary interger">{this.i18n.translate('json-schema-designer.integer').toUpperCase()}</option>
                           <option value="object" selected={this.item.type === 'object'} class="badge badge-pill badge-primary object">{this.i18n.translate('json-schema-designer.object').toUpperCase()} {propCountDisplay}</option>
@@ -121,36 +122,54 @@ export class SchemaRowComponent {
               </div>
               <div class="model-actions">
                 {objectItem.getChildren
-                  ? <i class="fas fa-plus obj-add" onClick={() => {
+                  ? <i class="fa fa-plus obj-add" onClick={() => {
                       this.addNewProp(objectItem);
                       this.rerender();
                     }}></i>
-                  : <i class="fas fa-plus obj-add disabled"></i>
+                  : <i class="fa fa-plus obj-add disabled"></i>
                 }
                 {this.showDetailsPan
-                  ? <i class="fas fa-check model-done text-success" onClick={() => { this.showDetailsPan = false; }}></i>
-                  : <i class="fas fa-pencil-alt model-detail" onClick={() => { this.showDetailsPan = true; }}></i>
+                  ? <i class="fa fa-check model-done text-success" onClick={() => { this.showDetailsPan = false; }}></i>
+                  : <i class="fa fa-pencil model-detail" onClick={() => { this.showDetailsPan = true; }}></i>
                 }
                 {this.item.isRoot
-                  ? <i class="fas fa-times model-remove disabled"></i>
-                  : <i class="fas fa-times model-remove" onClick={() => {
-                      if (this.item.isRoot) return;
-                      this.removeItem(this.item)
-                      this.rerender();
+                  ? <i class="fa fa-times model-remove disabled"></i>
+                  : <i class="fa fa-times model-remove" onClick={() => {
+                      this.showDeleleConfirmationMessage = true;
                     }}>
                     </i>
+                }
+                {this.showDeleleConfirmationMessage
+                  ? <div class="delete-confirmation-message">
+                      <div class="message">
+                        {this.i18n.translate('json-schema-designer.delete?')}
+                      </div>
+                      <div class="buttons">
+                        <i class="fa fa-check" onClick={() => {
+                            if (this.item.isRoot) return;
+                            this.removeItem(this.item);
+                            this.showDeleleConfirmationMessage = false;
+                            this.rerender();
+                          }}>
+                          </i>
+                        <i class="fa fa-times model-remove" onClick={() => {
+                          this.showDeleleConfirmationMessage = false;
+                        }}></i>
+                      </div>
+                   </div>
+                  : <div> </div>
                 }
               </div>
             </div>
           </div>
           {this.showDetailsPan
-            ? <item-details class="item-details" item={this.item} parent={this}></item-details>
+            ? <item-details class="item-details" item={ this.item } definitions={ this.definitions } parent={ this }></item-details>
             : <div></div>
           }
         </div>
         <div class="indent">
           {children.map((child) =>
-              <schema-row item={child} parent={this}></schema-row>
+              <schema-row item={ child } definitions={ this.definitions } parent={ this }></schema-row>
           )}
         </div>
       </div>

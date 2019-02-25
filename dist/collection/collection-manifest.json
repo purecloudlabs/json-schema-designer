@@ -8,6 +8,11 @@
       "styles": {},
       "props": [
         {
+          "name": "definitions",
+          "type": "Any",
+          "attr": "definitions"
+        },
+        {
           "name": "item",
           "attr": "item"
         },
@@ -55,7 +60,10 @@
         {
           "name": "inputschema",
           "type": "String",
-          "attr": "inputschema"
+          "attr": "inputschema",
+          "watch": [
+            "watchHandler"
+          ]
         },
         {
           "name": "inputtranslations",
@@ -86,6 +94,14 @@
           "name": "i18n",
           "id": "i18n"
         }
+      ],
+      "events": [
+        {
+          "event": "change"
+        },
+        {
+          "event": "error"
+        }
       ]
     },
     {
@@ -97,6 +113,11 @@
       "componentPath": "components/json-schema-designer/schema-row/schema-row.component.js",
       "styles": {},
       "props": [
+        {
+          "name": "definitions",
+          "type": "Any",
+          "attr": "definitions"
+        },
         {
           "name": "item",
           "attr": "item"
@@ -115,6 +136,9 @@
           "name": "showChildren"
         },
         {
+          "name": "showDeleleConfirmationMessage"
+        },
+        {
           "name": "showDetailsPan"
         }
       ],
@@ -129,7 +153,7 @@
   "collections": [],
   "compiler": {
     "name": "@stencil/core",
-    "version": "0.10.10",
+    "version": "0.10.0",
     "typescriptVersion": "2.9.2"
   },
   "bundles": [],

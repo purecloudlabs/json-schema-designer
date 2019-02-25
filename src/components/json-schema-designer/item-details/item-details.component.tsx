@@ -7,6 +7,7 @@ import { ISchemaItem, SchemaReference, SchemaString, SchemaNumeric, SchemaObject
 export class ItemDetailsComponent {
   @Prop() item: ISchemaItem;
   @Prop() parent: any;
+  @Prop() definitions: any;
 
   @Prop({ context: 'i18n' }) private i18n: any;
 
@@ -24,6 +25,18 @@ export class ItemDetailsComponent {
     }
   }
 
+  _getDefinitionReferences( definition, prefix: string ) {
+    let references: string[] = [];
+    let name: string = definition.definitionName || definition.title;
+    let reference: string = prefix + name;
+    references.push(reference)
+    let children = definition.getChildren ? definition.getChildren() : [];
+    children.forEach((child) => {
+      references = references.concat(this._getDefinitionReferences(child, reference + '/'));
+    })
+    return references;
+  }
+
   render() {
     //Item Casts for Specific Fields
     const refItem = this.item as SchemaReference;
@@ -33,6 +46,11 @@ export class ItemDetailsComponent {
     const arrayItem = this.item as SchemaArray;
 
     const enums = this.item.enum ? this.item.enum : [];
+
+    let definitionReferences = [];
+    this.definitions.forEach((definition) => {
+      definitionReferences = definitionReferences.concat(this._getDefinitionReferences(definition, '#/definitions/'));
+    })
 
     const basicFields: JSX.Element = (
       <div class="col-lg-6 border-right">
@@ -371,16 +389,24 @@ export class ItemDetailsComponent {
     );
 
     const refFields: JSX.Element = (
-      <div class="col-lg-6">
+      <div class="col-lg-12">
         <form class="form-horizontal">
           <div class="form-group">
-            <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.reference')} </label>
+            <label class="col-sm-2 control-label"> {this.i18n.translate('json-schema-designer.reference')} </label>
             <div class="col-sm-10">
-              <input type="text" value={refItem.$ref} class="form-control sm detail-ip" onInput={(event) => {
+              <select class="form-control input-sm" onInput={(event) => {
                 const input = event.target as HTMLInputElement;
-                refItem.$ref = input.value;
+                const definitionName: string = input.value;
+                refItem.$ref = definitionName;
                 this.rerender();
-              }}/>
+              }}>
+              <option value="" disabled selected={!refItem.$ref}>{this.i18n.translate('json-schema-designer.select-definition')}</option>
+              {definitionReferences.map((name) =>
+                <option>
+                  <option selected={refItem.$ref === name}>{name}</option>
+                </option>
+              )}
+              </select>
             </div>
           </div>
         </form>
