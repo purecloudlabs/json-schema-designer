@@ -2,6 +2,7 @@ export class SchemaRowComponent {
     constructor() {
         this.showChildren = true;
         this.showDetailsPan = false;
+        this.showDeleleConfirmationMessage = false;
         this._tickle = 0;
     }
     removeItem(item) {
@@ -67,20 +68,21 @@ export class SchemaRowComponent {
                             this.item.isRoot
                                 ? h("select", { class: typeDisplayClass, onInput: (event) => {
                                         let input = event.target;
-                                        this.item.changeType(input.value);
+                                        this.parent.changeRootType(input.value);
                                         this.rerender();
                                     } },
                                     h("option", { value: "object", class: "badge badge-pill badge-primary object" },
                                         " ",
                                         this.i18n.translate('json-schema-designer.object').toUpperCase(),
                                         " ",
-                                        propCountDisplay))
+                                        propCountDisplay),
+                                    h("option", { value: "array", selected: this.item.type === 'array', class: "badge badge-pill badge-primary array" }, this.i18n.translate('json-schema-designer.array').toUpperCase()))
                                 : h("select", { class: typeDisplayClass, onInput: (event) => {
                                         let input = event.target;
                                         this.item.changeType(input.value);
                                         this.rerender();
                                     } },
-                                    h("option", { value: "string", selected: this.item.type === 'string', class: "badge badge-pill badge-primar string" }, this.i18n.translate('json-schema-designer.string').toUpperCase()),
+                                    h("option", { value: "string", selected: this.item.type === 'string', class: "badge badge-pill badge-primary string" }, this.i18n.translate('json-schema-designer.string').toUpperCase()),
                                     h("option", { value: "number", selected: this.item.type === 'number', class: "badge badge-pill badge-primary number" }, this.i18n.translate('json-schema-designer.number').toUpperCase()),
                                     h("option", { value: "integer", selected: this.item.type === 'integer', class: "badge badge-pill badge-primary interger" }, this.i18n.translate('json-schema-designer.integer').toUpperCase()),
                                     h("option", { value: "object", selected: this.item.type === 'object', class: "badge badge-pill badge-primary object" },
@@ -111,20 +113,36 @@ export class SchemaRowComponent {
                             this.item.isRoot
                                 ? h("i", { class: "fa fa-times model-remove disabled" })
                                 : h("i", { class: "fa fa-times model-remove", onClick: () => {
-                                        if (this.item.isRoot)
-                                            return;
-                                        this.removeItem(this.item);
-                                        this.rerender();
-                                    } })))),
+                                        this.showDeleleConfirmationMessage = true;
+                                    } }),
+                            this.showDeleleConfirmationMessage
+                                ? h("div", { class: "delete-confirmation-message" },
+                                    h("div", { class: "message" }, this.i18n.translate('json-schema-designer.delete?')),
+                                    h("div", { class: "buttons" },
+                                        h("i", { class: "fa fa-check", onClick: () => {
+                                                if (this.item.isRoot)
+                                                    return;
+                                                this.removeItem(this.item);
+                                                this.showDeleleConfirmationMessage = false;
+                                                this.rerender();
+                                            } }),
+                                        h("i", { class: "fa fa-times model-remove", onClick: () => {
+                                                this.showDeleleConfirmationMessage = false;
+                                            } })))
+                                : h("div", null, " ")))),
                 this.showDetailsPan
-                    ? h("item-details", { class: "item-details", item: this.item, parent: this })
+                    ? h("item-details", { class: "item-details", item: this.item, definitions: this.definitions, parent: this })
                     : h("div", null)),
-            h("div", { class: "indent" }, children.map((child) => h("schema-row", { item: child, parent: this })))));
+            h("div", { class: "indent" }, children.map((child) => h("schema-row", { item: child, definitions: this.definitions, parent: this })))));
     }
     static get is() { return "schema-row"; }
     static get properties() { return {
         "_tickle": {
             "state": true
+        },
+        "definitions": {
+            "type": "Any",
+            "attr": "definitions"
         },
         "i18n": {
             "context": "i18n"
@@ -138,6 +156,9 @@ export class SchemaRowComponent {
             "attr": "parent"
         },
         "showChildren": {
+            "state": true
+        },
+        "showDeleleConfirmationMessage": {
             "state": true
         },
         "showDetailsPan": {

@@ -1,5 +1,5 @@
-function _createAppropriateSchemaItem(json, parent) {
-    if (json.$ref) {
+export function createAppropriateSchemaItem(json, parent) {
+    if (json.$ref || json.type === '$ref') {
         return new SchemaReference(json, parent);
     }
     else {
@@ -27,6 +27,7 @@ function _createAppropriateSchemaItem(json, parent) {
         }
     }
 }
+;
 function _generateId() {
     let placeholder = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
     return placeholder.replace(/[xy]/g, function (c) {
@@ -65,7 +66,7 @@ export class SchemaBasic {
             if (json.type.length > 2) {
                 console.error('more than two types not supported');
             }
-            if (!json.type.includes('null')) {
+            if (json.type.length === 2 && !json.type.includes('null')) {
                 console.error('multiple types can only include null and an additional value');
             }
             json.type.forEach((typeItem) => {
@@ -121,7 +122,7 @@ export class SchemaBasic {
             '$ref'
         ];
         if (targetType === this.type) {
-            return;
+            return this;
         }
         const needToCreateNewObject = complexTypes.includes(this.type) || complexTypes.includes(targetType);
         if (needToCreateNewObject) {
@@ -134,12 +135,64 @@ export class SchemaBasic {
                 definitionName: this.definitionName,
                 isDefinition: this.isDefinition
             };
-            let newObject = _createAppropriateSchemaItem(valuesToCopy, this.parent);
+            let newObject = createAppropriateSchemaItem(valuesToCopy, this.parent);
             this.parent.replaceChild(newObject);
         }
         else {
             this.type = targetType;
         }
+    }
+    copy(type) {
+        const valuesToCopy = {
+            title: this.title,
+            description: this.description,
+            type: type || this.type,
+            isRequired: this.isRequired,
+            _id: this._id
+        };
+        return createAppropriateSchemaItem(valuesToCopy, this.parent);
+    }
+}
+export class SchemaRoot extends SchemaBasic {
+    constructor(json, parent) {
+        super(json, parent);
+        this.isRoot = !parent;
+        this.isRequired = this.isRoot;
+        if (json.definitions) {
+            this.definitions = {};
+            Object.entries(json.definitions).forEach((keyVal) => {
+                const key = keyVal[0];
+                const value = keyVal[1];
+                value.definitionName = key;
+                value.isDefinition = true;
+                const definition = createAppropriateSchemaItem(value, this);
+                this.definitions[definition._id] = definition;
+            });
+        }
+    }
+    jsonSchema() {
+        let output = super.jsonSchema();
+        if (this.definitions && Object.values(this.definitions).length) {
+            output.definitions = {};
+            Object.entries(this.definitions).forEach((keyValue) => {
+                const value = keyValue[1];
+                output.definitions[value.definitionName] = value.jsonSchema();
+            });
+        }
+        return output;
+    }
+    jsonSchemaString() {
+        return JSON.stringify(this.jsonSchema(), null, 2);
+    }
+    getDefinitions() {
+        return this.definitions ? Object.values(this.definitions) : [];
+    }
+    addDefinition() {
+        if (!this.definitions)
+            this.definitions = {};
+        const newDef = new SchemaBasic({}, this);
+        newDef.isDefinition = true;
+        this.definitions[newDef._id] = newDef;
     }
 }
 export class SchemaString extends SchemaBasic {
@@ -190,15 +243,13 @@ export class SchemaReference extends SchemaBasic {
         };
     }
 }
-export class SchemaObject extends SchemaBasic {
+export class SchemaObject extends SchemaRoot {
     //dependancies: any; TODO: Advanced Feature
     constructor(json, parent) {
         super(json, parent);
         this.type = 'object';
         this.schema = json.$schema;
         this.properties = {};
-        this.isRoot = !parent;
-        this.isRequired = this.isRoot;
         if (typeof (json.additionalProperties) === 'boolean') {
             this.canHaveAdditionalProperties = json.additionalProperties;
         }
@@ -216,26 +267,19 @@ export class SchemaObject extends SchemaBasic {
                 let key = entry[0];
                 let value = entry[1];
                 value.title = key;
-                const newProperty = _createAppropriateSchemaItem(value, this);
+                const newProperty = createAppropriateSchemaItem(value, this);
                 this.properties[newProperty._id] = newProperty;
             });
         }
         if (json.required) {
             json.required.forEach((requiredItemName) => {
-                Object.values(this.properties).find((property) => {
+                let requiredItem = Object.values(this.properties).find((property) => {
                     return property.title === requiredItemName;
-                }).isRequired = true;
-            });
-        }
-        if (json.definitions) {
-            this.definitions = {};
-            Object.entries(json.definitions).forEach((keyVal) => {
-                const key = keyVal[0];
-                const value = keyVal[1];
-                value.definitionName = key;
-                value.isDefinition = true;
-                const definition = _createAppropriateSchemaItem(value, this);
-                this.definitions[definition._id] = definition;
+                });
+                if (!requiredItem) {
+                    throw new Error('required items must exist as properties. Item: ' + requiredItemName);
+                }
+                requiredItem.isRequired = true;
             });
         }
     }
@@ -257,17 +301,7 @@ export class SchemaObject extends SchemaBasic {
         if (output.required.length === 0) {
             delete output.required;
         }
-        if (this.definitions && Object.values(this.definitions).length) {
-            output.definitions = {};
-            Object.entries(this.definitions).forEach((keyValue) => {
-                const value = keyValue[1];
-                output.definitions[value.definitionName] = value.jsonSchema();
-            });
-        }
         return output;
-    }
-    jsonSchemaString() {
-        return JSON.stringify(this.jsonSchema(), null, 2);
     }
     removeChild(_id) {
         if (this.properties[_id]) {
@@ -292,18 +326,8 @@ export class SchemaObject extends SchemaBasic {
             this.definitions[newItem._id] = newItem;
         }
     }
-    getDefinitions() {
-        return this.definitions ? Object.values(this.definitions) : [];
-    }
-    addDefinition() {
-        if (!this.definitions)
-            this.definitions = {};
-        const newDef = new SchemaBasic({}, this);
-        newDef.isDefinition = true;
-        this.definitions[newDef._id] = newDef;
-    }
 }
-export class SchemaArray extends SchemaBasic {
+export class SchemaArray extends SchemaRoot {
     constructor(json, parent) {
         super(json, parent);
         this.schema = json.$schema;
@@ -311,7 +335,7 @@ export class SchemaArray extends SchemaBasic {
         let items = json.items || { title: 'Item 1' };
         items = items.length ? items : [items];
         items.forEach((item) => {
-            this.items.push(_createAppropriateSchemaItem(item, this));
+            this.items.push(createAppropriateSchemaItem(item, this));
         });
     }
     jsonSchema() {

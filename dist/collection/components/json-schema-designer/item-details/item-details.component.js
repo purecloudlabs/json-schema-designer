@@ -11,6 +11,17 @@ export class ItemDetailsComponent {
             this.enumCtrlExpanded = true;
         }
     }
+    _getDefinitionReferences(definition, prefix) {
+        let references = [];
+        let name = definition.definitionName || definition.title;
+        let reference = prefix + name;
+        references.push(reference);
+        let children = definition.getChildren ? definition.getChildren() : [];
+        children.forEach((child) => {
+            references = references.concat(this._getDefinitionReferences(child, reference + '/'));
+        });
+        return references;
+    }
     render() {
         //Item Casts for Specific Fields
         const refItem = this.item;
@@ -19,6 +30,10 @@ export class ItemDetailsComponent {
         const objectItem = this.item;
         const arrayItem = this.item;
         const enums = this.item.enum ? this.item.enum : [];
+        let definitionReferences = [];
+        this.definitions.forEach((definition) => {
+            definitionReferences = definitionReferences.concat(this._getDefinitionReferences(definition, '#/definitions/'));
+        });
         const basicFields = (h("div", { class: "col-lg-6 border-right" },
             h("h4", { class: "t_color bold" },
                 " ",
@@ -309,19 +324,23 @@ export class ItemDetailsComponent {
                                         this.rerender();
                                     } }),
                                 this.i18n.translate('json-schema-designer.additional-items'))))))));
-        const refFields = (h("div", { class: "col-lg-6" },
+        const refFields = (h("div", { class: "col-lg-12" },
             h("form", { class: "form-horizontal" },
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" },
+                    h("label", { class: "col-sm-2 control-label" },
                         " ",
                         this.i18n.translate('json-schema-designer.reference'),
                         " "),
                     h("div", { class: "col-sm-10" },
-                        h("input", { type: "text", value: refItem.$ref, class: "form-control sm detail-ip", onInput: (event) => {
+                        h("select", { class: "form-control input-sm", onInput: (event) => {
                                 const input = event.target;
-                                refItem.$ref = input.value;
+                                const definitionName = input.value;
+                                refItem.$ref = definitionName;
                                 this.rerender();
-                            } }))))));
+                            } },
+                            h("option", { value: "", disabled: true, selected: !refItem.$ref }, this.i18n.translate('json-schema-designer.select-definition')),
+                            definitionReferences.map((name) => h("option", null,
+                                h("option", { selected: refItem.$ref === name }, name)))))))));
         let typeSpecificFields;
         switch (this.item.type) {
             case 'string':
@@ -350,6 +369,10 @@ export class ItemDetailsComponent {
     static get properties() { return {
         "_tickle": {
             "state": true
+        },
+        "definitions": {
+            "type": "Any",
+            "attr": "definitions"
         },
         "enumCtrlExpanded": {
             "state": true

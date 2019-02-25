@@ -20,8 +20,9 @@ export interface IHasChildren {
     removeChild(_id: string): void;
     addChild(): void;
     getChildren(): ISchemaItem[];
-    replaceChild(newItem: ISchemaItem): any;
+    replaceChild(newItem: ISchemaItem): void;
 }
+export declare function createAppropriateSchemaItem(json: any, parent: IHasChildren): ISchemaItem;
 export declare class SchemaBasic implements ISchemaItem {
     title: string;
     type: string;
@@ -39,7 +40,23 @@ export declare class SchemaBasic implements ISchemaItem {
     addEnumValue(): void;
     removeEnumValue(index: any): void;
     jsonSchema(): any;
-    changeType(targetType: string): void;
+    changeType(targetType: string): this;
+    copy(type: string): ISchemaItem;
+}
+export declare abstract class SchemaRoot extends SchemaBasic implements IHasChildren {
+    isRoot: boolean;
+    definitions: {
+        [id: string]: ISchemaItem;
+    };
+    constructor(json: any, parent: IHasChildren);
+    jsonSchema(): any;
+    jsonSchemaString(): string;
+    getDefinitions(): ISchemaItem[];
+    addDefinition(): void;
+    abstract removeChild(_id: string): any;
+    abstract addChild(): void;
+    abstract getChildren(): ISchemaItem[];
+    abstract replaceChild(newItem: ISchemaItem): void;
 }
 export declare class SchemaString extends SchemaBasic {
     minLength: number;
@@ -63,37 +80,31 @@ export declare class SchemaReference extends SchemaBasic {
     constructor(json: any, parent: IHasChildren);
     jsonSchema(): any;
 }
-export declare class SchemaObject extends SchemaBasic implements ISchemaItem, IHasChildren {
+export declare class SchemaObject extends SchemaRoot implements ISchemaItem {
     requiredItems: String[];
     properties: {
         [id: string]: ISchemaItem;
     };
-    isRoot: boolean;
     schema: string;
-    definitions: {
-        [id: string]: ISchemaItem;
-    };
     canHaveAdditionalProperties: boolean;
     additionalProperties: any;
     minProperties: number;
     maxProperties: number;
     constructor(json: any, parent: IHasChildren);
     jsonSchema(): any;
-    jsonSchemaString(): string;
     removeChild(_id: string): void;
     addChild(): void;
     getChildren(): ISchemaItem[];
     replaceChild(newItem: ISchemaItem): void;
-    getDefinitions(): ISchemaItem[];
-    addDefinition(): void;
 }
-export declare class SchemaArray extends SchemaBasic implements ISchemaItem, IHasChildren {
+export declare class SchemaArray extends SchemaRoot implements ISchemaItem {
     schema: string;
     items: ISchemaItem[];
     additionalItems: boolean;
     minItems: number;
     maxItems: number;
     uniqueItems: boolean;
+    isRoot: boolean;
     constructor(json: any, parent: IHasChildren);
     jsonSchema(): any;
     removeChild(id: string): void;
