@@ -129,9 +129,12 @@ export class DesignerComponent {
     }
     changeRootType(type) {
         //grab definitions
-        let definitions = this.workingSchema.definitions;
+        let definitions = this.workingSchema.definitions || {};
         let newRoot = this.workingSchema.copy(type);
         newRoot.definitions = definitions;
+        Object.values(definitions).forEach((definition) => {
+            definition.parent = newRoot;
+        });
         this.workingSchema = newRoot;
     }
     _loadSchema() {

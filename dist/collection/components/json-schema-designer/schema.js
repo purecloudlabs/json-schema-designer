@@ -362,6 +362,9 @@ export class SchemaArray extends SchemaRoot {
         this.items = this.items.filter((item) => {
             return item._id != id;
         });
+        if (this.definitions[id]) {
+            delete this.definitions[id];
+        }
     }
     addChild() {
         const title = 'Item ' + (this.getChildren().length + 1);
