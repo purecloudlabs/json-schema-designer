@@ -474,6 +474,9 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
     this.items = this.items.filter((item) => {
         return item._id != id;
     });
+    if (this.definitions[id]){
+      delete this.definitions[id];
+    }
   }
 
   addChild(): void {
