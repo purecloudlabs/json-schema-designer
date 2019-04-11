@@ -191,7 +191,7 @@ export class DesignerComponent {
           ? <div>
               <h5> {this.i18n.translate('json-schema-designer.definitions')} </h5>
               {definitions.map((definition) =>
-                  <schema-row item={definition} parent={this} definitions={ definitions }></schema-row>
+                  <schema-row item={ definition } parent={ this } definitions={ definitions }></schema-row>
               )}
             </div>
           : <div></div>

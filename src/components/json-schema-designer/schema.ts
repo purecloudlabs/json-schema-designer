@@ -492,6 +492,8 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
     this.items.forEach((item : ISchemaItem, index: number) => {
       if (item.title === newItem.title) {
         this.items[index] = newItem;
+      } else if (this.definitions[newItem._id]){
+        this.definitions[newItem._id] = newItem;
       }
     });
   }
