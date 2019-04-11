@@ -37,7 +37,7 @@ export class SchemaRowComponent {
 
   render() {
     //Computed CSS Classes
-    const rowClass: string = this.showDetailsPan ? 'js-row t_bg' : 'js-row';
+    const rowClass: string = this.showDetailsPan ? 'js-row selected' : 'js-row';
     let requiredIconClass: string = this.item.isRequired ? 'fa fa-asterisk model-required text-danger' : 'fa fa-asterisk model-required';
     requiredIconClass += this.item.isRoot ? ' disabled' : '';
     const typeDisplayClass: string = 'badge badge-pill badge-primary ' + this.item.type;

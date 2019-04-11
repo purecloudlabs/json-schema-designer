@@ -1,5 +1,3 @@
-@import './t_styles.css';
-
 @import 'node_modules/font-awesome/less/font-awesome.less';
 @fa-font-path: '/assets/fonts';
 
@@ -9,6 +7,7 @@
 @dark_grey: #666;
 @white: #fff;
 @light_grey: #dce2e8;
+@bright_blue:#2196f3;
 
 @array_color: #009688;
 @boolean_color: #ff9800;
@@ -152,10 +151,10 @@
 			}
 		}
 	}
-	.js-row.t_bg {
+	.js-row.selected {
 		opacity: 1;
 		color: @grey_blue;
-		background: #f4f6f7;
+    background: @bright_blue;
 		border-color: @light_grey;
 		box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
 		color: @dark_grey;
@@ -163,11 +162,9 @@
 		.obj-exp {
 			color: @white;
 		}
+
 		.model-title {
       color: @white;
-			&:focus {
-				color: @dark_grey;
-			}
 		}
 		.model-icons {
 			right: 0;
@@ -236,16 +233,7 @@
 		.control-label {
 			padding: 0 5px;
 		}
-		// .detail-ip {
-		// 	font-size: 13px;
-		// 	background-color: @white;
-		// 	padding: 0 5px;
-		// 	height: 25px;
-		// 	color: @dark_grey;
-		// }
-		// select.detail-ip {
-		// 	padding-right: 20px;
-		// }
+
 		textarea {
 			font-size: 13px;
 			background: #fff;
