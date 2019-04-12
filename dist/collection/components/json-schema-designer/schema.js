@@ -359,11 +359,19 @@ export class SchemaArray extends SchemaRoot {
         return output;
     }
     removeChild(id) {
+        let itemRemoved = false;
         this.items = this.items.filter((item) => {
+            if (item._id = id) {
+                itemRemoved = true;
+            }
             return item._id != id;
         });
-        if (this.definitions[id]) {
+        if (this.definitions && this.definitions[id]) {
+            itemRemoved = true;
             delete this.definitions[id];
+        }
+        if (!itemRemoved) {
+            console.error('failed to remove child', 'child id', id, 'parent', this);
         }
     }
     addChild() {
@@ -377,6 +385,9 @@ export class SchemaArray extends SchemaRoot {
         this.items.forEach((item, index) => {
             if (item.title === newItem.title) {
                 this.items[index] = newItem;
+            }
+            else if (this.definitions[newItem._id]) {
+                this.definitions[newItem._id] = newItem;
             }
         });
     }
