@@ -471,11 +471,19 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
   }
 
   removeChild(id: string): void {
+    let itemRemoved: boolean = false;
     this.items = this.items.filter((item) => {
+        if (item._id = id) {
+          itemRemoved = true;
+        }
         return item._id != id;
     });
-    if (this.definitions[id]){
+    if (this.definitions && this.definitions[id]){
+      itemRemoved = true
       delete this.definitions[id];
+    }
+    if (!itemRemoved) {
+      console.error('failed to remove child', 'child id', id, 'parent', this);
     }
   }
 
