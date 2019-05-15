@@ -2,4 +2,2811 @@
  * jsonschemadesigner: Core, ES5
  * Built with http://stenciljs.com
  */
-function n(n,t){var e="data-"+n.n;return t&&t!==C?e+"-"+t:e}function t(n){return{t:n[0],e:n[1],r:!!n[2],i:!!n[3],o:!!n[4]}}function e(n,t){if(S(t)&&"object"!=typeof t&&"function"!=typeof t){if(n===Boolean||3===n)return"false"!==t&&(""===t||!!t);if(n===Number||4===n)return parseFloat(t);if(n===String||2===n)return t.toString()}return t}function r(n,t,e,r){var i=n.u.get(t);i&&((r=i["s-ld"]||i.$activeLoading)&&((e=r.indexOf(t))>-1&&r.splice(e,1),r.length||(i["s-init"]&&i["s-init"](),i.$initLoad&&i.$initLoad())),n.u.delete(t))}function i(n,t,e){for(var r,i,o=null,u=!1,f=!1,c=arguments.length;c-- >2;)L.push(arguments[c]);for(;L.length>0;)if((e=L.pop())&&void 0!==e.pop)for(c=e.length;c--;)L.push(e[c]);else"boolean"==typeof e&&(e=null),(f="function"!=typeof n)&&(null==e?e="":"number"==typeof e?e=String(e):"string"!=typeof e&&(f=!1)),f&&u?o[o.length-1].f+=e:null===o?o=[f?{f:e}:e]:o.push(f?{f:e}:e),u=f;if(null!=t){if(t.className&&(t.class=t.className),"object"==typeof t.class){for(c in t.class)t.class[c]&&L.push(c);t.class=L.join(" "),L.length=0}null!=t.key&&(r=t.key),null!=t.name&&(i=t.name)}return"function"==typeof n?n(Object.assign({},t,{children:o}),R):{c:n,a:o,f:void 0,s:t,l:r,v:i,d:void 0,p:!1}}function o(n,t,e,r){t.split(" ").forEach(function(t){n[t]=!0,e&&(n[t+"-"+e]=!0,r&&(n[t+"-"+e+"-"+r]=n[t+"-"+r]=!0))})}function u(n,t){n.y.has(t)||(n.y.set(t,!0),n.m?n.queue.write(function(){return f(n,t)}):n.queue.tick(function(){return f(n,t)}))}function f(n,t,e,r,i,o){if(n.y.delete(t),!n.b.has(t)){if(r=n.w.get(t),e=!r){if((i=n.u.get(t))&&i.$rendered&&(i["s-rn"]=!0),i&&!i["s-rn"])return(i["s-rc"]=i["s-rc"]||[]).push(function(){f(n,t)}),void(i.$onRender=i["s-rc"]);r=function u(n,t,e,r,i,o,f){try{(function c(n,t,e,r,i,o,u){for(u in n.g.set(r,e),n.M.has(e)||n.M.set(e,{}),(o=Object.assign({color:{type:String}},t.properties)).mode={type:String},o)a(n,o[u],e,r,u,i)})(n,i=n.k(t).j,t,r=new i,e),function s(n,t,e){if(t){var r=n.g.get(e);t.forEach(function(t){e[t.method]={emit:function(e){n.A(r,t.name,{bubbles:t.bubbles,composed:t.composed,cancelable:t.cancelable,detail:e})}}})}}(n,i.events,r);try{if(o=n.O.get(t)){for(f=0;f<o.length;f+=2)r[o[f]](o[f+1]);n.O.delete(t)}}catch(e){n.C(e,2,t)}}catch(e){r={},n.C(e,7,t,!0)}return n.w.set(t,r),r}(n,t,n.P.get(t));try{r.componentWillLoad&&(o=r.componentWillLoad())}catch(e){n.C(e,3,t)}}else try{r.componentWillUpdate&&(o=r.componentWillUpdate())}catch(e){n.C(e,5,t)}o&&o.then?o.then(function(){return c(n,t,r,e)}):c(n,t,r,e)}}function c(n,t,e,r){(function u(n,t,e,r){try{var u,f,c=t.j.host,a=t.j.encapsulation,s="shadow"===a&&n._.T;if(u=function l(n,t,e){return n&&Object.keys(n).forEach(function(r){n[r].reflectToAttr&&((e=e||{})[r]=t[r])}),e}(t.j.properties,r),f=s?e.shadowRoot:e,!e["s-rn"]){n.S(n,n._,t,e);var v=e["s-sc"];v&&(n._.x(e,function d(n){return n+"-host"}(v),""),r.render||n._.x(e,function p(n){return n+"-slot"}(v),""))}if(r.render||r.hostData||c||u){n.N=!0;var h=r.render&&r.render(),y=void 0;if((y=r.hostData&&r.hostData())&&t.W){var m=Object.keys(y).reduce(function(n,e){return t.W[e]?n.concat(e):t.W[N(e)]?n.concat(N(e)):n},[]);if(m.length>0)throw new Error("The following keys were attempted to be set with hostData() from the "+t.n+" component: "+m.join(", ")+". If you would like to modify these please set @Prop({ mutable: true, reflectToAttr: true}) on the @Prop() decorator.")}u&&(y=y?Object.assign(y,u):u),n.N=!1,c&&(y=function b(n,t,e){return n=n||{},Object.keys(t).forEach(function(r){"theme"===r?o(n.class=n.class||{},t[r],e.mode,e.color):"class"===r?o(n[r]=n[r]||{},t[r]):n[r]=t[r]}),n}(y,c,r));var w=n.L.get(e)||{};w.d=f;var g=i(null,y,h);g.p=!0,n.L.set(e,n.render(e,w,g,s,a))}n.R&&n.R.D(e),e["s-rn"]=!0,e.$onRender&&(e["s-rc"]=e.$onRender),e["s-rc"]&&(e["s-rc"].forEach(function(n){return n()}),e["s-rc"]=null)}catch(t){n.N=!1,n.C(t,8,e,!0)}})(n,n.k(t),t,e);try{r?t["s-init"]():(e.componentDidUpdate&&e.componentDidUpdate(),b(n.L.get(t)))}catch(e){n.C(e,6,t,!0)}}function a(n,t,r,i,o,u,f,c){if(t.type||t.state){var a=n.M.get(r);t.state||(!t.attr||void 0!==a[o]&&""!==a[o]||(f=u&&u.F)&&S(c=f[t.attr])&&(a[o]=e(t.type,c)),r.hasOwnProperty(o)&&(void 0===a[o]&&(a[o]=e(t.type,r[o])),"mode"!==o&&delete r[o])),i.hasOwnProperty(o)&&void 0===a[o]&&(a[o]=i[o]),t.watchCallbacks&&(a[D+o]=t.watchCallbacks.slice()),v(i,o,function d(t){return(t=n.M.get(n.g.get(this)))&&t[o]},function p(e,r){(r=n.g.get(this))&&(t.state||t.mutable)&&s(n,r,o,e)})}else if(t.elementRef)l(i,o,r);else if(t.method)l(r,o,i[o].bind(i));else if(t.context){var h=n.H(t.context);void 0!==h&&l(i,o,h.q&&h.q(r)||h)}else t.connect&&l(i,o,n.I(t.connect))}function s(n,t,e,r,i,o,f){(i=n.M.get(t))||n.M.set(t,i={});var c=i[e];if(r!==c&&(i[e]=r,o=n.w.get(t))){if(f=i[D+e])for(var a=0;a<f.length;a++)try{o[f[a]].call(o,r,c,e)}catch(n){}!n.N&&t["s-rn"]&&u(n,t)}}function l(n,t,e){Object.defineProperty(n,t,{configurable:!0,value:e})}function v(n,t,e,r){Object.defineProperty(n,t,{configurable:!0,get:e,set:r})}function d(n,t,e,r,i){var o=t!==(t=t.replace(/^xlink\:?/,"")),u=F[t]||r;u&&(!e||"false"===e)||i?o?n.removeAttributeNS(H,x(t)):n.removeAttribute(t):"function"!=typeof e&&(u&&(e=""),o?n.setAttributeNS(H,x(t),e):n.setAttribute(t,e))}function p(n,t,e,r,i,o,u,f,c,a){if("class"!==e||o)if("style"===e){for(f in r=r||P,i=i||P,r)i[f]||(t.style[f]="");for(f in i)i[f]!==r[f]&&(t.style[f]=i[f])}else"o"!==e[0]||"n"!==e[1]||!/[A-Z]/.test(e[2])||e in t?"list"!==e&&"type"!==e&&!o&&(e in t||-1!==["object","function"].indexOf(typeof i)&&null!==i)?(a=n.k(t))&&a.W&&a.W[e]?(h(t,e,i),u&&a.W[e].B&&d(t,a.W[e].U,i,3===a.W[e].z,null==i)):"ref"!==e&&(h(t,e,null==i?"":i),null!=i&&!1!==i||t.removeAttribute(e)):null!=i&&"key"!==e?d(t,e,i):(o||n._.Q(t,e)&&(null==i||!1===i))&&n._.Y(t,e):(e=x(e)in t?x(e.substring(2)):x(e[2])+e.substring(3),i?i!==r&&n._.Z(t,e,i):n._.G(t,e));else if(r!==i){var s=null==r||""===r?T:r.trim().split(/\s+/),l=null==i||""===i?T:i.trim().split(/\s+/),v=null==t.className||""===t.className?T:t.className.trim().split(/\s+/);for(f=0,c=s.length;f<c;f++)-1===l.indexOf(s[f])&&(v=v.filter(function(n){return n!==s[f]}));for(f=0,c=l.length;f<c;f++)-1===s.indexOf(l[f])&&(v=v.concat([l[f]]));t.className=v.join(" ")}}function h(n,t,e){try{n[t]=e}catch(n){}}function y(n,t,e,r,i){var o=11===e.d.nodeType&&e.d.host?e.d.host:e.d,u=t&&t.s||P,f=e.s||P;for(i in u)f&&null!=f[i]||null==u[i]||p(n,o,i,u[i],void 0,r,e.p);for(i in f)i in u&&f[i]===("value"===i||"checked"===i?o[i]:u[i])||p(n,o,i,u[i],f[i],r,e.p)}function m(n,t){function e(i,o,u,f,c,v,m,b,w){if(b=o.a[u],a||(d=!0,"slot"===b.c&&(l&&t.x(f,l+"-slot",""),b.a?b.J=!0:b.K=!0)),S(b.f))b.d=t.V(b.f);else if(b.K)b.d=t.V("");else{if(v=b.d=q||"svg"===b.c?t.X("http://www.w3.org/2000/svg",b.c):t.nn(b.J?"slot-fb":b.c),q="svg"===b.c||"foreignObject"!==b.c&&q,y(n,null,b,q),S(l)&&v["s-si"]!==l&&t.x(v,v["s-si"]=l,""),S(s)&&t.x(v,O,s+"."+u+(function n(t){if(t)for(var e=0;e<t.length;e++)if("slot"!==t[e].c||n(t[e].a))return!0;return!1}(b.a)?"":".")),b.a)for(c=0;c<b.a.length;++c)(m=e(i,b,c,v))&&(S(s)&&3===m.nodeType&&!m["s-cr"]&&t.tn(v,t.en("s."+s+"."+c)),t.tn(v,m),S(s)&&3===m.nodeType&&!m["s-cr"]&&(t.tn(v,t.en("/")),t.tn(v,t.V(" "))));"svg"===b.c&&(q=!1)}return b.d["s-hn"]=p,(b.J||b.K)&&(b.d["s-sr"]=!0,b.d["s-cr"]=h,b.d["s-sn"]=b.v||"",(w=i&&i.a&&i.a[u])&&w.c===b.c&&i.d&&r(i.d)),b.d}function r(e,i,o,u){n.rn=!0;var a=t.in(e);for(o=a.length-1;o>=0;o--)(u=a[o])["s-hn"]!==p&&u["s-ol"]&&(t.on(u),t.un(c(u),u,f(u)),t.on(u["s-ol"]),u["s-ol"]=null,d=!0),i&&r(u,i);n.rn=!1}function i(n,r,i,o,u,c,a,s){var l=n["s-cr"]||n.$defaultHolder;for((a=l&&t.fn(l)||n).shadowRoot&&t.cn(a)===p&&(a=a.shadowRoot);u<=c;++u)o[u]&&(s=S(o[u].f)?t.V(o[u].f):e(null,i,u,n))&&(o[u].d=s,t.un(a,s,f(r)))}function o(n,e,i,o){for(;e<=i;++e)S(n[e])&&(o=n[e].d,v=!0,o["s-ol"]?t.on(o["s-ol"]):r(o,!0),t.on(o))}function u(n,t){return n.c===t.c&&n.l===t.l&&("slot"!==n.c||n.v===t.v)}function f(n){return n&&n["s-ol"]?n["s-ol"]:n}function c(n){return t.fn(n["s-ol"]?n["s-ol"]:n)}var a,s,l,v,d,p,h,m=[];return function b(w,g,M,j,k,A,$,O,C,P,T,_){if(p=t.cn(w),h=w["s-cr"],a=j,s="shadow"!==k?A:null,l=w["s-sc"],d=v=!1,function a(s,l,v){var d=l.d=s.d,p=s.a,h=l.a;q=l.d&&S(t.an(l.d))&&void 0!==l.d.ownerSVGElement,q="svg"===l.c||"foreignObject"!==l.c&&q,S(l.f)?(v=d["s-cr"]||d.$defaultHolder)?t.sn(t.fn(v),l.f):s.f!==l.f&&t.sn(d,l.f):("slot"!==l.c&&y(n,s,l,q),S(p)&&S(h)?function m(n,s,l,v,d,p,h,y){for(var m=0,b=0,w=s.length-1,g=s[0],M=s[w],j=v.length-1,k=v[0],A=v[j];m<=w&&b<=j;)if(null==g)g=s[++m];else if(null==M)M=s[--w];else if(null==k)k=v[++b];else if(null==A)A=v[--j];else if(u(g,k))a(g,k),g=s[++m],k=v[++b];else if(u(M,A))a(M,A),M=s[--w],A=v[--j];else if(u(g,A))"slot"!==g.c&&"slot"!==A.c||r(t.fn(g.d)),a(g,A),t.un(n,g.d,t.ln(M.d)),g=s[++m],A=v[--j];else if(u(M,k))"slot"!==g.c&&"slot"!==A.c||r(t.fn(M.d)),a(M,k),t.un(n,M.d,g.d),M=s[--w],k=v[++b];else{for(d=null,p=m;p<=w;++p)if(s[p]&&S(s[p].l)&&s[p].l===k.l){d=p;break}S(d)?((y=s[d]).c!==k.c?h=e(s&&s[b],l,d,n):(a(y,k),s[d]=void 0,h=y.d),k=v[++b]):(h=e(s&&s[b],l,b,n),k=v[++b]),h&&t.un(c(g.d),h,f(g.d))}m>w?i(n,null==v[j+1]?null:v[j+1].d,l,v,b,j):b>j&&o(s,m,w)}(d,p,l,h):S(h)?(S(s.f)&&t.sn(d,""),i(d,null,l,h,0,h.length-1)):S(p)&&o(p,0,p.length-1)),q&&"svg"===l.c&&(q=!1)}(g,M),S(s)&&t.x(g.d,E,s),d){for(function n(e,r,i,o,u,f,c,a,s,l){for(u=0,f=(r=t.in(e)).length;u<f;u++){if((i=r[u])["s-sr"]&&(o=i["s-cr"]))for(a=t.in(t.fn(o)),s=i["s-sn"],c=a.length-1;c>=0;c--)(o=a[c])["s-cn"]||o["s-nr"]||o["s-hn"]===i["s-hn"]||((3===(l=t.vn(o))||8===l)&&""===s||1===l&&null===t.dn(o,"slot")&&""===s||1===l&&t.dn(o,"slot")===s)&&(m.some(function(n){return n.pn===o})||(v=!0,o["s-sn"]=s,m.push({hn:i,pn:o})));1===t.vn(i)&&n(i)}}(M.d),$=0;$<m.length;$++)(O=m[$]).pn["s-ol"]||((C=t.V(""))["s-nr"]=O.pn,t.un(t.fn(O.pn),O.pn["s-ol"]=C,O.pn));for(n.rn=!0,$=0;$<m.length;$++){for(O=m[$],T=t.fn(O.hn),_=t.ln(O.hn),C=O.pn["s-ol"];C=t.yn(C);)if((P=C["s-nr"])&&P&&P["s-sn"]===O.pn["s-sn"]&&T===t.fn(P)&&(P=t.ln(P))&&P&&!P["s-nr"]){_=P;break}(!_&&T!==t.fn(O.pn)||t.ln(O.pn)!==_)&&O.pn!==_&&(t.on(O.pn),t.un(T,O.pn,_))}n.rn=!1}return v&&function n(e,r,i,o,u,f,c,a){for(o=0,u=(i=t.in(e)).length;o<u;o++)if(r=i[o],1===t.vn(r)){if(r["s-sr"])for(c=r["s-sn"],r.hidden=!1,f=0;f<u;f++)if(i[f]["s-hn"]!==r["s-hn"])if(a=t.vn(i[f]),""!==c){if(1===a&&c===t.dn(i[f],"slot")){r.hidden=!0;break}}else if(1===a||3===a&&""!==t.mn(i[f]).trim()){r.hidden=!0;break}n(r)}}(M.d),m.length=0,M}}function b(n,t){n&&(n.s&&n.s.ref&&n.s.ref(t?null:n.d),n.a&&n.a.forEach(function(n){b(n,t)}))}function w(n,t){var e={nodeName:t},r=n.k(e);if(!r||!r.j)return Promise.resolve(null);var i=r.j,o=function u(n){return Object.keys(n).reduce(function(t,e){var r,i=n[e],o={name:e};if(i.state)r="states",o.bn=i.watchCallbacks||[];else if(i.elementRef)r="elements";else if(i.method)r="methods";else{r="props";var u="any";i.type&&(u=i.type,"function"==typeof i.type&&(u=i.type.name)),o.type=u.toLowerCase(),o.mutable=i.mutable||!1,o.connect=i.connect||"-",o.context=i.connect||"-",o.bn=i.watchCallbacks||[]}return t[r].push(o),t},{wn:[],gn:[],Mn:[],jn:[]})}(i.properties||{}),f=(r.kn||[]).map(function(n){return{An:n.t,capture:n.o,disabled:n.r,passive:n.i,method:n.e}}),c=i.events||[],a=Object.assign({$n:i.is,En:r.On||"unknown",encapsulation:i.encapsulation||"none"},o,{events:{Cn:c,listeners:f}});return Promise.resolve(a)}function g(n,t,e,r,i){return e.mode||(e.mode=n.Pn(e)),e["s-cr"]||n.dn(e,E)||n.T&&1===t.encapsulation||(e["s-cr"]=n.V(""),e["s-cr"]["s-cn"]=!0,n.un(e,e["s-cr"],n.in(e)[0])),n.T||1!==t.encapsulation||"shadowRoot"in HTMLElement.prototype||(e.shadowRoot=e),1===t.encapsulation&&n.T&&!e.shadowRoot&&n.Tn(e,{mode:"open"}),r={_n:e["s-id"],F:{}},t.W&&Object.keys(t.W).forEach(function(o){(i=t.W[o].U)&&(r.F[i]=n.dn(e,i))}),r}function M(n,t,i,o){i.connectedCallback=function(){(function e(n,t,r){n.Sn.has(r)||(n.Sn.set(r,!0),function i(n,t){var e=n.k(t);e.kn&&e.kn.forEach(function(e){e.r||n._.Z(t,e.t,function r(n,t,e,i){return function(r){(i=n.w.get(t))?i[e](r):((i=n.O.get(t)||[]).push(e,r),n.O.set(t,i))}}(n,t,e.e),e.o,e.i)})}(n,r)),n.b.delete(r),n.xn.has(r)||(n.xn.set(r,!0),r["s-id"]||(r["s-id"]=n.Nn()),function o(n,t,e){for(e=t;e=n._.an(e);)if(n.Wn(e)){n.Ln.has(t)||(n.u.set(t,e),e.$activeLoading&&(e["s-ld"]=e.$activeLoading),(e["s-ld"]=e["s-ld"]||[]).push(t));break}}(n,r),n.queue.tick(function(){n.P.set(r,g(n._,t,r)),n.Rn(t,r)}))})(n,t,this)},i.attributeChangedCallback=function(n,r,i){(function o(n,t,r,i,u,f,c){if(n&&i!==u)for(f in n)if((c=n[f]).U&&x(c.U)===x(r)){t[f]=e(c.z,u);break}})(t.W,this,n,r,i)},i.disconnectedCallback=function(){(function t(n,e){if(!n.rn&&function i(n,t){for(;t;){if(!n.fn(t))return 9!==n.vn(t);t=n.fn(t)}}(n._,e)){n.b.set(e,!0),r(n,e),b(n.L.get(e),!0),n._.G(e),n.Sn.delete(e);var o=n.w.get(e);o&&o.componentDidUnload&&o.componentDidUnload(),n.R&&n.R.Dn(e),[n.u,n.Fn,n.P].forEach(function(n){return n.delete(e)})}})(n,this)},i["s-init"]=function(){(function t(n,e,i,o,u){if(!n.Ln.has(e)&&(o=n.w.get(e))&&!n.b.has(e)&&(!e["s-ld"]||!e["s-ld"].length)){delete e["s-ld"],n.Ln.set(e,!0);try{b(n.L.get(e)),(u=n.Fn.get(e))&&(u.forEach(function(n){return n(e)}),n.Fn.delete(e)),o.componentDidLoad&&o.componentDidLoad()}catch(t){n.C(t,4,e)}e.classList.add(i),r(n,e)}})(n,this,o)},i["s-hmr"]=function(e){(function r(n,t,e,i){t.j=null;var o=n.w.get(e);o&&(n.g.delete(o),n.w.delete(e)),n.P.set(e,g(n._,t,e)),n.Rn(t,e,i)})(n,t,this,e)},i.forceUpdate=function(){u(n,this)},function f(n,t,r){t&&Object.keys(t).forEach(function(i){var o=t[i],u=o.Hn;1===u||2===u?v(r,i,function t(){return(n.M.get(this)||{})[i]},function t(r){s(n,this,i,e(o.z,r))}):6===u&&l(r,i,W)})}(n,t.W,i)}function j(n,t,e,r){return function(){var i=arguments;return function o(n,t,e){var r=t[e],i=n.qn.body;return i?(r||(r=i.querySelector(e)),r||(r=t[e]=n.nn(e),n.tn(i,r)),r.componentOnReady()):Promise.resolve()}(n,t,e).then(function(n){return n[r].apply(n,i)})}}function k(t,e,r,o,f,c){var a={html:{}},s={},l=r[t]=r[t]||{},v=function d(n,t,e){n.In||(n.In=function(n,t,e,r){return n.addEventListener(t,e,r)},n.Bn=function(n,t,e,r){return n.removeEventListener(t,e,r)});var r=new WeakMap,i={qn:e,Un:!1,vn:function(n){return n.nodeType},nn:function(n){return e.createElement(n)},X:function(n,t){return e.createElementNS(n,t)},V:function(n){return e.createTextNode(n)},en:function(n){return e.createComment(n)},un:function(n,t,e){return n.insertBefore(t,e)},on:function(n){return n.remove()},tn:function(n,t){return n.appendChild(t)},in:function(n){return n.childNodes},fn:function(n){return n.parentNode},ln:function(n){return n.nextSibling},yn:function(n){return n.previousSibling},cn:function(n){return x(n.nodeName)},mn:function(n){return n.textContent},sn:function(n,t){return n.textContent=t},dn:function(n,t){return n.getAttribute(t)},x:function(n,t,e){return n.setAttribute(t,e)},zn:function(n,t,e,r){return n.setAttributeNS(t,e,r)},Y:function(n,t){return n.removeAttribute(t)},Q:function(n,t){return n.hasAttribute(t)},Pn:function(t){return t.getAttribute("mode")||(n.Context||{}).mode},Qn:function(n,r){return"child"===r?n.firstElementChild:"parent"===r?i.an(n):"body"===r?e.body:"document"===r?e:"window"===r?t:n},Z:function(t,e,o,u,f,c,a,s){var l=e,v=t,d=r.get(t);if(d&&d[l]&&d[l](),"string"==typeof c?v=i.Qn(t,c):"object"==typeof c?v=c:(s=e.split(":")).length>1&&(v=i.Qn(t,s[0]),e=s[1]),v){var p=o;(s=e.split(".")).length>1&&(e=s[0],p=function(n){n.keyCode===_[s[1]]&&o(n)}),a=i.Un?{capture:!!u,passive:!!f}:!!u,n.In(v,e,p,a),d||r.set(t,d={}),d[l]=function(){v&&n.Bn(v,e,p,a),d[l]=null}}},G:function(n,t){var e=r.get(n);e&&(t?e[t]&&e[t]():Object.keys(e).forEach(function(n){e[n]&&e[n]()}))},Tn:function(n,t){return n.attachShadow(t)}};i.T=!!i.qn.documentElement.attachShadow,t.location.search.indexOf("shadow=false")>0&&(i.T=!1),"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(n,t,r){return(r=e.createEvent("CustomEvent")).initCustomEvent(n,t.bubbles,t.cancelable,t.detail),r},t.CustomEvent.prototype=t.Event.prototype),i.Yn=function(n,e,r){return n&&n.dispatchEvent(new t.CustomEvent(e,r))};try{t.addEventListener("e",null,Object.defineProperty({},"passive",{get:function(){return i.Un=!0}}))}catch(n){}return i.an=function(n,t){return(t=i.fn(n))&&11===i.vn(t)?t.host:t},i}(l,r,o);e.isServer=e.isPrerender=!(e.isClient=!0),e.window=r,e.location=r.location,e.document=o,e.resourcesUrl=e.publicPath=f,e.enableListener=function(n,t,e,r,i){return function o(n,t,e,r,i,u){if(t){var f=n.g.get(t),c=n.k(f);if(c&&c.kn)if(r){var a=c.kn.find(function(n){return n.t===e});a&&n._.Z(f,e,function(n){return t[a.e](n)},a.o,void 0===u?a.i:!!u,i)}else n._.G(f,e)}}(y,n,t,e,r,i)},e.emit=function(n,t,r){return v.Yn(n,e.eventNameFn?e.eventNameFn(t):t,r)},l.h=i,l.Context=e;var p=r["s-defined"]=r.$definedCmps=r["s-defined"]||r.$definedCmps||{},h=0,y={_:v,Zn:function b(n,t){if(!r.customElements.get(n.n)){M(y,a[n.n]=n,t.prototype,c);var e=t.observedAttributes=[];for(var i in n.W)n.W[i].U&&e.push(n.W[i].U);r.customElements.define(n.n,t)}},A:e.emit,k:function(n){return a[v.cn(n)]},H:function(n){return e[n]},isClient:!0,Wn:function(n){return!(!p[v.cn(n)]&&!y.k(n))},Nn:function(){return t+h++},C:function(n,t,e){},I:function(n){return function t(n,e,r){return{create:j(n,e,r,"create"),componentOnReady:j(n,e,r,"componentOnReady")}}(v,s,n)},queue:e.queue=function g(n,t){function e(n){for(var t=0;t<n.length;t++)try{n[t]()}catch(n){}n.length=0}function r(n,t){for(var e=0;e<n.length&&o()<t;)try{n[e++]()}catch(n){}e===n.length?n.length=0:0!==e&&n.splice(0,e)}function i(){l++,e(c);var t=o()+7*Math.ceil(l*(1/22));r(a,t),r(s,t),a.length>0&&(s.push.apply(s,a),a.length=0),(v=c.length+a.length+s.length>0)?n.raf(i):l=0}var o=function(){return t.performance.now()},u=Promise.resolve(),f=[],c=[],a=[],s=[],l=0,v=!1;return n.raf||(n.raf=t.requestAnimationFrame.bind(t)),{tick:function(n){f.push(n),1===f.length&&u.then(function(){return e(f)})},read:function(t){c.push(t),v||(v=!0,n.raf(i))},write:function(t){a.push(t),v||(v=!0,n.raf(i))}}}(l,r),Rn:function k(n,t,e){if(n.j)u(y,t);else{var r={mode:t.mode,scoped:2===n.encapsulation||1===n.encapsulation&&!v.T};n.On(r).then(function(e){try{n.j=e,function r(n,t,e,i,o){if(i){var u=t.n+(o||C);t[u]||(t[u]=i)}}(0,n,n.encapsulation,e.style,e.styleMode)}catch(t){n.j=function i(){}}u(y,t)})}},u:new WeakMap,Gn:new WeakMap,xn:new WeakMap,Sn:new WeakMap,Ln:new WeakMap,g:new WeakMap,P:new WeakMap,w:new WeakMap,b:new WeakMap,y:new WeakMap,Fn:new WeakMap,O:new WeakMap,L:new WeakMap,M:new WeakMap};y.render=m(y,v);var A=v.qn.documentElement;return A["s-ld"]=[],A["s-rn"]=!0,A["s-init"]=function(){y.Ln.set(A,l.loaded=y.m=!0),v.Yn(r,"appload",{detail:{namespace:t}})},y.S=function(t,e,r,i){(function o(t,e,r,i){var o=r.encapsulation,u=2===o||1===o&&!t._.T,f=r.n+i.mode,c=r[f];if(u&&(i["s-sc"]=n(r,i.mode)),c||(c=r[f=r.n+C],u&&(i["s-sc"]=n(r))),c){var a=e.qn.head;if(e.T)if(1===o)a=i.shadowRoot;else for(var s=i;s=e.fn(s);)if(s.host&&s.host.shadowRoot){a=s.host.shadowRoot;break}var l=t.Gn.get(a);if(l||t.Gn.set(a,l={}),!l[f]){var v=void 0;if(t.R?v=t.R.Jn(i,f,c):((v=e.nn("style")).innerHTML=c,l[f]=!0),v){e.x(v,"data-style-tag",r.n),i.mode&&e.x(v,"data-style-mode",r.n),i["s-sc"]&&e.x(v,"data-style-scoped","true");var d=a.querySelectorAll("[data-styles]");e.un(a,v,d.length&&d[d.length-1].nextSibling||a.firstChild)}}}})(t,e,r,i)},function $(n,t,e,r){var i=e.Kn=e.Kn||{};return i.Vn=i.Vn||[],i.Vn.push(function o(n,t,e){return{namespace:t,Xn:function(n){return n&&n.tagName?Promise.all([w(e,n.tagName),function t(n,e){return Promise.resolve(n.w.get(e))}(e,n)]).then(function(n){return n[0]&&n[1]?{nt:n[0],tt:n[1]}:null}):Promise.resolve(null)},et:function(n){return w(e,n)},rt:function(){return Promise.all(n.components.map(function(n){return w(e,n[0])})).then(function(n){return n.filter(function(n){return n})})}}}(n,t,r)),i.Xn||(i.Xn=function(n){return Promise.all(i.Vn.map(function(t){return t.Xn(n)})).then(function(n){return n.find(function(n){return!!n})})}),i.rt||(i.rt=function(){var n=[];return i.Vn.forEach(function(t){n.push(t.rt())}),Promise.all(n).then(function(n){var t=[];return n.forEach(function(n){n.forEach(function(n){t.push(n)})}),t})}),i}(l,t,r,y),function E(n,t,e,r,i,o){if(t.componentOnReady=function(t,e){if(!t.nodeName.includes("-"))return e(null),!1;var r=n.k(t);if(r)if(n.Ln.has(t))e(t);else{var i=n.Fn.get(t)||[];i.push(e),n.Fn.set(t,i)}return!!r},i){for(o=i.length-1;o>=0;o--)t.componentOnReady(i[o][0],i[o][1])&&i.splice(o,1);for(o=0;o<r.length;o++)if(!e[r[o]].componentOnReady)return;for(o=0;o<i.length;o++)i[o][1](null);i.length=0}}(y,l,r,r["s-apps"],r["s-cr"]),l.initialized=!0,y}function A(n,e,r){void 0===r&&(r={}),e=Array.isArray(e)?e:[e];var i=n.document,o=r.hydratedCssClass||"hydrated",u=e.filter(function(n){return n[2]}).map(function(n){return n[0]});if(u.length){var f=i.createElement("style");f.innerHTML=u.join()+"{visibility:hidden}."+o+"{visibility:inherit}",f.setAttribute("data-styles",""),i.head.insertBefore(f,i.head.firstChild)}var c=r.namespace||"jsonschemadesigner";B||(B=!0,function a(n,t,e){(n["s-apps"]=n["s-apps"]||[]).push(t),e.componentOnReady||(e.componentOnReady=function t(){function e(t){if(r.nodeName.indexOf("-")>0){for(var e=n["s-apps"],i=0,o=0;o<e.length;o++)if(n[e[o]].componentOnReady){if(n[e[o]].componentOnReady(r,t))return;i++}if(i<e.length)return void(n["s-cr"]=n["s-cr"]||[]).push([r,t])}t(null)}var r=this;return n.Promise?new n.Promise(e):{then:e}})}(n,c,n.HTMLElement.prototype)),applyPolyfills(n,function(){if(!I[c]){var u={},f=r.resourcesUrl||"./";$(c,u,n,i,f,o),I[c]=k(c,u,n,i,f,o)}e.forEach(function(e){var r;!function i(n){return/\{\s*\[native code\]\s*\}/.test(""+n)}(n.customElements.define)?(r=function(t){return n.HTMLElement.call(this,t)}).prototype=Object.create(n.HTMLElement.prototype,{constructor:{value:r,configurable:!0}}):r=new Function("w","return class extends w.HTMLElement{}")(n),I[c].Zn(function o(n,e,r){var i={n:n[0],W:{color:{U:"color"}}};i.On=n[1];var o=n[3];if(o)for(e=0;e<o.length;e++)r=o[e],i.W[r[0]]={Hn:r[1],B:!!r[2],U:"string"==typeof r[3]?r[3]:r[3]?r[0]:0,z:r[4]};return i.encapsulation=n[4],n[5]&&(i.kn=n[5].map(t)),i}(e),r)})})}this&&this.it||(Object.setPrototypeOf||Array);import $ from"./jsonschemadesigner.global.js";function applyPolyfills(n,t){n.ot=function(){function t(){var n=setTimeout;return function(){return n(e,1)}}function e(){for(var n=0;n<b;n+=2)(0,C[n])(C[n+1]),C[n]=void 0,C[n+1]=void 0;b=0}function r(n,t){var e=this,r=new this.constructor(o);void 0===r[T]&&h(r);var i=e.ut;if(i){var u=arguments[i-1];M(function(){return p(i,r,u,e.ft)})}else v(e,r,n,t);return r}function i(n){if(n&&"object"==typeof n&&n.constructor===this)return n;var t=new this(o);return c(t,n),t}function o(){}function u(n){try{return n.then}catch(n){return N.error=n,N}}function f(n,t,e){t.constructor===n.constructor&&e===r&&t.constructor.resolve===i?function(n,t){t.ut===S?s(n,t.ft):t.ut===x?l(n,t.ft):v(t,void 0,function(t){return c(n,t)},function(t){return l(n,t)})}(n,t):e===N?(l(n,N.error),N.error=null):void 0===e?s(n,t):"function"==typeof e?function(n,t,e){M(function(n){var r=!1,i=function(n,t,e,r){try{n.call(t,e,r)}catch(n){return n}}(e,t,function(e){r||(r=!0,t!==e?c(n,e):s(n,e))},function(t){r||(r=!0,l(n,t))},n.ct);!r&&i&&(r=!0,l(n,i))},n)}(n,t,e):s(n,t)}function c(n,t){if(n===t)l(n,new TypeError("cannot resolve promise w/ itself"));else{var e=typeof t;null===t||"object"!==e&&"function"!==e?s(n,t):f(n,t,u(t))}}function a(n){n.at&&n.at(n.ft),d(n)}function s(n,t){n.ut===_&&(n.ft=t,n.ut=S,0!==n.st.length&&M(d,n))}function l(n,t){n.ut===_&&(n.ut=x,n.ft=t,M(a,n))}function v(n,t,e,r){var i=n.st,o=i.length;n.at=null,i[o]=t,i[o+S]=e,i[o+x]=r,0===o&&n.ut&&M(d,n)}function d(n){var t=n.st,e=n.ut;if(0!==t.length){for(var r,i,o=n.ft,u=0;u<t.length;u+=3)r=t[u],i=t[u+e],r?p(e,r,i,o):i(o);n.st.length=0}}function p(n,t,e,r){var i="function"==typeof e,o=void 0,u=void 0,f=void 0,a=void 0;if(i){try{o=e(r)}catch(n){N.error=n,o=N}if(o===N?(a=!0,u=o.error,o.error=null):f=!0,t===o)return void l(t,new TypeError("Cannot return same promise"))}else o=r,f=!0;t.ut===_&&(i&&f?c(t,o):a?l(t,u):n===S?s(t,o):n===x&&l(t,o))}function h(n){n[T]=W++,n.ut=void 0,n.ft=void 0,n.st=[]}var y,m=Array.isArray?Array.isArray:function(n){return"[object Array]"===Object.prototype.toString.call(n)},b=0,w=void 0,g=void 0,M=function(n,t){C[b]=n,C[b+1]=t,2===(b+=2)&&(g?g(e):P())},j=(y=void 0!==n?n:void 0)||{},k=j.lt||j.vt;j="undefined"==typeof self;var A,$,E,O="undefined"!=typeof Uint8ClampedArray&&"undefined"!=typeof importScripts&&"undefined"!=typeof MessageChannel,C=Array(1e3),P=void 0;P=k?(A=0,$=new k(e),E=document.createTextNode(""),$.observe(E,{characterData:!0}),function(){E.data=A=++A%2}):O?function(){var n=new MessageChannel;return n.dt.onmessage=e,function(){return n.pt.postMessage(0)}}():void 0===y&&"function"==typeof require?function(){try{var n=Function("return this")().ht("vertx");return void 0!==(w=n.yt||n.mt)?function(){w(e)}:t()}catch(n){return t()}}():t();var T=Math.random().toString(36).substring(2),_=void 0,S=1,x=2,N={error:null},W=0,L=function(){function n(n,t){this.bt=n,this.wt=new n(o),this.wt[T]||h(this.wt),m(t)?(this.gt=this.length=t.length,this.ft=Array(this.length),0===this.length?s(this.wt,this.ft):(this.length=this.length||0,this.Mt(t),0===this.gt&&s(this.wt,this.ft))):l(this.wt,Error("Array Methods must be provided an Array"))}return n.prototype.Mt=function(n){for(var t=0;this.ut===_&&t<n.length;t++)this.jt(n[t],t)},n.prototype.jt=function(n,t){var e=this.bt,c=e.resolve;c===i?(c=u(n))===r&&n.ut!==_?this.kt(n.ut,t,n.ft):"function"!=typeof c?(this.gt--,this.ft[t]=n):e===R?(f(e=new e(o),n,c),this.At(e,t)):this.At(new e(function(t){return t(n)}),t):this.At(c(n),t)},n.prototype.kt=function(n,t,e){var r=this.wt;r.ut===_&&(this.gt--,n===x?l(r,e):this.ft[t]=e),0===this.gt&&s(r,this.ft)},n.prototype.At=function(n,t){var e=this;v(n,void 0,function(n){return e.kt(S,t,n)},function(n){return e.kt(x,t,n)})},n}(),R=function(){function n(t){if(this[T]=W++,this.ft=this.ut=void 0,this.st=[],o!==t){if("function"!=typeof t)throw new TypeError("Must pass a resolver fn as 1st arg");if(!(this instanceof n))throw new TypeError("Failed to construct 'Promise': Use the 'new' operator.");!function(n,t){try{t(function(t){c(n,t)},function(t){l(n,t)})}catch(t){l(n,t)}}(this,t)}}return n.prototype.catch=function(n){return this.then(null,n)},n.prototype.$t=function(n){var t=this.constructor;return this.then(function(e){return t.resolve(n()).then(function(){return e})},function(e){return t.resolve(n()).then(function(){throw e})})},n}();return R.prototype.then=r,R.all=function(n){return new L(this,n).wt},R.race=function(n){var t=this;return m(n)?new t(function(e,r){for(var i=n.length,o=0;o<i;o++)t.resolve(n[o]).then(e,r)}):new t(function(n,t){return t(new TypeError("Must pass array to race"))})},R.resolve=i,R.reject=function(n){var t=new this(o);return l(t,n),t},R.Et=function(n){g=n},R.Ot=function(n){M=n},R.Ct=M,R.Pt=function(){var n=void 0;if("undefined"!=typeof global)n=global;else if("undefined"!=typeof self)n=self;else try{n=Function("return this")()}catch(n){throw Error("polyfill failed")}var t=n.Promise;if(t){var e=null;try{e=Object.prototype.toString.call(t.resolve())}catch(n){}if("[object Promise]"===e&&!t.Tt)return}n.Promise=R},R.Promise=R,R.Pt(),R}();var e=[];n.customElements&&(!n.Element||n.Element.prototype.closest&&n.Element.prototype.matches&&n.Element.prototype.remove)||e.push(import("./polyfills/dom.js")),"function"==typeof Object.assign&&Object.entries||e.push(import("./polyfills/object.js")),Array.prototype.find&&Array.prototype.includes||e.push(import("./polyfills/array.js")),String.prototype.startsWith&&String.prototype.endsWith||e.push(import("./polyfills/string.js")),n.fetch||e.push(import("./polyfills/fetch.js")),Promise.all(e).then(function(e){e.forEach(function(t){t.applyPolyfill(n,n.document)}),t()})};var E="data-ssrv",O="data-ssrc",C="$",P={},T=[],_={enter:13,escape:27,space:32,tab:9,left:37,up:38,right:39,down:40},S=function(n){return null!=n},x=function(n){return n.toLowerCase()},N=function(n){return x(n).split("-").map(function(n){return n.charAt(0).toUpperCase()+n.slice(1)}).join("")},W=function(){},L=[],R={getTag:function(n){return n.c},getChildren:function(n){return n.a},getText:function(n){return n.f},getAttributes:function(n){return n.s},replaceAttributes:function(n,t){return n.s=t}},D="wc-",F={allowfullscreen:1,async:1,autofocus:1,autoplay:1,checked:1,controls:1,disabled:1,enabled:1,formnovalidate:1,hidden:1,multiple:1,noresize:1,readonly:1,required:1,selected:1,spellcheck:1},H="http://www.w3.org/1999/xlink",q=!1,I={},B=!1;export{A as defineCustomElement,i as h};
+this && this.__extends || function() {
+  var extendStatics = Object.setPrototypeOf || {
+    __proto__: []
+  } instanceof Array && function(d, b) {
+    d.__proto__ = b;
+  } || function(d, b) {
+    for (var p in b) {
+      b.hasOwnProperty(p) && (d[p] = b[p]);
+    }
+  };
+}();
+
+import appGlobal from './jsonschemadesigner.global.js';
+
+function applyPolyfills(window, cb) {
+  /*!
+    es6-promise - a tiny implementation of Promises/A+.
+    Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
+    Licensed under MIT license
+    See https://raw.githubusercontent.com/stefanpenner/es6-promise/master/LICENSE
+    v4.2.4+314e4831
+    */
+  window.ES6Promise = function() {
+    function t() {
+      var t = setTimeout;
+      return function() {
+        return t(r, 1);
+      };
+    }
+    function r() {
+      for (var t = 0; t < y; t += 2) {
+        (0, C[t])(C[t + 1]), C[t] = void 0, C[t + 1] = void 0;
+      }
+      y = 0;
+    }
+    function e(t, r) {
+      var e = this, n = new this.constructor(o);
+      void 0 === n[O] && _(n);
+      var i = e._state;
+      if (i) {
+        var s = arguments[i - 1];
+        g(function() {
+          return v(i, n, s, e._result);
+        });
+      } else {
+        l(e, n, t, r);
+      }
+      return n;
+    }
+    function n(t) {
+      if (t && 'object' == typeof t && t.constructor === this) {
+        return t;
+      }
+      var r = new this(o);
+      return u(r, t), r;
+    }
+    function o() {}
+    function i(t) {
+      try {
+        return t.then;
+      } catch (t) {
+        return q.error = t, q;
+      }
+    }
+    function s(t, r, o) {
+      r.constructor === t.constructor && o === e && r.constructor.resolve === n ? function(t, r) {
+        r._state === x ? a(t, r._result) : r._state === F ? f(t, r._result) : l(r, void 0, function(r) {
+          return u(t, r);
+        }, function(r) {
+          return f(t, r);
+        });
+      }(t, r) : o === q ? (f(t, q.error), q.error = null) : void 0 === o ? a(t, r) : 'function' == typeof o ? function(t, r, e) {
+        g(function(t) {
+          var n = !1, o = function(t, r, e, n) {
+            try {
+              t.call(r, e, n);
+            } catch (t) {
+              return t;
+            }
+          }(e, r, function(e) {
+            n || (n = !0, r !== e ? u(t, e) : a(t, e));
+          }, function(r) {
+            n || (n = !0, f(t, r));
+          }, t._label);
+          !n && o && (n = !0, f(t, o));
+        }, t);
+      }(t, r, o) : a(t, r);
+    }
+    function u(t, r) {
+      if (t === r) {
+        f(t, new TypeError('cannot resolve promise w/ itself'));
+      } else {
+        var e = typeof r;
+        null === r || 'object' !== e && 'function' !== e ? a(t, r) : s(t, r, i(r));
+      }
+    }
+    function c(t) {
+      t._onerror && t._onerror(t._result), h(t);
+    }
+    function a(t, r) {
+      t._state === P && (t._result = r, t._state = x, 0 !== t._subscribers.length && g(h, t));
+    }
+    function f(t, r) {
+      t._state === P && (t._state = F, t._result = r, g(c, t));
+    }
+    function l(t, r, e, n) {
+      var o = t._subscribers, i = o.length;
+      t._onerror = null, o[i] = r, o[i + x] = e, o[i + F] = n, 0 === i && t._state && g(h, t);
+    }
+    function h(t) {
+      var r = t._subscribers, e = t._state;
+      if (0 !== r.length) {
+        for (var n, o, i = t._result, s = 0; s < r.length; s += 3) {
+          n = r[s], o = r[s + e], n ? v(e, n, o, i) : o(i);
+        }
+        t._subscribers.length = 0;
+      }
+    }
+    function v(t, r, e, n) {
+      var o = 'function' == typeof e, i = void 0, s = void 0, c = void 0, l = void 0;
+      if (o) {
+        try {
+          i = e(n);
+        } catch (t) {
+          q.error = t, i = q;
+        }
+        if (i === q ? (l = !0, s = i.error, i.error = null) : c = !0, r === i) {
+          return void f(r, new TypeError('Cannot return same promise'));
+        }
+      } else {
+        i = n, c = !0;
+      }
+      r._state === P && (o && c ? u(r, i) : l ? f(r, s) : t === x ? a(r, i) : t === F && f(r, i));
+    }
+    function _(t) {
+      t[O] = U++, t._state = void 0, t._result = void 0, t._subscribers = [];
+    }
+    var p, d = Array.isArray ? Array.isArray : function(t) {
+      return '[object Array]' === Object.prototype.toString.call(t);
+    }, y = 0, w = void 0, m = void 0, g = function(t, e) {
+      C[y] = t, C[y + 1] = e, 2 === (y += 2) && (m ? m(r) : T());
+    }, b = (p = 'undefined' != typeof window ? window : void 0) || {}, A = b.MutationObserver || b.WebKitMutationObserver;
+    b = 'undefined' == typeof self;
+    var E, S, M, j = 'undefined' != typeof Uint8ClampedArray && 'undefined' != typeof importScripts && 'undefined' != typeof MessageChannel, C = Array(1e3), T = void 0;
+    T = A ? (E = 0, S = new A(r), M = document.createTextNode(''), S.observe(M, {
+      characterData: !0
+    }), function() {
+      M.data = E = ++E % 2;
+    }) : j ? function() {
+      var t = new MessageChannel();
+      return t.port1.onmessage = r, function() {
+        return t.port2.postMessage(0);
+      };
+    }() : void 0 === p && 'function' == typeof require ? function() {
+      try {
+        var e = Function('return this')().require('vertx');
+        return void 0 !== (w = e.runOnLoop || e.runOnContext) ? function() {
+          w(r);
+        } : t();
+      } catch (r) {
+        return t();
+      }
+    }() : t();
+    var O = Math.random().toString(36).substring(2), P = void 0, x = 1, F = 2, q = {
+      error: null
+    }, U = 0, D = function() {
+      function t(t, r) {
+        this._instanceConstructor = t, this.promise = new t(o), this.promise[O] || _(this.promise), 
+        d(r) ? (this._remaining = this.length = r.length, this._result = Array(this.length), 
+        0 === this.length ? a(this.promise, this._result) : (this.length = this.length || 0, 
+        this._enumerate(r), 0 === this._remaining && a(this.promise, this._result))) : f(this.promise, Error('Array Methods must be provided an Array'));
+      }
+      return t.prototype._enumerate = function(t) {
+        for (var r = 0; this._state === P && r < t.length; r++) {
+          this._eachEntry(t[r], r);
+        }
+      }, t.prototype._eachEntry = function(t, r) {
+        var u = this._instanceConstructor, c = u.resolve;
+        c === n ? (c = i(t)) === e && t._state !== P ? this._settledAt(t._state, r, t._result) : 'function' != typeof c ? (this._remaining--, 
+        this._result[r] = t) : u === K ? (s(u = new u(o), t, c), this._willSettleAt(u, r)) : this._willSettleAt(new u(function(r) {
+          return r(t);
+        }), r) : this._willSettleAt(c(t), r);
+      }, t.prototype._settledAt = function(t, r, e) {
+        var n = this.promise;
+        n._state === P && (this._remaining--, t === F ? f(n, e) : this._result[r] = e), 
+        0 === this._remaining && a(n, this._result);
+      }, t.prototype._willSettleAt = function(t, r) {
+        var e = this;
+        l(t, void 0, function(t) {
+          return e._settledAt(x, r, t);
+        }, function(t) {
+          return e._settledAt(F, r, t);
+        });
+      }, t;
+    }(), K = function() {
+      function t(r) {
+        if (this[O] = U++, this._result = this._state = void 0, this._subscribers = [], 
+        o !== r) {
+          if ('function' != typeof r) {
+            throw new TypeError('Must pass a resolver fn as 1st arg');
+          }
+          if (!(this instanceof t)) {
+            throw new TypeError('Failed to construct \'Promise\': Use the \'new\' operator.');
+          }
+          !function(t, r) {
+            try {
+              r(function(r) {
+                u(t, r);
+              }, function(r) {
+                f(t, r);
+              });
+            } catch (r) {
+              f(t, r);
+            }
+          }(this, r);
+        }
+      }
+      return t.prototype.catch = function(t) {
+        return this.then(null, t);
+      }, t.prototype.finally = function(t) {
+        var r = this.constructor;
+        return this.then(function(e) {
+          return r.resolve(t()).then(function() {
+            return e;
+          });
+        }, function(e) {
+          return r.resolve(t()).then(function() {
+            throw e;
+          });
+        });
+      }, t;
+    }();
+    return K.prototype.then = e, K.all = function(t) {
+      return new D(this, t).promise;
+    }, K.race = function(t) {
+      var r = this;
+      return d(t) ? new r(function(e, n) {
+        for (var o = t.length, i = 0; i < o; i++) {
+          r.resolve(t[i]).then(e, n);
+        }
+      }) : new r(function(t, r) {
+        return r(new TypeError('Must pass array to race'));
+      });
+    }, K.resolve = n, K.reject = function(t) {
+      var r = new this(o);
+      return f(r, t), r;
+    }, K._setScheduler = function(t) {
+      m = t;
+    }, K._setAsap = function(t) {
+      g = t;
+    }, K._asap = g, K.polyfill = function() {
+      var t = void 0;
+      if ('undefined' != typeof global) {
+        t = global;
+      } else if ('undefined' != typeof self) {
+        t = self;
+      } else {
+        try {
+          t = Function('return this')();
+        } catch (t) {
+          throw Error('polyfill failed');
+        }
+      }
+      var r = t.Promise;
+      if (r) {
+        var e = null;
+        try {
+          e = Object.prototype.toString.call(r.resolve());
+        } catch (t) {}
+        if ('[object Promise]' === e && !r.cast) {
+          return;
+        }
+      }
+      t.Promise = K;
+    }, K.Promise = K, K.polyfill(), K;
+  }();
+  var promises = [];
+  window.customElements && (!window.Element || window.Element.prototype.closest && window.Element.prototype.matches && window.Element.prototype.remove) || promises.push(import('./polyfills/dom.js'));
+  'function' === typeof Object.assign && Object.entries || promises.push(import('./polyfills/object.js'));
+  Array.prototype.find && Array.prototype.includes || promises.push(import('./polyfills/array.js'));
+  String.prototype.startsWith && String.prototype.endsWith || promises.push(import('./polyfills/string.js'));
+  window.fetch || promises.push(import('./polyfills/fetch.js'));
+  Promise.all(promises).then(function(results) {
+    results.forEach(function(polyfillModule) {
+      polyfillModule.applyPolyfill(window, window.document);
+    });
+    cb();
+  });
+};
+
+function createComponentOnReadyPrototype(win, namespace, HTMLElementPrototype) {
+  (win['s-apps'] = win['s-apps'] || []).push(namespace);
+  HTMLElementPrototype.componentOnReady || (HTMLElementPrototype.componentOnReady = function componentOnReady() {
+    /*tslint:disable*/
+    var elm = this;
+    function executor(resolve) {
+      if (elm.nodeName.indexOf('-') > 0) {
+        // window hasn't loaded yet and there's a
+        // good chance this is a custom element
+        var apps = win['s-apps'];
+        var appsReady = 0;
+        // loop through all the app namespaces
+                for (var i = 0; i < apps.length; i++) {
+          // see if this app has "componentOnReady" setup
+          if (win[apps[i]].componentOnReady) {
+            // this app's core has loaded call its "componentOnReady"
+            if (win[apps[i]].componentOnReady(elm, resolve)) {
+              // this component does belong to this app and would
+              // have fired off the resolve fn
+              // let's stop here, we're good
+              return;
+            }
+            appsReady++;
+          }
+        }
+        if (appsReady < apps.length) {
+          // not all apps are ready yet
+          // add it to the queue to be figured out when they are
+          (win['s-cr'] = win['s-cr'] || []).push([ elm, resolve ]);
+          return;
+        }
+      }
+      // not a recognized app component
+            resolve(null);
+    }
+    // callback wasn't provided, let's return a promise
+        if (win.Promise) {
+      // use native/polyfilled promise
+      return new win.Promise(executor);
+    }
+    // promise may not have been polyfilled yet
+        return {
+      then: executor
+    };
+  });
+}
+
+/**
+ * SSR Attribute Names
+ */
+var SSR_VNODE_ID = 'data-ssrv';
+
+var SSR_CHILD_ID = 'data-ssrc';
+
+/**
+ * Default style mode id
+ */ var DEFAULT_STYLE_MODE = '$';
+
+/**
+ * Reusable empty obj/array
+ * Don't add values to these!!
+ */ var EMPTY_OBJ = {};
+
+var EMPTY_ARR = [];
+
+/**
+ * Key Name to Key Code Map
+ */ var KEY_CODE_MAP = {
+  'enter': 13,
+  'escape': 27,
+  'space': 32,
+  'tab': 9,
+  'left': 37,
+  'up': 38,
+  'right': 39,
+  'down': 40
+};
+
+function getScopeId(cmpMeta, mode) {
+  var id = 'data-' + cmpMeta.tagNameMeta;
+  if (mode && mode !== DEFAULT_STYLE_MODE) {
+    return id + '-' + mode;
+  }
+  return id;
+}
+
+function getHostScopeAttribute(scopeId) {
+  return scopeId + '-host';
+}
+
+function getSlotScopeAttribute(scopeId) {
+  return scopeId + '-slot';
+}
+
+function initStyleTemplate(domApi, cmpMeta, encapsulation, style, styleMode) {
+  if (style) {
+    // we got a style mode for this component, let's create an id for this style
+    var styleModeId = cmpMeta.tagNameMeta + (styleMode || DEFAULT_STYLE_MODE);
+    if (!cmpMeta[styleModeId]) {
+      true;
+      // ie11's template polyfill doesn't fully do the trick and there's still issues
+      // so instead of trying to clone templates with styles in them, we'll just
+      // keep a map of the style text as a string to create <style> elements for es5 builds
+      cmpMeta[styleModeId] = style;
+    }
+  }
+}
+
+function attachStyles(plt, domApi, cmpMeta, hostElm) {
+  // first see if we've got a style for a specific mode
+  var encapsulation = cmpMeta.encapsulation;
+  // either this host element should use scoped css
+  // or it wants to use shadow dom but the browser doesn't support it
+  // create a scope id which is useful for scoped css
+  // and add the scope attribute to the host
+    var shouldScopeCss = 2 /* ScopedCss */ === encapsulation || 1 /* ShadowDom */ === encapsulation && !plt.domApi.$supportsShadowDom;
+  // create the style id w/ the host element's mode
+    var styleId = cmpMeta.tagNameMeta + hostElm.mode;
+  var styleTemplate = cmpMeta[styleId];
+  shouldScopeCss && (hostElm['s-sc'] = getScopeId(cmpMeta, hostElm.mode));
+  if (!styleTemplate) {
+    // doesn't look like there's a style template with the mode
+    // create the style id using the default style mode and try again
+    styleId = cmpMeta.tagNameMeta + DEFAULT_STYLE_MODE;
+    styleTemplate = cmpMeta[styleId];
+    shouldScopeCss && (hostElm['s-sc'] = getScopeId(cmpMeta));
+  }
+  if (styleTemplate) {
+    // cool, we found a style template element for this component
+    var styleContainerNode = domApi.$doc.head;
+    // if this browser supports shadow dom, then let's climb up
+    // the dom and see if we're within a shadow dom
+        if (domApi.$supportsShadowDom) {
+      if (1 /* ShadowDom */ === encapsulation) {
+        // we already know we're in a shadow dom
+        // so shadow root is the container for these styles
+        styleContainerNode = hostElm.shadowRoot;
+      } else {
+        // climb up the dom and see if we're in a shadow dom
+        var root = hostElm;
+        while (root = domApi.$parentNode(root)) {
+          if (root.host && root.host.shadowRoot) {
+            // looks like we are in shadow dom, let's use
+            // this shadow root as the container for these styles
+            styleContainerNode = root.host.shadowRoot;
+            break;
+          }
+        }
+      }
+    }
+    // if this container element already has these styles
+    // then there's no need to apply them again
+    // create an object to keep track if we'ready applied this component style
+        var appliedStyles = plt.componentAppliedStyles.get(styleContainerNode);
+    appliedStyles || plt.componentAppliedStyles.set(styleContainerNode, appliedStyles = {});
+    // check if we haven't applied these styles to this container yet
+        if (!appliedStyles[styleId]) {
+      var styleElm = void 0;
+      true;
+      // es5 builds are not usig <template> because of ie11 issues
+      // instead the "template" is just the style text as a string
+      // create a new style element and add as innerHTML
+      if (plt.customStyle) {
+        styleElm = plt.customStyle.createHostStyle(hostElm, styleId, styleTemplate);
+      } else {
+        styleElm = domApi.$createElement('style');
+        styleElm.innerHTML = styleTemplate;
+        // remember we don't need to do this again for this element
+                appliedStyles[styleId] = true;
+      }
+      if (styleElm) {
+        // add a style attributes, but only useful during dev
+        domApi.$setAttribute(styleElm, 'data-style-tag', cmpMeta.tagNameMeta);
+        hostElm.mode && domApi.$setAttribute(styleElm, 'data-style-mode', cmpMeta.tagNameMeta);
+        hostElm['s-sc'] && domApi.$setAttribute(styleElm, 'data-style-scoped', 'true');
+        var dataStyles = styleContainerNode.querySelectorAll('[data-styles]');
+        domApi.$insertBefore(styleContainerNode, styleElm, dataStyles.length && dataStyles[dataStyles.length - 1].nextSibling || styleContainerNode.firstChild);
+      }
+    }
+  }
+}
+
+var isDef = function(v) {
+  return null != v;
+};
+
+var toLowerCase = function(str) {
+  return str.toLowerCase();
+};
+
+var dashToPascalCase = function(str) {
+  return toLowerCase(str).split('-').map(function(segment) {
+    return segment.charAt(0).toUpperCase() + segment.slice(1);
+  }).join('');
+};
+
+var noop = function() {};
+
+function createDomApi(App, win, doc) {
+  // using the $ prefix so that closure is
+  // cool with property renaming each of these
+  if (!App.ael) {
+    App.ael = function(elm, eventName, cb, opts) {
+      return elm.addEventListener(eventName, cb, opts);
+    };
+    App.rel = function(elm, eventName, cb, opts) {
+      return elm.removeEventListener(eventName, cb, opts);
+    };
+  }
+  var unregisterListenerFns = new WeakMap();
+  var domApi = {
+    $doc: doc,
+    $supportsEventOptions: false,
+    $nodeType: function(node) {
+      return node.nodeType;
+    },
+    $createElement: function(tagName) {
+      return doc.createElement(tagName);
+    },
+    $createElementNS: function(namespace, tagName) {
+      return doc.createElementNS(namespace, tagName);
+    },
+    $createTextNode: function(text) {
+      return doc.createTextNode(text);
+    },
+    $createComment: function(data) {
+      return doc.createComment(data);
+    },
+    $insertBefore: function(parentNode, childNode, referenceNode) {
+      return parentNode.insertBefore(childNode, referenceNode);
+    },
+    // https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove
+    // and it's polyfilled in es5 builds
+    $remove: function(node) {
+      return node.remove();
+    },
+    $appendChild: function(parentNode, childNode) {
+      return parentNode.appendChild(childNode);
+    },
+    $childNodes: function(node) {
+      return node.childNodes;
+    },
+    $parentNode: function(node) {
+      return node.parentNode;
+    },
+    $nextSibling: function(node) {
+      return node.nextSibling;
+    },
+    $previousSibling: function(node) {
+      return node.previousSibling;
+    },
+    $tagName: function(elm) {
+      return toLowerCase(elm.nodeName);
+    },
+    $getTextContent: function(node) {
+      return node.textContent;
+    },
+    $setTextContent: function(node, text) {
+      return node.textContent = text;
+    },
+    $getAttribute: function(elm, key) {
+      return elm.getAttribute(key);
+    },
+    $setAttribute: function(elm, key, val) {
+      return elm.setAttribute(key, val);
+    },
+    $setAttributeNS: function(elm, namespaceURI, qualifiedName, val) {
+      return elm.setAttributeNS(namespaceURI, qualifiedName, val);
+    },
+    $removeAttribute: function(elm, key) {
+      return elm.removeAttribute(key);
+    },
+    $hasAttribute: function(elm, key) {
+      return elm.hasAttribute(key);
+    },
+    $getMode: function(elm) {
+      return elm.getAttribute('mode') || (App.Context || {}).mode;
+    },
+    $elementRef: function(elm, referenceName) {
+      if ('child' === referenceName) {
+        return elm.firstElementChild;
+      }
+      if ('parent' === referenceName) {
+        return domApi.$parentElement(elm);
+      }
+      if ('body' === referenceName) {
+        return doc.body;
+      }
+      if ('document' === referenceName) {
+        return doc;
+      }
+      if ('window' === referenceName) {
+        return win;
+      }
+      return elm;
+    },
+    $addEventListener: function(assignerElm, eventName, listenerCallback, useCapture, usePassive, attachTo, eventListenerOpts, splt) {
+      // remember the original name before we possibly change it
+      var assignersEventName = eventName;
+      var attachToElm = assignerElm;
+      // get the existing unregister listeners for
+      // this element from the unregister listeners weakmap
+            var assignersUnregListeners = unregisterListenerFns.get(assignerElm);
+      assignersUnregListeners && assignersUnregListeners[assignersEventName] && 
+      // removed any existing listeners for this event for the assigner element
+      // this element already has this listener, so let's unregister it now
+      assignersUnregListeners[assignersEventName]();
+      if ('string' === typeof attachTo) {
+        // attachTo is a string, and is probably something like
+        // "parent", "window", or "document"
+        // and the eventName would be like "mouseover" or "mousemove"
+        attachToElm = domApi.$elementRef(assignerElm, attachTo);
+      } else if ('object' === typeof attachTo) {
+        // we were passed in an actual element to attach to
+        attachToElm = attachTo;
+      } else {
+        // depending on the event name, we could actually be attaching
+        // this element to something like the document or window
+        splt = eventName.split(':');
+        if (splt.length > 1) {
+          // document:mousemove
+          // parent:touchend
+          // body:keyup.enter
+          attachToElm = domApi.$elementRef(assignerElm, splt[0]);
+          eventName = splt[1];
+        }
+      }
+      if (!attachToElm) {
+        // somehow we're referencing an element that doesn't exist
+        // let's not continue
+        return;
+      }
+      var eventListener = listenerCallback;
+      // test to see if we're looking for an exact keycode
+            splt = eventName.split('.');
+      if (splt.length > 1) {
+        // looks like this listener is also looking for a keycode
+        // keyup.enter
+        eventName = splt[0];
+        eventListener = function(ev) {
+          // wrap the user's event listener with our own check to test
+          // if this keyboard event has the keycode they're looking for
+          ev.keyCode === KEY_CODE_MAP[splt[1]] && listenerCallback(ev);
+        };
+      }
+      // create the actual event listener options to use
+      // this browser may not support event options
+            eventListenerOpts = domApi.$supportsEventOptions ? {
+        capture: !!useCapture,
+        passive: !!usePassive
+      } : !!useCapture;
+      // ok, good to go, let's add the actual listener to the dom element
+            App.ael(attachToElm, eventName, eventListener, eventListenerOpts);
+      assignersUnregListeners || 
+      // we don't already have a collection, let's create it
+      unregisterListenerFns.set(assignerElm, assignersUnregListeners = {});
+      // add the unregister listener to this element's collection
+            assignersUnregListeners[assignersEventName] = function() {
+        // looks like it's time to say goodbye
+        attachToElm && App.rel(attachToElm, eventName, eventListener, eventListenerOpts);
+        assignersUnregListeners[assignersEventName] = null;
+      };
+    },
+    $removeEventListener: function(elm, eventName) {
+      // get the unregister listener functions for this element
+      var assignersUnregListeners = unregisterListenerFns.get(elm);
+      assignersUnregListeners && (
+      // this element has unregister listeners
+      eventName ? 
+      // passed in one specific event name to remove
+      assignersUnregListeners[eventName] && assignersUnregListeners[eventName]() : 
+      // remove all event listeners
+      Object.keys(assignersUnregListeners).forEach(function(assignersEventName) {
+        assignersUnregListeners[assignersEventName] && assignersUnregListeners[assignersEventName]();
+      }));
+    }
+  };
+  domApi.$attachShadow = function(elm, shadowRootInit) {
+    return elm.attachShadow(shadowRootInit);
+  };
+  domApi.$supportsShadowDom = !!domApi.$doc.documentElement.attachShadow;
+  win.location.search.indexOf('shadow=false') > 0 && (
+  // by adding ?shadow=false it'll force the slot polyfill
+  // only add this check when in dev mode
+  domApi.$supportsShadowDom = false);
+  true;
+  if ('function' !== typeof win.CustomEvent) {
+    // CustomEvent polyfill
+    win.CustomEvent = function(event, data, evt) {
+      evt = doc.createEvent('CustomEvent');
+      evt.initCustomEvent(event, data.bubbles, data.cancelable, data.detail);
+      return evt;
+    };
+    win.CustomEvent.prototype = win.Event.prototype;
+  }
+  domApi.$dispatchEvent = function(elm, eventName, data) {
+    return elm && elm.dispatchEvent(new win.CustomEvent(eventName, data));
+  };
+  // test if this browser supports event options or not
+  try {
+    win.addEventListener('e', null, Object.defineProperty({}, 'passive', {
+      get: function() {
+        return domApi.$supportsEventOptions = true;
+      }
+    }));
+  } catch (e) {}
+  domApi.$parentElement = function(elm, parentNode) {
+    // if the parent node is a document fragment (shadow root)
+    // then use the "host" property on it
+    // otherwise use the parent node
+    return (parentNode = domApi.$parentNode(elm)) && 11 /* DocumentFragment */ === domApi.$nodeType(parentNode) ? parentNode.host : parentNode;
+  };
+  return domApi;
+}
+
+function parseComponentLoader(cmpData, i, d) {
+  // tag name will always be lower case
+  var cmpMeta = {
+    tagNameMeta: cmpData[0],
+    membersMeta: {
+      // every component defaults to always have
+      // the mode and color properties
+      // but only color should observe any attribute changes
+      'color': {
+        attribName: 'color'
+      }
+    }
+  };
+  // map of the bundle ids
+  // can contain modes, and array of esm and es5 bundle ids
+    cmpMeta.bundleIds = cmpData[1];
+  // parse member meta
+  // this data only includes props that are attributes that need to be observed
+  // it does not include all of the props yet
+    var memberData = cmpData[3];
+  if (memberData) {
+    for (i = 0; i < memberData.length; i++) {
+      d = memberData[i];
+      cmpMeta.membersMeta[d[0]] = {
+        memberType: d[1],
+        reflectToAttrib: !!d[2],
+        attribName: 'string' === typeof d[3] ? d[3] : d[3] ? d[0] : 0,
+        propType: d[4]
+      };
+    }
+  }
+  // encapsulation
+    cmpMeta.encapsulation = cmpData[4];
+  cmpData[5] && (
+  // parse listener meta
+  cmpMeta.listenersMeta = cmpData[5].map(parseListenerData));
+  return cmpMeta;
+}
+
+function parseListenerData(listenerData) {
+  return {
+    eventName: listenerData[0],
+    eventMethodName: listenerData[1],
+    eventDisabled: !!listenerData[2],
+    eventPassive: !!listenerData[3],
+    eventCapture: !!listenerData[4]
+  };
+}
+
+function parsePropertyValue(propType, propValue) {
+  // ensure this value is of the correct prop type
+  // we're testing both formats of the "propType" value because
+  // we could have either gotten the data from the attribute changed callback,
+  // which wouldn't have Constructor data yet, and because this method is reused
+  // within proxy where we don't have meta data, but only constructor data
+  if (isDef(propValue) && 'object' !== typeof propValue && 'function' !== typeof propValue) {
+    if (propType === Boolean || 3 /* Boolean */ === propType) {
+      // per the HTML spec, any string value means it is a boolean true value
+      // but we'll cheat here and say that the string "false" is the boolean false
+      return 'false' !== propValue && ('' === propValue || !!propValue);
+    }
+    if (propType === Number || 4 /* Number */ === propType) {
+      // force it to be a number
+      return parseFloat(propValue);
+    }
+    if (propType === String || 2 /* String */ === propType) {
+      // could have been passed as a number or boolean
+      // but we still want it as a string
+      return propValue.toString();
+    }
+  }
+  // not sure exactly what type we want
+  // so no need to change to a different type
+    return propValue;
+}
+
+function initEventEmitters(plt, cmpEvents, instance) {
+  if (cmpEvents) {
+    var elm_1 = plt.hostElementMap.get(instance);
+    cmpEvents.forEach(function(eventMeta) {
+      instance[eventMeta.method] = {
+        emit: function(data) {
+          plt.emitEvent(elm_1, eventMeta.name, {
+            bubbles: eventMeta.bubbles,
+            composed: eventMeta.composed,
+            cancelable: eventMeta.cancelable,
+            detail: data
+          });
+        }
+      };
+    });
+  }
+}
+
+function proxyComponentInstance(plt, cmpConstructor, elm, instance, hostSnapshot, properties, memberName) {
+  // at this point we've got a specific node of a host element, and created a component class instance
+  // and we've already created getters/setters on both the host element and component class prototypes
+  // let's upgrade any data that might have been set on the host element already
+  // and let's have the getters/setters kick in and do their jobs
+  // let's automatically add a reference to the host element on the instance
+  plt.hostElementMap.set(instance, elm);
+  // create the values object if it doesn't already exist
+  // this will hold all of the internal getter/setter values
+    plt.valuesMap.has(elm) || plt.valuesMap.set(elm, {});
+  // get the properties from the constructor
+  // and add default "mode" and "color" properties
+    properties = Object.assign({
+    color: {
+      type: String
+    }
+  }, cmpConstructor.properties);
+  // always set mode
+    properties.mode = {
+    type: String
+  };
+  // define each of the members and initialize what their role is
+    for (memberName in properties) {
+    defineMember(plt, properties[memberName], elm, instance, memberName, hostSnapshot);
+  }
+}
+
+function initComponentInstance(plt, elm, hostSnapshot, instance, componentConstructor, queuedEvents, i) {
+  try {
+    // using the user's component class, let's create a new instance
+    componentConstructor = plt.getComponentMeta(elm).componentConstructor;
+    instance = new componentConstructor();
+    // ok cool, we've got an host element now, and a actual instance
+    // and there were no errors creating the instance
+    // let's upgrade the data on the host element
+    // and let the getters/setters do their jobs
+        proxyComponentInstance(plt, componentConstructor, elm, instance, hostSnapshot);
+    // add each of the event emitters which wire up instance methods
+    // to fire off dom events from the host element
+    initEventEmitters(plt, componentConstructor.events, instance);
+    try {
+      // replay any event listeners on the instance that
+      // were queued up between the time the element was
+      // connected and before the instance was ready
+      queuedEvents = plt.queuedEvents.get(elm);
+      if (queuedEvents) {
+        // events may have already fired before the instance was even ready
+        // now that the instance is ready, let's replay all of the events that
+        // we queued up earlier that were originally meant for the instance
+        for (i = 0; i < queuedEvents.length; i += 2) {
+          // data was added in sets of two
+          // first item the eventMethodName
+          // second item is the event data
+          // take a look at initElementListener()
+          instance[queuedEvents[i]](queuedEvents[i + 1]);
+        }
+        plt.queuedEvents.delete(elm);
+      }
+    } catch (e) {
+      plt.onError(e, 2 /* QueueEventsError */ , elm);
+    }
+  } catch (e) {
+    // something done went wrong trying to create a component instance
+    // create a dumby instance so other stuff can load
+    // but chances are the app isn't fully working cuz this component has issues
+    instance = {};
+    plt.onError(e, 7 /* InitInstanceError */ , elm, true);
+  }
+  plt.instanceMap.set(elm, instance);
+  return instance;
+}
+
+function initComponentLoaded(plt, elm, hydratedCssClass, instance, onReadyCallbacks) {
+  false;
+  // all is good, this component has been told it's time to finish loading
+  // it's possible that we've already decided to destroy this element
+  // check if this element has any actively loading child elements
+  if (!plt.hasLoadedMap.has(elm) && (instance = plt.instanceMap.get(elm)) && !plt.isDisconnectedMap.has(elm) && (!elm['s-ld'] || !elm['s-ld'].length)) {
+    // cool, so at this point this element isn't already being destroyed
+    // and it does not have any child elements that are still loading
+    // ensure we remove any child references cuz it doesn't matter at this point
+    delete elm['s-ld'];
+    // sweet, this particular element is good to go
+    // all of this element's children have loaded (if any)
+    // elm._hasLoaded = true;
+        plt.hasLoadedMap.set(elm, true);
+    try {
+      // fire off the ref if it exists
+      callNodeRefs(plt.vnodeMap.get(elm));
+      // fire off the user's elm.componentOnReady() callbacks that were
+      // put directly on the element (well before anything was ready)
+            if (onReadyCallbacks = plt.onReadyCallbacksMap.get(elm)) {
+        onReadyCallbacks.forEach(function(cb) {
+          return cb(elm);
+        });
+        plt.onReadyCallbacksMap.delete(elm);
+      }
+      // fire off the user's componentDidLoad method (if one was provided)
+      // componentDidLoad only runs ONCE, after the instance's element has been
+      // assigned as the host element, and AFTER render() has been called
+      // we'll also fire this method off on the element, just to
+      instance.componentDidLoad && instance.componentDidLoad();
+    } catch (e) {
+      plt.onError(e, 4 /* DidLoadError */ , elm);
+    }
+    // add the css class that this element has officially hydrated
+        elm.classList.add(hydratedCssClass);
+    // ( •_•)
+    // ( •_•)>⌐■-■
+    // (⌐■_■)
+    // load events fire from bottom to top
+    // the deepest elements load first then bubbles up
+        propagateComponentLoaded(plt, elm);
+  }
+}
+
+function propagateComponentLoaded(plt, elm, index, ancestorsActivelyLoadingChildren) {
+  // load events fire from bottom to top
+  // the deepest elements load first then bubbles up
+  var ancestorHostElement = plt.ancestorHostElementMap.get(elm);
+  if (ancestorHostElement) {
+    // ok so this element already has a known ancestor host element
+    // let's make sure we remove this element from its ancestor's
+    // known list of child elements which are actively loading
+    ancestorsActivelyLoadingChildren = ancestorHostElement['s-ld'] || ancestorHostElement.$activeLoading;
+    if (ancestorsActivelyLoadingChildren) {
+      index = ancestorsActivelyLoadingChildren.indexOf(elm);
+      index > -1 && 
+      // yup, this element is in the list of child elements to wait on
+      // remove it so we can work to get the length down to 0
+      ancestorsActivelyLoadingChildren.splice(index, 1);
+      // the ancestor's initLoad method will do the actual checks
+      // to see if the ancestor is actually loaded or not
+      // then let's call the ancestor's initLoad method if there's no length
+      // (which actually ends up as this method again but for the ancestor)
+            if (!ancestorsActivelyLoadingChildren.length) {
+        ancestorHostElement['s-init'] && ancestorHostElement['s-init']();
+        // $initLoad deprecated 2018-04-02
+                ancestorHostElement.$initLoad && ancestorHostElement.$initLoad();
+      }
+    }
+    plt.ancestorHostElementMap.delete(elm);
+  }
+}
+
+/**
+ * Production h() function based on Preact by
+ * Jason Miller (@developit)
+ * Licensed under the MIT License
+ * https://github.com/developit/preact/blob/master/LICENSE
+ *
+ * Modified for Stencil's compiler and vdom
+ */ var stack = [];
+
+function h(nodeName, vnodeData, child) {
+  var children = null;
+  var lastSimple = false;
+  var simple = false;
+  for (var i = arguments.length; i-- > 2; ) {
+    stack.push(arguments[i]);
+  }
+  while (stack.length > 0) {
+    if ((child = stack.pop()) && void 0 !== child.pop) {
+      for (i = child.length; i--; ) {
+        stack.push(child[i]);
+      }
+    } else {
+      'boolean' === typeof child && (child = null);
+      (simple = 'function' !== typeof nodeName) && (null == child ? child = '' : 'number' === typeof child ? child = String(child) : 'string' !== typeof child && (simple = false));
+      simple && lastSimple ? children[children.length - 1].vtext += child : null === children ? children = [ simple ? {
+        vtext: child
+      } : child ] : children.push(simple ? {
+        vtext: child
+      } : child);
+      lastSimple = simple;
+    }
+  }
+  var vkey;
+  var vname;
+  if (null != vnodeData) {
+    // normalize class / classname attributes
+    vnodeData.className && (vnodeData.class = vnodeData.className);
+    if ('object' === typeof vnodeData.class) {
+      for (i in vnodeData.class) {
+        vnodeData.class[i] && stack.push(i);
+      }
+      vnodeData.class = stack.join(' ');
+      stack.length = 0;
+    }
+    null != vnodeData.key && (vkey = vnodeData.key);
+    null != vnodeData.name && (vname = vnodeData.name);
+  }
+  if ('function' === typeof nodeName) {
+    // nodeName is a functional component
+    return nodeName(Object.assign({}, vnodeData, {
+      children: children
+    }), utils);
+  }
+  return {
+    vtag: nodeName,
+    vchildren: children,
+    vtext: void 0,
+    vattrs: vnodeData,
+    vkey: vkey,
+    vname: vname,
+    elm: void 0,
+    ishost: false
+  };
+}
+
+var utils = {
+  'getTag': function(vnode) {
+    return vnode.vtag;
+  },
+  'getChildren': function(vnode) {
+    return vnode.vchildren;
+  },
+  'getText': function(vnode) {
+    return vnode.vtext;
+  },
+  'getAttributes': function(vnode) {
+    return vnode.vattrs;
+  },
+  'replaceAttributes': function(vnode, attributes) {
+    return vnode.vattrs = attributes;
+  }
+};
+
+function render(plt, cmpMeta, hostElm, instance) {
+  try {
+    // if this component has a render function, let's fire
+    // it off and generate the child vnodes for this host element
+    // note that we do not create the host element cuz it already exists
+    var hostMeta = cmpMeta.componentConstructor.host;
+    var encapsulation = cmpMeta.componentConstructor.encapsulation;
+    // test if this component should be shadow dom
+    // and if so does the browser supports it
+        var useNativeShadowDom = 'shadow' === encapsulation && plt.domApi.$supportsShadowDom;
+    var reflectHostAttr = void 0;
+    var rootElm = void 0;
+    reflectHostAttr = reflectInstanceValuesToHostAttributes(cmpMeta.componentConstructor.properties, instance);
+    rootElm = useNativeShadowDom ? hostElm.shadowRoot : hostElm;
+    if (!hostElm['s-rn']) {
+      // attach the styles this component needs, if any
+      // this fn figures out if the styles should go in a
+      // shadow root or if they should be global
+      plt.attachStyles(plt, plt.domApi, cmpMeta, hostElm);
+      // if no render function
+            var scopeId = hostElm['s-sc'];
+      if (scopeId) {
+        plt.domApi.$setAttribute(hostElm, getHostScopeAttribute(scopeId), '');
+        instance.render || plt.domApi.$setAttribute(hostElm, getSlotScopeAttribute(scopeId), '');
+      }
+    }
+    if (instance.render || instance.hostData || hostMeta || reflectHostAttr) {
+      // tell the platform we're actively rendering
+      // if a value is changed within a render() then
+      // this tells the platform not to queue the change
+      plt.activeRender = true;
+      var vnodeChildren = instance.render && instance.render();
+      var vnodeHostData = void 0;
+      // user component provided a "hostData()" method
+      // the returned data/attributes are used on the host element
+      vnodeHostData = instance.hostData && instance.hostData();
+      if (vnodeHostData && cmpMeta.membersMeta) {
+        var foundHostKeys = Object.keys(vnodeHostData).reduce(function(err, k) {
+          if (cmpMeta.membersMeta[k]) {
+            return err.concat(k);
+          }
+          if (cmpMeta.membersMeta[dashToPascalCase(k)]) {
+            return err.concat(dashToPascalCase(k));
+          }
+          return err;
+        }, []);
+        if (foundHostKeys.length > 0) {
+          throw new Error('The following keys were attempted to be set with hostData() from the ' + cmpMeta.tagNameMeta + ' component: ' + foundHostKeys.join(', ') + '. If you would like to modify these please set @Prop({ mutable: true, reflectToAttr: true}) on the @Prop() decorator.');
+        }
+      }
+      reflectHostAttr && (vnodeHostData = vnodeHostData ? Object.assign(vnodeHostData, reflectHostAttr) : reflectHostAttr);
+      // tell the platform we're done rendering
+      // now any changes will again queue
+            plt.activeRender = false;
+      hostMeta && (
+      // component meta data has a "theme"
+      // use this to automatically generate a good css class
+      // from the mode and color to add to the host element
+      vnodeHostData = applyComponentHostData(vnodeHostData, hostMeta, instance));
+      // looks like we've got child nodes to render into this host element
+      // or we need to update the css class/attrs on the host element
+      // if we haven't already created a vnode, then we give the renderer the actual element
+      // if this is a re-render, then give the renderer the last vnode we already created
+            var oldVNode = plt.vnodeMap.get(hostElm) || {};
+      oldVNode.elm = rootElm;
+      var hostVNode = h(null, vnodeHostData, vnodeChildren);
+      // only care if we're reflecting values to the host element
+      hostVNode.ishost = true;
+      // each patch always gets a new vnode
+      // the host element itself isn't patched because it already exists
+      // kick off the actual render and any DOM updates
+      plt.vnodeMap.set(hostElm, plt.render(hostElm, oldVNode, hostVNode, useNativeShadowDom, encapsulation));
+    }
+    // update styles!
+        plt.customStyle && plt.customStyle.updateHost(hostElm);
+    // it's official, this element has rendered
+        hostElm['s-rn'] = true;
+    hostElm.$onRender && (
+    // $onRender deprecated 2018-04-02
+    hostElm['s-rc'] = hostElm.$onRender);
+    if (hostElm['s-rc']) {
+      // ok, so turns out there are some child host elements
+      // waiting on this parent element to load
+      // let's fire off all update callbacks waiting
+      hostElm['s-rc'].forEach(function(cb) {
+        return cb();
+      });
+      hostElm['s-rc'] = null;
+    }
+  } catch (e) {
+    plt.activeRender = false;
+    plt.onError(e, 8 /* RenderError */ , hostElm, true);
+  }
+}
+
+function applyComponentHostData(vnodeHostData, hostMeta, instance) {
+  vnodeHostData = vnodeHostData || {};
+  // component meta data has a "theme"
+  // use this to automatically generate a good css class
+  // from the mode and color to add to the host element
+    Object.keys(hostMeta).forEach(function(key) {
+    'theme' === key ? 
+    // host: { theme: 'button' }
+    // adds css classes w/ mode and color combinations
+    // class="button button-md button-primary button-md-primary"
+    convertCssNamesToObj(vnodeHostData.class = vnodeHostData.class || {}, hostMeta[key], instance.mode, instance.color) : 'class' === key ? 
+    // host: { class: 'multiple css-classes' }
+    // class="multiple css-classes"
+    convertCssNamesToObj(vnodeHostData[key] = vnodeHostData[key] || {}, hostMeta[key]) : 
+    // rando attribute/properties
+    vnodeHostData[key] = hostMeta[key];
+  });
+  return vnodeHostData;
+}
+
+function convertCssNamesToObj(cssClassObj, className, mode, color) {
+  className.split(' ').forEach(function(cssClass) {
+    cssClassObj[cssClass] = true;
+    if (mode) {
+      cssClassObj[cssClass + '-' + mode] = true;
+      color && (cssClassObj[cssClass + '-' + mode + '-' + color] = cssClassObj[cssClass + '-' + color] = true);
+    }
+  });
+}
+
+function reflectInstanceValuesToHostAttributes(properties, instance, reflectHostAttr) {
+  properties && Object.keys(properties).forEach(function(memberName) {
+    if (properties[memberName].reflectToAttr) {
+      reflectHostAttr = reflectHostAttr || {};
+      reflectHostAttr[memberName] = instance[memberName];
+    }
+  });
+  return reflectHostAttr;
+}
+
+function queueUpdate(plt, elm) {
+  // only run patch if it isn't queued already
+  if (!plt.isQueuedForUpdate.has(elm)) {
+    plt.isQueuedForUpdate.set(elm, true);
+    // run the patch in the next tick
+    // vdom diff and patch the host element for differences
+        plt.isAppLoaded ? 
+    // app has already loaded
+    // let's queue this work in the dom write phase
+    plt.queue.write(function() {
+      return update(plt, elm);
+    }) : 
+    // app hasn't finished loading yet
+    // so let's use next tick to do everything
+    // as fast as possible
+    plt.queue.tick(function() {
+      return update(plt, elm);
+    });
+  }
+}
+
+function update(plt, elm, isInitialLoad, instance, ancestorHostElement, userPromise) {
+  // no longer queued for update
+  plt.isQueuedForUpdate.delete(elm);
+  // everything is async, so somehow we could have already disconnected
+  // this node, so be sure to do nothing if we've already disconnected
+    if (!plt.isDisconnectedMap.has(elm)) {
+    instance = plt.instanceMap.get(elm);
+    isInitialLoad = !instance;
+    if (isInitialLoad) {
+      ancestorHostElement = plt.ancestorHostElementMap.get(elm);
+      ancestorHostElement && ancestorHostElement.$rendered && (
+      // $rendered deprecated 2018-04-02
+      ancestorHostElement['s-rn'] = true);
+      if (ancestorHostElement && !ancestorHostElement['s-rn']) {
+        // this is the intial load
+        // this element has an ancestor host element
+        // but the ancestor host element has NOT rendered yet
+        // so let's just cool our jets and wait for the ancestor to render
+        (ancestorHostElement['s-rc'] = ancestorHostElement['s-rc'] || []).push(function() {
+          // this will get fired off when the ancestor host element
+          // finally gets around to rendering its lazy self
+          update(plt, elm);
+        });
+        // $onRender deprecated 2018-04-02
+                ancestorHostElement.$onRender = ancestorHostElement['s-rc'];
+        return;
+      }
+      // haven't created a component instance for this host element yet!
+      // create the instance from the user's component class
+      // https://www.youtube.com/watch?v=olLxrojmvMg
+            instance = initComponentInstance(plt, elm, plt.hostSnapshotMap.get(elm));
+      // fire off the user's componentWillLoad method (if one was provided)
+      // componentWillLoad only runs ONCE, after instance's element has been
+      // assigned as the host element, but BEFORE render() has been called
+      try {
+        instance.componentWillLoad && (userPromise = instance.componentWillLoad());
+      } catch (e) {
+        plt.onError(e, 3 /* WillLoadError */ , elm);
+      }
+    } else {
+      // already created an instance and this is an update
+      // fire off the user's componentWillUpdate method (if one was provided)
+      // componentWillUpdate runs BEFORE render() has been called
+      // but only BEFORE an UPDATE and not before the intial render
+      // get the returned promise (if one was provided)
+      try {
+        instance.componentWillUpdate && (userPromise = instance.componentWillUpdate());
+      } catch (e) {
+        plt.onError(e, 5 /* WillUpdateError */ , elm);
+      }
+    }
+    userPromise && userPromise.then ? 
+    // looks like the user return a promise!
+    // let's not actually kick off the render
+    // until the user has resolved their promise
+    userPromise.then(function() {
+      return renderUpdate(plt, elm, instance, isInitialLoad);
+    }) : 
+    // user never returned a promise so there's
+    // no need to wait on anything, let's do the render now my friend
+    renderUpdate(plt, elm, instance, isInitialLoad);
+  }
+}
+
+function renderUpdate(plt, elm, instance, isInitialLoad) {
+  // if this component has a render function, let's fire
+  // it off and generate a vnode for this
+  render(plt, plt.getComponentMeta(elm), elm, instance);
+  try {
+    if (isInitialLoad) {
+      // so this was the initial load i guess
+      elm['s-init']();
+      // componentDidLoad just fired off
+        } else {
+      // fire off the user's componentDidUpdate method (if one was provided)
+      // componentDidUpdate runs AFTER render() has been called
+      // but only AFTER an UPDATE and not after the intial render
+      instance.componentDidUpdate && instance.componentDidUpdate();
+      callNodeRefs(plt.vnodeMap.get(elm));
+    }
+  } catch (e) {
+    // derp
+    plt.onError(e, 6 /* DidUpdateError */ , elm, true);
+  }
+}
+
+function defineMember(plt, property, elm, instance, memberName, hostSnapshot, hostAttributes, hostAttrValue) {
+  function getComponentProp(values) {
+    // component instance prop/state getter
+    // get the property value directly from our internal values
+    values = plt.valuesMap.get(plt.hostElementMap.get(this));
+    return values && values[memberName];
+  }
+  function setComponentProp(newValue, elm) {
+    // component instance prop/state setter (cannot be arrow fn)
+    elm = plt.hostElementMap.get(this);
+    elm && (property.state || property.mutable ? setValue(plt, elm, memberName, newValue) : console.warn('@Prop() "' + memberName + '" on "' + elm.tagName + '" cannot be modified.'));
+  }
+  if (property.type || property.state) {
+    var values = plt.valuesMap.get(elm);
+    if (!property.state) {
+      !property.attr || void 0 !== values[memberName] && '' !== values[memberName] || 
+      // check the prop value from the host element attribute
+      (hostAttributes = hostSnapshot && hostSnapshot.$attributes) && isDef(hostAttrValue = hostAttributes[property.attr]) && (
+      // looks like we've got an attribute value
+      // let's set it to our internal values
+      values[memberName] = parsePropertyValue(property.type, hostAttrValue));
+      true;
+      // client-side
+      // within the browser, the element's prototype
+      // already has its getter/setter set, but on the
+      // server the prototype is shared causing issues
+      // so instead the server's elm has the getter/setter
+      // directly on the actual element instance, not its prototype
+      // so on the browser we can use "hasOwnProperty"
+      if (elm.hasOwnProperty(memberName)) {
+        // @Prop or @Prop({mutable:true})
+        // property values on the host element should override
+        // any default values on the component instance
+        void 0 === values[memberName] && (values[memberName] = parsePropertyValue(property.type, elm[memberName]));
+        // for the client only, let's delete its "own" property
+        // this way our already assigned getter/setter on the prototype kicks in
+        // the very special case is to NOT do this for "mode"
+                'mode' !== memberName && delete elm[memberName];
+      }
+    }
+    instance.hasOwnProperty(memberName) && void 0 === values[memberName] && (
+    // @Prop() or @Prop({mutable:true}) or @State()
+    // we haven't yet got a value from the above checks so let's
+    // read any "own" property instance values already set
+    // to our internal value as the source of getter data
+    // we're about to define a property and it'll overwrite this "own" property
+    values[memberName] = instance[memberName]);
+    property.watchCallbacks && (values[WATCH_CB_PREFIX + memberName] = property.watchCallbacks.slice());
+    // add getter/setter to the component instance
+    // these will be pointed to the internal data set from the above checks
+        definePropertyGetterSetter(instance, memberName, getComponentProp, setComponentProp);
+  } else if (property.elementRef) {
+    // @Element()
+    // add a getter to the element reference using
+    // the member name the component meta provided
+    definePropertyValue(instance, memberName, elm);
+  } else if (property.method) {
+    // @Method()
+    // add a property "value" on the host element
+    // which we'll bind to the instance's method
+    definePropertyValue(elm, memberName, instance[memberName].bind(instance));
+  } else if (property.context) {
+    // @Prop({ context: 'config' })
+    var contextObj = plt.getContextItem(property.context);
+    void 0 !== contextObj && definePropertyValue(instance, memberName, contextObj.getContext && contextObj.getContext(elm) || contextObj);
+  } else {
+    property.connect && 
+    // @Prop({ connect: 'ion-loading-ctrl' })
+    definePropertyValue(instance, memberName, plt.propConnect(property.connect));
+  }
+}
+
+function setValue(plt, elm, memberName, newVal, values, instance, watchMethods) {
+  // get the internal values object, which should always come from the host element instance
+  // create the _values object if it doesn't already exist
+  values = plt.valuesMap.get(elm);
+  values || plt.valuesMap.set(elm, values = {});
+  var oldVal = values[memberName];
+  // check our new property value against our internal value
+    if (newVal !== oldVal) {
+    // gadzooks! the property's value has changed!!
+    // set our new value!
+    // https://youtu.be/dFtLONl4cNc?t=22
+    values[memberName] = newVal;
+    instance = plt.instanceMap.get(elm);
+    if (instance) {
+      // get an array of method names of watch functions to call
+      watchMethods = values[WATCH_CB_PREFIX + memberName];
+      if (watchMethods) {
+        // this instance is watching for when this property changed
+        for (var i = 0; i < watchMethods.length; i++) {
+          try {
+            // fire off each of the watch methods that are watching this property
+            instance[watchMethods[i]].call(instance, newVal, oldVal, memberName);
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      }
+      !plt.activeRender && elm['s-rn'] && 
+      // looks like this value actually changed, so we've got work to do!
+      // but only if we've already rendered, otherwise just chill out
+      // queue that we need to do an update, but don't worry about queuing
+      // up millions cuz this function ensures it only runs once
+      queueUpdate(plt, elm);
+    }
+  }
+}
+
+function definePropertyValue(obj, propertyKey, value) {
+  // minification shortcut
+  Object.defineProperty(obj, propertyKey, {
+    'configurable': true,
+    'value': value
+  });
+}
+
+function definePropertyGetterSetter(obj, propertyKey, get, set) {
+  // minification shortcut
+  Object.defineProperty(obj, propertyKey, {
+    'configurable': true,
+    'get': get,
+    'set': set
+  });
+}
+
+var WATCH_CB_PREFIX = 'wc-';
+
+function updateAttribute(elm, memberName, newValue, isBoolean, forceRemove) {
+  var isXlinkNs = memberName !== (memberName = memberName.replace(/^xlink\:?/, ''));
+  var isBooleanAttr = BOOLEAN_ATTRS[memberName] || isBoolean;
+  if (isBooleanAttr && (!newValue || 'false' === newValue) || forceRemove) {
+    isXlinkNs ? elm.removeAttributeNS(XLINK_NS$1, toLowerCase(memberName)) : elm.removeAttribute(memberName);
+  } else if ('function' !== typeof newValue) {
+    isBooleanAttr && (newValue = '');
+    isXlinkNs ? elm.setAttributeNS(XLINK_NS$1, toLowerCase(memberName), newValue) : elm.setAttribute(memberName, newValue);
+  }
+}
+
+var BOOLEAN_ATTRS = {
+  'allowfullscreen': 1,
+  'async': 1,
+  'autofocus': 1,
+  'autoplay': 1,
+  'checked': 1,
+  'controls': 1,
+  'disabled': 1,
+  'enabled': 1,
+  'formnovalidate': 1,
+  'hidden': 1,
+  'multiple': 1,
+  'noresize': 1,
+  'readonly': 1,
+  'required': 1,
+  'selected': 1,
+  'spellcheck': 1
+};
+
+var XLINK_NS$1 = 'http://www.w3.org/1999/xlink';
+
+function setAccessor(plt, elm, memberName, oldValue, newValue, isSvg, isHostElement, i, ilen, cmpMeta) {
+  if ('class' !== memberName || isSvg) {
+    if ('style' === memberName) {
+      // Style
+      oldValue = oldValue || EMPTY_OBJ;
+      newValue = newValue || EMPTY_OBJ;
+      for (i in oldValue) {
+        newValue[i] || (elm.style[i] = '');
+      }
+      for (i in newValue) {
+        newValue[i] !== oldValue[i] && (elm.style[i] = newValue[i]);
+      }
+    } else if ('o' !== memberName[0] || 'n' !== memberName[1] || !/[A-Z]/.test(memberName[2]) || memberName in elm) {
+      if ('list' !== memberName && 'type' !== memberName && !isSvg && (memberName in elm || -1 !== [ 'object', 'function' ].indexOf(typeof newValue) && null !== newValue) || false) {
+        // Properties
+        // - list and type are attributes that get applied as values on the element
+        // - all svgs get values as attributes not props
+        // - check if elm contains name or if the value is array, object, or function
+        cmpMeta = plt.getComponentMeta(elm);
+        if (cmpMeta && cmpMeta.membersMeta && cmpMeta.membersMeta[memberName]) {
+          // we know for a fact that this element is a known component
+          // and this component has this member name as a property,
+          // let's set the known @Prop on this element
+          // set it directly as property on the element
+          setProperty(elm, memberName, newValue);
+          isHostElement && cmpMeta.membersMeta[memberName].reflectToAttrib && 
+          // we also want to set this data to the attribute
+          updateAttribute(elm, cmpMeta.membersMeta[memberName].attribName, newValue, 3 /* Boolean */ === cmpMeta.membersMeta[memberName].propType, null == newValue);
+        } else if ('ref' !== memberName) {
+          // this member name is a property on this element, but it's not a component
+          // this is a native property like "value" or something
+          // also we can ignore the "ref" member name at this point
+          setProperty(elm, memberName, null == newValue ? '' : newValue);
+          null != newValue && false !== newValue || elm.removeAttribute(memberName);
+        }
+      } else {
+        null != newValue && 'key' !== memberName ? 
+        // Element Attributes
+        updateAttribute(elm, memberName, newValue) : (isSvg || plt.domApi.$hasAttribute(elm, memberName) && (null == newValue || false === newValue)) && 
+        // remove svg attribute
+        plt.domApi.$removeAttribute(elm, memberName);
+      }
+    } else {
+      // Event Handlers
+      // so if the member name starts with "on" and the 3rd characters is
+      // a capital letter, and it's not already a member on the element,
+      // then we're assuming it's an event listener
+      // standard event
+      // the JSX attribute could have been "onMouseOver" and the
+      // member name "onmouseover" is on the element's prototype
+      // so let's add the listener "mouseover", which is all lowercased
+      memberName = toLowerCase(memberName) in elm ? toLowerCase(memberName.substring(2)) : toLowerCase(memberName[2]) + memberName.substring(3);
+      newValue ? newValue !== oldValue && 
+      // add listener
+      plt.domApi.$addEventListener(elm, memberName, newValue) : 
+      // remove listener
+      plt.domApi.$removeEventListener(elm, memberName);
+    }
+  } else 
+  // Class
+  if (oldValue !== newValue) {
+    var oldList_1 = null == oldValue || '' === oldValue ? EMPTY_ARR : oldValue.trim().split(/\s+/);
+    var newList = null == newValue || '' === newValue ? EMPTY_ARR : newValue.trim().split(/\s+/);
+    var classList = null == elm.className || '' === elm.className ? EMPTY_ARR : elm.className.trim().split(/\s+/);
+    for (i = 0, ilen = oldList_1.length; i < ilen; i++) {
+      -1 === newList.indexOf(oldList_1[i]) && (classList = classList.filter(function(c) {
+        return c !== oldList_1[i];
+      }));
+    }
+    for (i = 0, ilen = newList.length; i < ilen; i++) {
+      -1 === oldList_1.indexOf(newList[i]) && (classList = classList.concat([ newList[i] ]));
+    }
+    elm.className = classList.join(' ');
+  }
+}
+
+/**
+ * Attempt to set a DOM property to the given value.
+ * IE & FF throw for certain property-value combinations.
+ */ function setProperty(elm, name, value) {
+  try {
+    elm[name] = value;
+  } catch (e) {}
+}
+
+function updateElement(plt, oldVnode, newVnode, isSvgMode, memberName) {
+  // if the element passed in is a shadow root, which is a document fragment
+  // then we want to be adding attrs/props to the shadow root's "host" element
+  // if it's not a shadow root, then we add attrs/props to the same element
+  var elm = 11 /* DocumentFragment */ === newVnode.elm.nodeType && newVnode.elm.host ? newVnode.elm.host : newVnode.elm;
+  var oldVnodeAttrs = oldVnode && oldVnode.vattrs || EMPTY_OBJ;
+  var newVnodeAttrs = newVnode.vattrs || EMPTY_OBJ;
+  // remove attributes no longer present on the vnode by setting them to undefined
+    for (memberName in oldVnodeAttrs) {
+    newVnodeAttrs && null != newVnodeAttrs[memberName] || null == oldVnodeAttrs[memberName] || setAccessor(plt, elm, memberName, oldVnodeAttrs[memberName], void 0, isSvgMode, newVnode.ishost);
+  }
+  // add new & update changed attributes
+    for (memberName in newVnodeAttrs) {
+    memberName in oldVnodeAttrs && newVnodeAttrs[memberName] === ('value' === memberName || 'checked' === memberName ? elm[memberName] : oldVnodeAttrs[memberName]) || setAccessor(plt, elm, memberName, oldVnodeAttrs[memberName], newVnodeAttrs[memberName], isSvgMode, newVnode.ishost);
+  }
+}
+
+var isSvgMode = false;
+
+function createRendererPatch(plt, domApi) {
+  // createRenderer() is only created once per app
+  // the patch() function which createRenderer() returned is the function
+  // which gets called numerous times by each component
+  function createElm(oldParentVNode, newParentVNode, childIndex, parentElm, i, elm, childNode, newVNode, oldVNode) {
+    newVNode = newParentVNode.vchildren[childIndex];
+    if (!useNativeShadowDom) {
+      // remember for later we need to check to relocate nodes
+      checkSlotRelocate = true;
+      if ('slot' === newVNode.vtag) {
+        scopeId && 
+        // scoped css needs to add its scoped id to the parent element
+        domApi.$setAttribute(parentElm, scopeId + '-slot', '');
+        newVNode.vchildren ? 
+        // slot element has fallback content
+        // still create an element that "mocks" the slot element
+        newVNode.isSlotFallback = true : 
+        // slot element does not have fallback content
+        // create an html comment we'll use to always reference
+        // where actual slot content should sit next to
+        newVNode.isSlotReference = true;
+      }
+    }
+    if (isDef(newVNode.vtext)) {
+      // create text node
+      newVNode.elm = domApi.$createTextNode(newVNode.vtext);
+    } else if (newVNode.isSlotReference) {
+      // create a slot reference html text node
+      newVNode.elm = domApi.$createTextNode('');
+    } else {
+      // create element
+      elm = newVNode.elm = isSvgMode || 'svg' === newVNode.vtag ? domApi.$createElementNS('http://www.w3.org/2000/svg', newVNode.vtag) : domApi.$createElement(newVNode.isSlotFallback ? 'slot-fb' : newVNode.vtag);
+      isSvgMode = 'svg' === newVNode.vtag || 'foreignObject' !== newVNode.vtag && isSvgMode;
+      // add css classes, attrs, props, listeners, etc.
+      updateElement(plt, null, newVNode, isSvgMode);
+      isDef(scopeId) && elm['s-si'] !== scopeId && 
+      // if there is a scopeId and this is the initial render
+      // then let's add the scopeId as an attribute
+      domApi.$setAttribute(elm, elm['s-si'] = scopeId, '');
+      isDef(ssrId) && 
+      // SSR ONLY: this is an SSR render and this
+      // logic does not run on the client
+      // give this element the SSR child id that can be read by the client
+      domApi.$setAttribute(elm, SSR_CHILD_ID, ssrId + '.' + childIndex + (hasChildNodes(newVNode.vchildren) ? '' : '.'));
+      if (newVNode.vchildren) {
+        for (i = 0; i < newVNode.vchildren.length; ++i) {
+          // create the node
+          childNode = createElm(oldParentVNode, newVNode, i, elm);
+          // return node could have been null
+                    if (childNode) {
+            isDef(ssrId) && 3 /* TextNode */ === childNode.nodeType && !childNode['s-cr'] && 
+            // SSR ONLY: add the text node's start comment
+            domApi.$appendChild(elm, domApi.$createComment('s.' + ssrId + '.' + i));
+            // append our new node
+                        domApi.$appendChild(elm, childNode);
+            if (isDef(ssrId) && 3 /* TextNode */ === childNode.nodeType && !childNode['s-cr']) {
+              // SSR ONLY: add the text node's end comment
+              domApi.$appendChild(elm, domApi.$createComment('/'));
+              domApi.$appendChild(elm, domApi.$createTextNode(' '));
+            }
+          }
+        }
+      }
+      'svg' === newVNode.vtag && (
+      // Only reset the SVG context when we're exiting SVG element
+      isSvgMode = false);
+    }
+    newVNode.elm['s-hn'] = hostTagName;
+    if (newVNode.isSlotFallback || newVNode.isSlotReference) {
+      // remember the content reference comment
+      newVNode.elm['s-sr'] = true;
+      // remember the content reference comment
+            newVNode.elm['s-cr'] = contentRef;
+      // remember the slot name, or empty string for default slot
+            newVNode.elm['s-sn'] = newVNode.vname || '';
+      // check if we've got an old vnode for this slot
+            oldVNode = oldParentVNode && oldParentVNode.vchildren && oldParentVNode.vchildren[childIndex];
+      oldVNode && oldVNode.vtag === newVNode.vtag && oldParentVNode.elm && 
+      // we've got an old slot vnode and the wrapper is being replaced
+      // so let's move the old slot content back to it's original location
+      putBackInOriginalLocation(oldParentVNode.elm);
+    }
+    return newVNode.elm;
+  }
+  function putBackInOriginalLocation(parentElm, recursive, i, childNode) {
+    plt.tmpDisconnected = true;
+    var oldSlotChildNodes = domApi.$childNodes(parentElm);
+    for (i = oldSlotChildNodes.length - 1; i >= 0; i--) {
+      childNode = oldSlotChildNodes[i];
+      if (childNode['s-hn'] !== hostTagName && childNode['s-ol']) {
+        // this child node in the old element is from another component
+        // remove this node from the old slot's parent
+        domApi.$remove(childNode);
+        // and relocate it back to it's original location
+                domApi.$insertBefore(parentReferenceNode(childNode), childNode, referenceNode(childNode));
+        // remove the old original location comment entirely
+        // later on the patch function will know what to do
+        // and move this to the correct spot in need be
+                domApi.$remove(childNode['s-ol']);
+        childNode['s-ol'] = null;
+        checkSlotRelocate = true;
+      }
+      recursive && putBackInOriginalLocation(childNode, recursive);
+    }
+    plt.tmpDisconnected = false;
+  }
+  function addVnodes(parentElm, before, parentVNode, vnodes, startIdx, endIdx, containerElm, childNode) {
+    // $defaultHolder deprecated 2018-04-02
+    var contentRef = parentElm['s-cr'] || parentElm.$defaultHolder;
+    containerElm = contentRef && domApi.$parentNode(contentRef) || parentElm;
+    containerElm.shadowRoot && domApi.$tagName(containerElm) === hostTagName && (containerElm = containerElm.shadowRoot);
+    for (;startIdx <= endIdx; ++startIdx) {
+      if (vnodes[startIdx]) {
+        childNode = isDef(vnodes[startIdx].vtext) ? domApi.$createTextNode(vnodes[startIdx].vtext) : createElm(null, parentVNode, startIdx, parentElm);
+        if (childNode) {
+          vnodes[startIdx].elm = childNode;
+          domApi.$insertBefore(containerElm, childNode, referenceNode(before));
+        }
+      }
+    }
+  }
+  function removeVnodes(vnodes, startIdx, endIdx, node) {
+    for (;startIdx <= endIdx; ++startIdx) {
+      if (isDef(vnodes[startIdx])) {
+        node = vnodes[startIdx].elm;
+        // we're removing this element
+        // so it's possible we need to show slot fallback content now
+        checkSlotFallbackVisibility = true;
+        node['s-ol'] ? 
+        // remove the original location comment
+        domApi.$remove(node['s-ol']) : 
+        // it's possible that child nodes of the node
+        // that's being removed are slot nodes
+        putBackInOriginalLocation(node, true);
+        // remove the vnode's element from the dom
+        domApi.$remove(node);
+      }
+    }
+  }
+  function updateChildren(parentElm, oldCh, newVNode, newCh, idxInOld, i, node, elmToMove) {
+    var oldStartIdx = 0, newStartIdx = 0;
+    var oldEndIdx = oldCh.length - 1;
+    var oldStartVnode = oldCh[0];
+    var oldEndVnode = oldCh[oldEndIdx];
+    var newEndIdx = newCh.length - 1;
+    var newStartVnode = newCh[0];
+    var newEndVnode = newCh[newEndIdx];
+    while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+      if (null == oldStartVnode) {
+        // Vnode might have been moved left
+        oldStartVnode = oldCh[++oldStartIdx];
+      } else if (null == oldEndVnode) {
+        oldEndVnode = oldCh[--oldEndIdx];
+      } else if (null == newStartVnode) {
+        newStartVnode = newCh[++newStartIdx];
+      } else if (null == newEndVnode) {
+        newEndVnode = newCh[--newEndIdx];
+      } else if (isSameVnode(oldStartVnode, newStartVnode)) {
+        patchVNode(oldStartVnode, newStartVnode);
+        oldStartVnode = oldCh[++oldStartIdx];
+        newStartVnode = newCh[++newStartIdx];
+      } else if (isSameVnode(oldEndVnode, newEndVnode)) {
+        patchVNode(oldEndVnode, newEndVnode);
+        oldEndVnode = oldCh[--oldEndIdx];
+        newEndVnode = newCh[--newEndIdx];
+      } else if (isSameVnode(oldStartVnode, newEndVnode)) {
+        // Vnode moved right
+        'slot' !== oldStartVnode.vtag && 'slot' !== newEndVnode.vtag || putBackInOriginalLocation(domApi.$parentNode(oldStartVnode.elm));
+        patchVNode(oldStartVnode, newEndVnode);
+        domApi.$insertBefore(parentElm, oldStartVnode.elm, domApi.$nextSibling(oldEndVnode.elm));
+        oldStartVnode = oldCh[++oldStartIdx];
+        newEndVnode = newCh[--newEndIdx];
+      } else if (isSameVnode(oldEndVnode, newStartVnode)) {
+        // Vnode moved left
+        'slot' !== oldStartVnode.vtag && 'slot' !== newEndVnode.vtag || putBackInOriginalLocation(domApi.$parentNode(oldEndVnode.elm));
+        patchVNode(oldEndVnode, newStartVnode);
+        domApi.$insertBefore(parentElm, oldEndVnode.elm, oldStartVnode.elm);
+        oldEndVnode = oldCh[--oldEndIdx];
+        newStartVnode = newCh[++newStartIdx];
+      } else {
+        // createKeyToOldIdx
+        idxInOld = null;
+        for (i = oldStartIdx; i <= oldEndIdx; ++i) {
+          if (oldCh[i] && isDef(oldCh[i].vkey) && oldCh[i].vkey === newStartVnode.vkey) {
+            idxInOld = i;
+            break;
+          }
+        }
+        if (isDef(idxInOld)) {
+          elmToMove = oldCh[idxInOld];
+          if (elmToMove.vtag !== newStartVnode.vtag) {
+            node = createElm(oldCh && oldCh[newStartIdx], newVNode, idxInOld, parentElm);
+          } else {
+            patchVNode(elmToMove, newStartVnode);
+            oldCh[idxInOld] = void 0;
+            node = elmToMove.elm;
+          }
+          newStartVnode = newCh[++newStartIdx];
+        } else {
+          // new element
+          node = createElm(oldCh && oldCh[newStartIdx], newVNode, newStartIdx, parentElm);
+          newStartVnode = newCh[++newStartIdx];
+        }
+        node && domApi.$insertBefore(parentReferenceNode(oldStartVnode.elm), node, referenceNode(oldStartVnode.elm));
+      }
+    }
+    oldStartIdx > oldEndIdx ? addVnodes(parentElm, null == newCh[newEndIdx + 1] ? null : newCh[newEndIdx + 1].elm, newVNode, newCh, newStartIdx, newEndIdx) : newStartIdx > newEndIdx && removeVnodes(oldCh, oldStartIdx, oldEndIdx);
+  }
+  function isSameVnode(vnode1, vnode2) {
+    // compare if two vnode to see if they're "technically" the same
+    // need to have the same element tag, and same key to be the same
+    if (vnode1.vtag === vnode2.vtag && vnode1.vkey === vnode2.vkey) {
+      if ('slot' === vnode1.vtag) {
+        return vnode1.vname === vnode2.vname;
+      }
+      return true;
+    }
+    return false;
+  }
+  function referenceNode(node) {
+    if (node && node['s-ol']) {
+      // this node was relocated to a new location in the dom
+      // because of some other component's slot
+      // but we still have an html comment in place of where
+      // it's original location was according to it's original vdom
+      return node['s-ol'];
+    }
+    return node;
+  }
+  function parentReferenceNode(node) {
+    return domApi.$parentNode(node['s-ol'] ? node['s-ol'] : node);
+  }
+  function patchVNode(oldVNode, newVNode, defaultHolder) {
+    var elm = newVNode.elm = oldVNode.elm;
+    var oldChildren = oldVNode.vchildren;
+    var newChildren = newVNode.vchildren;
+    // test if we're rendering an svg element, or still rendering nodes inside of one
+    // only add this to the when the compiler sees we're using an svg somewhere
+    isSvgMode = newVNode.elm && isDef(domApi.$parentElement(newVNode.elm)) && void 0 !== newVNode.elm.ownerSVGElement;
+    isSvgMode = 'svg' === newVNode.vtag || 'foreignObject' !== newVNode.vtag && isSvgMode;
+    if (isDef(newVNode.vtext)) {
+      (defaultHolder = elm['s-cr'] || elm.$defaultHolder /* $defaultHolder deprecated 2018-04-02 */) ? 
+      // this element has slotted content
+      domApi.$setTextContent(domApi.$parentNode(defaultHolder), newVNode.vtext) : oldVNode.vtext !== newVNode.vtext && 
+      // update the text content for the text only vnode
+      // and also only if the text is different than before
+      domApi.$setTextContent(elm, newVNode.vtext);
+    } else {
+      // element node
+      'slot' !== newVNode.vtag && 
+      // either this is the first render of an element OR it's an update
+      // AND we already know it's possible it could have changed
+      // this updates the element's css classes, attrs, props, listeners, etc.
+      updateElement(plt, oldVNode, newVNode, isSvgMode);
+      if (isDef(oldChildren) && isDef(newChildren)) {
+        // looks like there's child vnodes for both the old and new vnodes
+        updateChildren(elm, oldChildren, newVNode, newChildren);
+      } else if (isDef(newChildren)) {
+        // no old child vnodes, but there are new child vnodes to add
+        isDef(oldVNode.vtext) && 
+        // the old vnode was text, so be sure to clear it out
+        domApi.$setTextContent(elm, '');
+        // add the new vnode children
+                addVnodes(elm, null, newVNode, newChildren, 0, newChildren.length - 1);
+      } else {
+        isDef(oldChildren) && 
+        // no new child vnodes, but there are old child vnodes to remove
+        removeVnodes(oldChildren, 0, oldChildren.length - 1);
+      }
+    }
+    // reset svgMode when svg node is fully patched
+    isSvgMode && 'svg' === newVNode.vtag && (isSvgMode = false);
+  }
+  function updateFallbackSlotVisibility(elm, childNode, childNodes, i, ilen, j, slotNameAttr, nodeType) {
+    childNodes = domApi.$childNodes(elm);
+    for (i = 0, ilen = childNodes.length; i < ilen; i++) {
+      childNode = childNodes[i];
+      if (1 /* ElementNode */ === domApi.$nodeType(childNode)) {
+        if (childNode['s-sr']) {
+          // this is a slot fallback node
+          // get the slot name for this slot reference node
+          slotNameAttr = childNode['s-sn'];
+          // by default always show a fallback slot node
+          // then hide it if there are other slots in the light dom
+                    childNode.hidden = false;
+          for (j = 0; j < ilen; j++) {
+            if (childNodes[j]['s-hn'] !== childNode['s-hn']) {
+              // this sibling node is from a different component
+              nodeType = domApi.$nodeType(childNodes[j]);
+              if ('' !== slotNameAttr) {
+                // this is a named fallback slot node
+                if (1 /* ElementNode */ === nodeType && slotNameAttr === domApi.$getAttribute(childNodes[j], 'slot')) {
+                  childNode.hidden = true;
+                  break;
+                }
+              } else 
+              // this is a default fallback slot node
+              // any element or text node (with content)
+              // should hide the default fallback slot node
+              if (1 /* ElementNode */ === nodeType || 3 /* TextNode */ === nodeType && '' !== domApi.$getTextContent(childNodes[j]).trim()) {
+                childNode.hidden = true;
+                break;
+              }
+            }
+          }
+        }
+        // keep drilling down
+                updateFallbackSlotVisibility(childNode);
+      }
+    }
+  }
+  var relocateNodes = [];
+  function relocateSlotContent(elm, childNodes, childNode, node, i, ilen, j, hostContentNodes, slotNameAttr, nodeType) {
+    childNodes = domApi.$childNodes(elm);
+    for (i = 0, ilen = childNodes.length; i < ilen; i++) {
+      childNode = childNodes[i];
+      if (childNode['s-sr'] && (node = childNode['s-cr'])) {
+        // first got the content reference comment node
+        // then we got it's parent, which is where all the host content is in now
+        hostContentNodes = domApi.$childNodes(domApi.$parentNode(node));
+        slotNameAttr = childNode['s-sn'];
+        for (j = hostContentNodes.length - 1; j >= 0; j--) {
+          node = hostContentNodes[j];
+          if (!node['s-cn'] && !node['s-nr'] && node['s-hn'] !== childNode['s-hn']) {
+            // let's do some relocating to its new home
+            // but never relocate a content reference node
+            // that is suppose to always represent the original content location
+            nodeType = domApi.$nodeType(node);
+            if (((3 /* TextNode */ === nodeType || 8 /* CommentNode */ === nodeType) && '' === slotNameAttr || 1 /* ElementNode */ === nodeType && null === domApi.$getAttribute(node, 'slot') && '' === slotNameAttr || 1 /* ElementNode */ === nodeType && domApi.$getAttribute(node, 'slot') === slotNameAttr) && !relocateNodes.some(function(r) {
+              return r.nodeToRelocate === node;
+            })) {
+              // made some changes to slots
+              // let's make sure we also double check
+              // fallbacks are correctly hidden or shown
+              checkSlotFallbackVisibility = true;
+              node['s-sn'] = slotNameAttr;
+              // add to our list of nodes to relocate
+                            relocateNodes.push({
+                slotRefNode: childNode,
+                nodeToRelocate: node
+              });
+            }
+          }
+        }
+      }
+      1 /* ElementNode */ === domApi.$nodeType(childNode) && relocateSlotContent(childNode);
+    }
+  }
+  // internal variables to be reused per patch() call
+    var useNativeShadowDom, ssrId, scopeId, checkSlotFallbackVisibility, checkSlotRelocate, hostTagName, contentRef;
+  return function patch(hostElm, oldVNode, newVNode, useNativeShadowDomVal, encapsulation, ssrPatchId, i, relocateNode, orgLocationNode, refNode, parentNodeRef, insertBeforeNode) {
+    // patchVNode() is synchronous
+    // so it is safe to set these variables and internally
+    // the same patch() call will reference the same data
+    hostTagName = domApi.$tagName(hostElm);
+    contentRef = hostElm['s-cr'];
+    useNativeShadowDom = useNativeShadowDomVal;
+    ssrId = 'shadow' !== encapsulation ? ssrPatchId : null;
+    // get the scopeId
+    scopeId = hostElm['s-sc'];
+    // always reset
+        checkSlotRelocate = checkSlotFallbackVisibility = false;
+    // synchronous patch
+    patchVNode(oldVNode, newVNode);
+    isDef(ssrId) && 
+    // SSR ONLY: we've been given an SSR id, so the host element
+    // should be given the ssr id attribute
+    domApi.$setAttribute(oldVNode.elm, SSR_VNODE_ID, ssrId);
+    if (checkSlotRelocate) {
+      relocateSlotContent(newVNode.elm);
+      for (i = 0; i < relocateNodes.length; i++) {
+        relocateNode = relocateNodes[i];
+        if (!relocateNode.nodeToRelocate['s-ol']) {
+          // add a reference node marking this node's original location
+          // keep a reference to this node for later lookups
+          orgLocationNode = domApi.$createTextNode('');
+          orgLocationNode['s-nr'] = relocateNode.nodeToRelocate;
+          domApi.$insertBefore(domApi.$parentNode(relocateNode.nodeToRelocate), relocateNode.nodeToRelocate['s-ol'] = orgLocationNode, relocateNode.nodeToRelocate);
+        }
+      }
+      // while we're moving nodes around existing nodes, temporarily disable
+      // the disconnectCallback from working
+            plt.tmpDisconnected = true;
+      for (i = 0; i < relocateNodes.length; i++) {
+        relocateNode = relocateNodes[i];
+        // by default we're just going to insert it directly
+        // after the slot reference node
+                parentNodeRef = domApi.$parentNode(relocateNode.slotRefNode);
+        insertBeforeNode = domApi.$nextSibling(relocateNode.slotRefNode);
+        orgLocationNode = relocateNode.nodeToRelocate['s-ol'];
+        while (orgLocationNode = domApi.$previousSibling(orgLocationNode)) {
+          if ((refNode = orgLocationNode['s-nr']) && refNode && refNode['s-sn'] === relocateNode.nodeToRelocate['s-sn'] && parentNodeRef === domApi.$parentNode(refNode) && (refNode = domApi.$nextSibling(refNode)) && refNode && !refNode['s-nr']) {
+            insertBeforeNode = refNode;
+            break;
+          }
+        }
+        if ((!insertBeforeNode && parentNodeRef !== domApi.$parentNode(relocateNode.nodeToRelocate) || domApi.$nextSibling(relocateNode.nodeToRelocate) !== insertBeforeNode) && relocateNode.nodeToRelocate !== insertBeforeNode) {
+          // remove the node from the dom
+          domApi.$remove(relocateNode.nodeToRelocate);
+          // add it back to the dom but in its new home
+                    domApi.$insertBefore(parentNodeRef, relocateNode.nodeToRelocate, insertBeforeNode);
+        }
+      }
+      // done moving nodes around
+      // allow the disconnect callback to work again
+            plt.tmpDisconnected = false;
+    }
+    checkSlotFallbackVisibility && updateFallbackSlotVisibility(newVNode.elm);
+    // always reset
+        relocateNodes.length = 0;
+    // return our new vnode
+    return newVNode;
+  };
+}
+
+function callNodeRefs(vNode, isDestroy) {
+  if (vNode) {
+    vNode.vattrs && vNode.vattrs.ref && vNode.vattrs.ref(isDestroy ? null : vNode.elm);
+    vNode.vchildren && vNode.vchildren.forEach(function(vChild) {
+      callNodeRefs(vChild, isDestroy);
+    });
+  }
+}
+
+function hasChildNodes(children) {
+  // SSR ONLY: check if there are any more nested child elements
+  // if there aren't, this info is useful so the client runtime
+  // doesn't have to climb down and check so many elements
+  if (children) {
+    for (var i = 0; i < children.length; i++) {
+      if ('slot' !== children[i].vtag || hasChildNodes(children[i].vchildren)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function createQueueClient(App, win) {
+  var now = function() {
+    return win.performance.now();
+  };
+  var resolved = Promise.resolve();
+  var highPriority = [];
+  var domReads = [];
+  var domWrites = [];
+  var domWritesLow = [];
+  var congestion = 0;
+  var rafPending = false;
+  App.raf || (App.raf = win.requestAnimationFrame.bind(win));
+  function consume(queue) {
+    for (var i = 0; i < queue.length; i++) {
+      try {
+        queue[i]();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    queue.length = 0;
+  }
+  function consumeTimeout(queue, timeout) {
+    var i = 0;
+    while (i < queue.length && now() < timeout) {
+      try {
+        queue[i++]();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    i === queue.length ? queue.length = 0 : 0 !== i && queue.splice(0, i);
+  }
+  function flush() {
+    congestion++;
+    // always force a bunch of medium callbacks to run, but still have
+    // a throttle on how many can run in a certain time
+    // DOM READS!!!
+        consume(domReads);
+    var start = now() + 7 * Math.ceil(congestion * (1 / 22));
+    // DOM WRITES!!!
+        consumeTimeout(domWrites, start);
+    consumeTimeout(domWritesLow, start);
+    if (domWrites.length > 0) {
+      domWritesLow.push.apply(domWritesLow, domWrites);
+      domWrites.length = 0;
+    }
+    (rafPending = domReads.length + domWrites.length + domWritesLow.length > 0) ? 
+    // still more to do yet, but we've run out of time
+    // let's let this thing cool off and try again in the next tick
+    App.raf(flush) : congestion = 0;
+  }
+  return {
+    tick: function(cb) {
+      // queue high priority work to happen in next tick
+      // uses Promise.resolve() for next tick
+      highPriority.push(cb);
+      1 === highPriority.length && resolved.then(function() {
+        return consume(highPriority);
+      });
+    },
+    read: function(cb) {
+      // queue dom reads
+      domReads.push(cb);
+      if (!rafPending) {
+        rafPending = true;
+        App.raf(flush);
+      }
+    },
+    write: function(cb) {
+      // queue dom writes
+      domWrites.push(cb);
+      if (!rafPending) {
+        rafPending = true;
+        App.raf(flush);
+      }
+    }
+  };
+}
+
+function initElementListeners(plt, elm) {
+  // so the element was just connected, which means it's in the DOM
+  // however, the component instance hasn't been created yet
+  // but what if an event it should be listening to get emitted right now??
+  // let's add our listeners right now to our element, and if it happens
+  // to receive events between now and the instance being created let's
+  // queue up all of the event data and fire it off on the instance when it's ready
+  var cmpMeta = plt.getComponentMeta(elm);
+  cmpMeta.listenersMeta && 
+  // we've got listens
+  cmpMeta.listenersMeta.forEach(function(listenMeta) {
+    // go through each listener
+    listenMeta.eventDisabled || 
+    // only add ones that are not already disabled
+    plt.domApi.$addEventListener(elm, listenMeta.eventName, createListenerCallback(plt, elm, listenMeta.eventMethodName), listenMeta.eventCapture, listenMeta.eventPassive);
+  });
+}
+
+function createListenerCallback(plt, elm, eventMethodName, val) {
+  // create the function that gets called when the element receives
+  // an event which it should be listening for
+  return function(ev) {
+    // get the instance if it exists
+    val = plt.instanceMap.get(elm);
+    if (val) {
+      // instance is ready, let's call it's member method for this event
+      val[eventMethodName](ev);
+    } else {
+      // instance is not ready!!
+      // let's queue up this event data and replay it later
+      // when the instance is ready
+      val = plt.queuedEvents.get(elm) || [];
+      val.push(eventMethodName, ev);
+      plt.queuedEvents.set(elm, val);
+    }
+  };
+}
+
+function enableEventListener(plt, instance, eventName, shouldEnable, attachTo, passive) {
+  if (instance) {
+    // cool, we've got an instance, it's get the element it's on
+    var elm = plt.hostElementMap.get(instance);
+    var cmpMeta = plt.getComponentMeta(elm);
+    if (cmpMeta && cmpMeta.listenersMeta) {
+      // alrighty, so this cmp has listener meta
+      if (shouldEnable) {
+        // we want to enable this event
+        // find which listen meta we're talking about
+        var listenMeta_1 = cmpMeta.listenersMeta.find(function(l) {
+          return l.eventName === eventName;
+        });
+        listenMeta_1 && 
+        // found the listen meta, so let's add the listener
+        plt.domApi.$addEventListener(elm, eventName, function(ev) {
+          return instance[listenMeta_1.eventMethodName](ev);
+        }, listenMeta_1.eventCapture, void 0 === passive ? listenMeta_1.eventPassive : !!passive, attachTo);
+      } else {
+        // we're disabling the event listener
+        // so let's just remove it entirely
+        plt.domApi.$removeEventListener(elm, eventName);
+      }
+    }
+  }
+}
+
+function generateDevInspector(App, namespace, win, plt) {
+  var devInspector = win.devInspector = win.devInspector || {};
+  devInspector.apps = devInspector.apps || [];
+  devInspector.apps.push(generateDevInspectorApp(App, namespace, plt));
+  devInspector.getInstance || (devInspector.getInstance = function(elm) {
+    return Promise.all(devInspector.apps.map(function(app) {
+      return app.getInstance(elm);
+    })).then(function(results) {
+      return results.find(function(instance) {
+        return !!instance;
+      });
+    });
+  });
+  devInspector.getComponents || (devInspector.getComponents = function() {
+    var appsMetadata = [];
+    devInspector.apps.forEach(function(app) {
+      appsMetadata.push(app.getComponents());
+    });
+    return Promise.all(appsMetadata).then(function(appMetadata) {
+      var allMetadata = [];
+      appMetadata.forEach(function(metadata) {
+        metadata.forEach(function(m) {
+          allMetadata.push(m);
+        });
+      });
+      return allMetadata;
+    });
+  });
+  return devInspector;
+}
+
+function generateDevInspectorApp(App, namespace, plt) {
+  var app = {
+    namespace: namespace,
+    getInstance: function(elm) {
+      if (elm && elm.tagName) {
+        return Promise.all([ getComponentMeta(plt, elm.tagName), getComponentInstance(plt, elm) ]).then(function(results) {
+          if (results[0] && results[1]) {
+            var cmp = {
+              meta: results[0],
+              instance: results[1]
+            };
+            return cmp;
+          }
+          return null;
+        });
+      }
+      return Promise.resolve(null);
+    },
+    getComponent: function(tagName) {
+      return getComponentMeta(plt, tagName);
+    },
+    getComponents: function() {
+      return Promise.all(App.components.map(function(cmp) {
+        return getComponentMeta(plt, cmp[0]);
+      })).then(function(metadata) {
+        return metadata.filter(function(m) {
+          return m;
+        });
+      });
+    }
+  };
+  return app;
+}
+
+function getMembersMeta(properties) {
+  return Object.keys(properties).reduce(function(membersMap, memberKey) {
+    var prop = properties[memberKey];
+    var category;
+    var member = {
+      name: memberKey
+    };
+    if (prop.state) {
+      category = 'states';
+      member.watchers = prop.watchCallbacks || [];
+    } else if (prop.elementRef) {
+      category = 'elements';
+    } else if (prop.method) {
+      category = 'methods';
+    } else {
+      category = 'props';
+      var type = 'any';
+      if (prop.type) {
+        type = prop.type;
+        'function' === typeof prop.type && (type = prop.type.name);
+      }
+      member.type = type.toLowerCase();
+      member.mutable = prop.mutable || false;
+      member.connect = prop.connect || '-';
+      member.context = prop.connect || '-';
+      member.watchers = prop.watchCallbacks || [];
+    }
+    membersMap[category].push(member);
+    return membersMap;
+  }, {
+    props: [],
+    states: [],
+    elements: [],
+    methods: []
+  });
+}
+
+function getComponentMeta(plt, tagName) {
+  var elm = {
+    nodeName: tagName
+  };
+  var internalMeta = plt.getComponentMeta(elm);
+  if (!internalMeta || !internalMeta.componentConstructor) {
+    return Promise.resolve(null);
+  }
+  var cmpCtr = internalMeta.componentConstructor;
+  var members = getMembersMeta(cmpCtr.properties || {});
+  var listeners = (internalMeta.listenersMeta || []).map(function(listenerMeta) {
+    return {
+      event: listenerMeta.eventName,
+      capture: listenerMeta.eventCapture,
+      disabled: listenerMeta.eventDisabled,
+      passive: listenerMeta.eventPassive,
+      method: listenerMeta.eventMethodName
+    };
+  });
+  var emmiters = cmpCtr.events || [];
+  var meta = Object.assign({
+    tag: cmpCtr.is,
+    bundle: internalMeta.bundleIds || 'unknown',
+    encapsulation: cmpCtr.encapsulation || 'none'
+  }, members, {
+    events: {
+      emmiters: emmiters,
+      listeners: listeners
+    }
+  });
+  return Promise.resolve(meta);
+}
+
+function getComponentInstance(plt, elm) {
+  return Promise.resolve(plt.instanceMap.get(elm));
+}
+
+function initCoreComponentOnReady(plt, App, win, apps, queuedComponentOnReadys, i) {
+  // add componentOnReady() to the App object
+  // this also is used to know that the App's core is ready
+  App.componentOnReady = function(elm, resolve) {
+    if (!elm.nodeName.includes('-')) {
+      resolve(null);
+      return false;
+    }
+    var cmpMeta = plt.getComponentMeta(elm);
+    if (cmpMeta) {
+      if (plt.hasLoadedMap.has(elm)) {
+        // element has already loaded, pass the resolve the element component
+        // so we know that the resolve knows it this element is an app component
+        resolve(elm);
+      } else {
+        // element hasn't loaded yet
+        // add this resolve specifically to this elements on ready queue
+        var onReadyCallbacks = plt.onReadyCallbacksMap.get(elm) || [];
+        onReadyCallbacks.push(resolve);
+        plt.onReadyCallbacksMap.set(elm, onReadyCallbacks);
+      }
+    }
+    // return a boolean if this app recognized this element or not
+        return !!cmpMeta;
+  };
+  if (queuedComponentOnReadys) {
+    // we've got some componentOnReadys in the queue before the app was ready
+    for (i = queuedComponentOnReadys.length - 1; i >= 0; i--) {
+      // go through each element and see if this app recongizes it
+      App.componentOnReady(queuedComponentOnReadys[i][0], queuedComponentOnReadys[i][1]) && 
+      // turns out this element belongs to this app
+      // remove the resolve from the queue so in the end
+      // all that's left in the queue are elements not apart of any apps
+      queuedComponentOnReadys.splice(i, 1);
+    }
+    for (i = 0; i < apps.length; i++) {
+      if (!win[apps[i]].componentOnReady) {
+        // there is at least 1 apps that isn't ready yet
+        // so let's stop here cuz there's still app cores loading
+        return;
+      }
+    }
+    // if we got to this point then that means all of the apps are ready
+    // and they would have removed any of their elements from queuedComponentOnReadys
+    // so let's do the cleanup of the  remaining queuedComponentOnReadys
+        for (i = 0; i < queuedComponentOnReadys.length; i++) {
+      // resolve any queued componentsOnReadys that are left over
+      // since these elements were not apart of any apps
+      // call the resolve fn, but pass null so it's know this wasn't a known app component
+      queuedComponentOnReadys[i][1](null);
+    }
+    queuedComponentOnReadys.length = 0;
+  }
+}
+
+function attributeChangedCallback(membersMeta, elm, attribName, oldVal, newVal, propName, memberMeta) {
+  // only react if the attribute values actually changed
+  if (membersMeta && oldVal !== newVal) {
+    // using the known component meta data
+    // look up to see if we have a property wired up to this attribute name
+    for (propName in membersMeta) {
+      memberMeta = membersMeta[propName];
+      // normalize the attribute name w/ lower case
+            if (memberMeta.attribName && toLowerCase(memberMeta.attribName) === toLowerCase(attribName)) {
+        // cool we've got a prop using this attribute name, the value will
+        // be a string, so let's convert it to the correct type the app wants
+        elm[propName] = parsePropertyValue(memberMeta.propType, newVal);
+        break;
+      }
+    }
+  }
+}
+
+function initHostSnapshot(domApi, cmpMeta, hostElm, hostSnapshot, attribName) {
+  // the host element has connected to the dom
+  // and we've waited a tick to make sure all frameworks
+  // have finished adding attributes and child nodes to the host
+  // before we go all out and hydrate this beast
+  // let's first take a snapshot of its original layout before render
+  hostElm.mode || (
+  // looks like mode wasn't set as a property directly yet
+  // first check if there's an attribute
+  // next check the app's global
+  hostElm.mode = domApi.$getMode(hostElm));
+  // if the slot polyfill is required we'll need to put some nodes
+  // in here to act as original content anchors as we move nodes around
+  // host element has been connected to the DOM
+  if (!hostElm['s-cr'] && !domApi.$getAttribute(hostElm, SSR_VNODE_ID) && (!domApi.$supportsShadowDom || 1 /* ShadowDom */ !== cmpMeta.encapsulation)) {
+    // only required when we're NOT using native shadow dom (slot)
+    // or this browser doesn't support native shadow dom
+    // and this host element was NOT created with SSR
+    // let's pick out the inner content for slot projection
+    // create a node to represent where the original
+    // content was first placed, which is useful later on
+    hostElm['s-cr'] = domApi.$createTextNode('');
+    hostElm['s-cr']['s-cn'] = true;
+    domApi.$insertBefore(hostElm, hostElm['s-cr'], domApi.$childNodes(hostElm)[0]);
+  }
+  if (!domApi.$supportsShadowDom && 1 /* ShadowDom */ === cmpMeta.encapsulation) {
+    true;
+    // it's possible we're manually forcing the slot polyfill
+    // but this browser may already support the read-only shadowRoot
+    // do an extra check here, but only for dev mode on the client
+    'shadowRoot' in HTMLElement.prototype || (hostElm.shadowRoot = hostElm);
+  }
+  1 /* ShadowDom */ === cmpMeta.encapsulation && domApi.$supportsShadowDom && !hostElm.shadowRoot && 
+  // this component is using shadow dom
+  // and this browser supports shadow dom
+  // add the read-only property "shadowRoot" to the host element
+  domApi.$attachShadow(hostElm, {
+    mode: 'open'
+  });
+  // create a host snapshot object we'll
+  // use to store all host data about to be read later
+  hostSnapshot = {
+    $id: hostElm['s-id'],
+    $attributes: {}
+  };
+  // loop through and gather up all the original attributes on the host
+  // this is useful later when we're creating the component instance
+    cmpMeta.membersMeta && Object.keys(cmpMeta.membersMeta).forEach(function(memberName) {
+    (attribName = cmpMeta.membersMeta[memberName].attribName) && (hostSnapshot.$attributes[attribName] = domApi.$getAttribute(hostElm, attribName));
+  });
+  return hostSnapshot;
+}
+
+function connectedCallback(plt, cmpMeta, elm) {
+  // initialize our event listeners on the host element
+  // we do this now so that we can listening to events that may
+  // have fired even before the instance is ready
+  if (!plt.hasListenersMap.has(elm)) {
+    // it's possible we've already connected
+    // then disconnected
+    // and the same element is reconnected again
+    plt.hasListenersMap.set(elm, true);
+    initElementListeners(plt, elm);
+  }
+  // this element just connected, which may be re-connecting
+  // ensure we remove it from our map of disconnected
+  plt.isDisconnectedMap.delete(elm);
+  if (!plt.hasConnectedMap.has(elm)) {
+    // first time we've connected
+    plt.hasConnectedMap.set(elm, true);
+    elm['s-id'] || (
+    // assign a unique id to this host element
+    // it's possible this was already given an element id
+    elm['s-id'] = plt.nextId());
+    // register this component as an actively
+    // loading child to its parent component
+        registerWithParentComponent(plt, elm);
+    // add to the queue to load the bundle
+    // it's important to have an async tick in here so we can
+    // ensure the "mode" attribute has been added to the element
+    // place in high priority since it's not much work and we need
+    // to know as fast as possible, but still an async tick in between
+        plt.queue.tick(function() {
+      // start loading this component mode's bundle
+      // if it's already loaded then the callback will be synchronous
+      plt.hostSnapshotMap.set(elm, initHostSnapshot(plt.domApi, cmpMeta, elm));
+      plt.requestBundle(cmpMeta, elm);
+    });
+  }
+}
+
+function registerWithParentComponent(plt, elm, ancestorHostElement) {
+  // find the first ancestor host element (if there is one) and register
+  // this element as one of the actively loading child elements for its ancestor
+  ancestorHostElement = elm;
+  while (ancestorHostElement = plt.domApi.$parentElement(ancestorHostElement)) {
+    // climb up the ancestors looking for the first registered component
+    if (plt.isDefinedComponent(ancestorHostElement)) {
+      // we found this elements the first ancestor host element
+      // if the ancestor already loaded then do nothing, it's too late
+      if (!plt.hasLoadedMap.has(elm)) {
+        // keep a reference to this element's ancestor host element
+        // elm._ancestorHostElement = ancestorHostElement;
+        plt.ancestorHostElementMap.set(elm, ancestorHostElement);
+        // ensure there is an array to contain a reference to each of the child elements
+        // and set this element as one of the ancestor's child elements it should wait on
+                ancestorHostElement.$activeLoading && (
+        // $activeLoading deprecated 2018-04-02
+        ancestorHostElement['s-ld'] = ancestorHostElement.$activeLoading);
+        (ancestorHostElement['s-ld'] = ancestorHostElement['s-ld'] || []).push(elm);
+      }
+      break;
+    }
+  }
+}
+
+function disconnectedCallback(plt, elm) {
+  // only disconnect if we're not temporarily disconnected
+  // tmpDisconnected will happen when slot nodes are being relocated
+  if (!plt.tmpDisconnected && isDisconnected(plt.domApi, elm)) {
+    // ok, let's officially destroy this thing
+    // set this to true so that any of our pending async stuff
+    // doesn't continue since we already decided to destroy this node
+    // elm._hasDestroyed = true;
+    plt.isDisconnectedMap.set(elm, true);
+    // double check that we've informed the ancestor host elements
+    // that they're good to go and loaded (cuz this one is on its way out)
+        propagateComponentLoaded(plt, elm);
+    // since we're disconnecting, call all of the JSX ref's with null
+        callNodeRefs(plt.vnodeMap.get(elm), true);
+    // detatch any event listeners that may have been added
+    // because we're not passing an exact event name it'll
+    // remove all of this element's event, which is good
+        plt.domApi.$removeEventListener(elm);
+    plt.hasListenersMap.delete(elm);
+    // call instance componentDidUnload
+    // if we've created an instance for this
+    var instance = plt.instanceMap.get(elm);
+    instance && 
+    // call the user's componentDidUnload if there is one
+    instance.componentDidUnload && instance.componentDidUnload();
+    // clear CSS var-shim tracking
+    plt.customStyle && plt.customStyle.removeHost(elm);
+    // clear any references to other elements
+    // more than likely we've already deleted these references
+    // but let's double check there pal
+        [ plt.ancestorHostElementMap, plt.onReadyCallbacksMap, plt.hostSnapshotMap ].forEach(function(wm) {
+      return wm.delete(elm);
+    });
+  }
+}
+
+function isDisconnected(domApi, elm) {
+  while (elm) {
+    if (!domApi.$parentNode(elm)) {
+      return 9 /* DocumentNode */ !== domApi.$nodeType(elm);
+    }
+    elm = domApi.$parentNode(elm);
+  }
+}
+
+function initComponentHmr(plt, cmpMeta, elm, hmrVersionId) {
+  // keep the existing state
+  // forget the constructor
+  cmpMeta.componentConstructor = null;
+  // forget the instance
+    var instance = plt.instanceMap.get(elm);
+  if (instance) {
+    plt.hostElementMap.delete(instance);
+    plt.instanceMap.delete(elm);
+  }
+  plt.hostSnapshotMap.set(elm, initHostSnapshot(plt.domApi, cmpMeta, elm));
+  // request the bundle again
+    plt.requestBundle(cmpMeta, elm, hmrVersionId);
+}
+
+function proxyHostElementPrototype(plt, membersMeta, hostPrototype) {
+  false;
+  membersMeta && Object.keys(membersMeta).forEach(function(memberName) {
+    // add getters/setters
+    var member = membersMeta[memberName];
+    var memberType = member.memberType;
+    1 /* Prop */ === memberType || 2 /* PropMutable */ === memberType ? 
+    // @Prop() or @Prop({ mutable: true })
+    definePropertyGetterSetter(hostPrototype, memberName, function getHostElementProp() {
+      // host element getter (cannot be arrow fn)
+      // yup, ugly, srynotsry
+      return (plt.valuesMap.get(this) || {})[memberName];
+    }, function setHostElementProp(newValue) {
+      // host element setter (cannot be arrow fn)
+      setValue(plt, this, memberName, parsePropertyValue(member.propType, newValue));
+    }) : 6 /* Method */ === memberType && 
+    // @Method()
+    // add a placeholder noop value on the host element's prototype
+    // incase this method gets called before setup
+    definePropertyValue(hostPrototype, memberName, noop);
+  });
+}
+
+function initHostElement(plt, cmpMeta, HostElementConstructor, hydratedCssClass) {
+  // let's wire up our functions to the host element's prototype
+  // we can also inject our platform into each one that needs that api
+  // note: these cannot be arrow functions cuz "this" is important here hombre
+  HostElementConstructor.connectedCallback = function() {
+    // coolsville, our host element has just hit the DOM
+    connectedCallback(plt, cmpMeta, this);
+  };
+  HostElementConstructor.attributeChangedCallback = function(attribName, oldVal, newVal) {
+    // the browser has just informed us that an attribute
+    // on the host element has changed
+    attributeChangedCallback(cmpMeta.membersMeta, this, attribName, oldVal, newVal);
+  };
+  HostElementConstructor.disconnectedCallback = function() {
+    // the element has left the builing
+    disconnectedCallback(plt, this);
+  };
+  HostElementConstructor['s-init'] = function() {
+    initComponentLoaded(plt, this, hydratedCssClass);
+  };
+  HostElementConstructor['s-hmr'] = function(hmrVersionId) {
+    initComponentHmr(plt, cmpMeta, this, hmrVersionId);
+  };
+  HostElementConstructor.forceUpdate = function() {
+    queueUpdate(plt, this);
+  };
+  // add getters/setters to the host element members
+  // these would come from the @Prop and @Method decorators that
+  // should create the public API to this component
+    proxyHostElementPrototype(plt, cmpMeta.membersMeta, HostElementConstructor);
+}
+
+function proxyController(domApi, controllerComponents, ctrlTag) {
+  return {
+    'create': proxyProp(domApi, controllerComponents, ctrlTag, 'create'),
+    'componentOnReady': proxyProp(domApi, controllerComponents, ctrlTag, 'componentOnReady')
+  };
+}
+
+function proxyProp(domApi, controllerComponents, ctrlTag, proxyMethodName) {
+  return function() {
+    var args = arguments;
+    return loadComponent(domApi, controllerComponents, ctrlTag).then(function(ctrlElm) {
+      return ctrlElm[proxyMethodName].apply(ctrlElm, args);
+    });
+  };
+}
+
+function loadComponent(domApi, controllerComponents, ctrlTag) {
+  var ctrlElm = controllerComponents[ctrlTag];
+  var body = domApi.$doc.body;
+  if (body) {
+    ctrlElm || (ctrlElm = body.querySelector(ctrlTag));
+    if (!ctrlElm) {
+      ctrlElm = controllerComponents[ctrlTag] = domApi.$createElement(ctrlTag);
+      domApi.$appendChild(body, ctrlElm);
+    }
+    return ctrlElm.componentOnReady();
+  }
+  return Promise.resolve();
+}
+
+function createPlatformMain(namespace, Context, win, doc, resourcesUrl, hydratedCssClass) {
+  var cmpRegistry = {
+    'html': {}
+  };
+  var controllerComponents = {};
+  var App = win[namespace] = win[namespace] || {};
+  var domApi = createDomApi(App, win, doc);
+  // set App Context
+    Context.isServer = Context.isPrerender = !(Context.isClient = true);
+  Context.window = win;
+  Context.location = win.location;
+  Context.document = doc;
+  Context.resourcesUrl = Context.publicPath = resourcesUrl;
+  Context.enableListener = function(instance, eventName, enabled, attachTo, passive) {
+    return enableEventListener(plt, instance, eventName, enabled, attachTo, passive);
+  };
+  Context.emit = function(elm, eventName, data) {
+    return domApi.$dispatchEvent(elm, Context.eventNameFn ? Context.eventNameFn(eventName) : eventName, data);
+  };
+  // add the h() fn to the app's global namespace
+  App.h = h;
+  App.Context = Context;
+  // keep a global set of tags we've already defined
+  // DEPRECATED $definedCmps 2018-05-22
+    var globalDefined = win['s-defined'] = win.$definedCmps = win['s-defined'] || win.$definedCmps || {};
+  // internal id increment for unique ids
+    var ids = 0;
+  // create the platform api which is used throughout common core code
+    var plt = {
+    domApi: domApi,
+    defineComponent: defineComponent,
+    emitEvent: Context.emit,
+    getComponentMeta: function(elm) {
+      return cmpRegistry[domApi.$tagName(elm)];
+    },
+    getContextItem: function(contextKey) {
+      return Context[contextKey];
+    },
+    isClient: true,
+    isDefinedComponent: function(elm) {
+      return !!(globalDefined[domApi.$tagName(elm)] || plt.getComponentMeta(elm));
+    },
+    nextId: function() {
+      return namespace + ids++;
+    },
+    onError: function(err, type, elm) {
+      return console.error(err, type, elm && elm.tagName);
+    },
+    propConnect: function(ctrlTag) {
+      return proxyController(domApi, controllerComponents, ctrlTag);
+    },
+    queue: Context.queue = createQueueClient(App, win),
+    requestBundle: requestBundle,
+    ancestorHostElementMap: new WeakMap(),
+    componentAppliedStyles: new WeakMap(),
+    hasConnectedMap: new WeakMap(),
+    hasListenersMap: new WeakMap(),
+    hasLoadedMap: new WeakMap(),
+    hostElementMap: new WeakMap(),
+    hostSnapshotMap: new WeakMap(),
+    instanceMap: new WeakMap(),
+    isDisconnectedMap: new WeakMap(),
+    isQueuedForUpdate: new WeakMap(),
+    onReadyCallbacksMap: new WeakMap(),
+    queuedEvents: new WeakMap(),
+    vnodeMap: new WeakMap(),
+    valuesMap: new WeakMap()
+  };
+  // create the renderer that will be used
+    plt.render = createRendererPatch(plt, domApi);
+  // setup the root element which is the mighty <html> tag
+  // the <html> has the final say of when the app has loaded
+    var rootElm = domApi.$doc.documentElement;
+  rootElm['s-ld'] = [];
+  rootElm['s-rn'] = true;
+  // this will fire when all components have finished loaded
+    rootElm['s-init'] = function() {
+    plt.hasLoadedMap.set(rootElm, App.loaded = plt.isAppLoaded = true);
+    domApi.$dispatchEvent(win, 'appload', {
+      detail: {
+        namespace: namespace
+      }
+    });
+  };
+  false;
+  function defineComponent(cmpMeta, HostElementConstructor) {
+    if (!win.customElements.get(cmpMeta.tagNameMeta)) {
+      // define the custom element
+      // initialize the members on the host element prototype
+      // keep a ref to the metadata with the tag as the key
+      initHostElement(plt, cmpRegistry[cmpMeta.tagNameMeta] = cmpMeta, HostElementConstructor.prototype, hydratedCssClass);
+      // add which attributes should be observed
+      var observedAttributes = HostElementConstructor.observedAttributes = [];
+      // at this point the membersMeta only includes attributes which should
+      // be observed, it does not include all props yet, so it's safe to
+      // loop through all of the props (attrs) and observed them
+            for (var propName in cmpMeta.membersMeta) {
+        cmpMeta.membersMeta[propName].attribName && observedAttributes.push(
+        // add this attribute to our array of attributes we need to observe
+        cmpMeta.membersMeta[propName].attribName);
+      }
+      win.customElements.define(cmpMeta.tagNameMeta, HostElementConstructor);
+    }
+  }
+  function requestBundle(cmpMeta, elm, hmrVersionId) {
+    if (cmpMeta.componentConstructor) {
+      // we're already all loaded up :)
+      queueUpdate(plt, elm);
+    } else {
+      true;
+      // using a 3rd party bundler to import modules
+      // at this point the cmpMeta will already have a
+      // static function as a the bundleIds that returns the module
+      var moduleOpts = {
+        mode: elm.mode,
+        scoped: 2 /* ScopedCss */ === cmpMeta.encapsulation || 1 /* ShadowDom */ === cmpMeta.encapsulation && !domApi.$supportsShadowDom
+      };
+      cmpMeta.bundleIds(moduleOpts).then(function(cmpConstructor) {
+        // async loading of the module is done
+        try {
+          // get the component constructor from the module
+          // initialize this component constructor's styles
+          // it is possible for the same component to have difficult styles applied in the same app
+          cmpMeta.componentConstructor = cmpConstructor;
+          initStyleTemplate(domApi, cmpMeta, cmpMeta.encapsulation, cmpConstructor.style, cmpConstructor.styleMode);
+        } catch (e) {
+          // oh man, something's up
+          console.error(e);
+          // provide a bogus component constructor
+          // so the rest of the app acts as normal
+                    cmpMeta.componentConstructor = /** @class */ function() {
+            function componentConstructor() {}
+            return componentConstructor;
+          }();
+        }
+        // bundle all loaded up, let's continue
+                queueUpdate(plt, elm);
+      });
+    }
+  }
+  plt.attachStyles = function(plt, domApi, cmpMeta, elm) {
+    attachStyles(plt, domApi, cmpMeta, elm);
+  };
+  generateDevInspector(App, namespace, win, plt);
+  false;
+  // create the componentOnReady fn
+  initCoreComponentOnReady(plt, App, win, win['s-apps'], win['s-cr']);
+  // notify that the app has initialized and the core script is ready
+  // but note that the components have not fully loaded yet
+    App.initialized = true;
+  return plt;
+}
+
+var pltMap = {};
+
+var initCmpOnReady = false;
+
+function defineCustomElement(win, cmpData, opts) {
+  void 0 === opts && (opts = {});
+  cmpData = Array.isArray(cmpData) ? cmpData : [ cmpData ];
+  var doc = win.document;
+  var hydratedCssClass = opts.hydratedCssClass || 'hydrated';
+  var styleCmps = cmpData.filter(function(c) {
+    return c[2];
+  }).map(function(c) {
+    return c[0];
+  });
+  if (styleCmps.length) {
+    // auto hide components until they been fully hydrated
+    // reusing the "x" and "i" variables from the args for funzies
+    var styleElm = doc.createElement('style');
+    styleElm.innerHTML = styleCmps.join() + '{visibility:hidden}.' + hydratedCssClass + '{visibility:inherit}';
+    styleElm.setAttribute('data-styles', '');
+    doc.head.insertBefore(styleElm, doc.head.firstChild);
+  }
+  var namespace = opts.namespace || 'jsonschemadesigner';
+  if (!initCmpOnReady) {
+    initCmpOnReady = true;
+    createComponentOnReadyPrototype(win, namespace, win.HTMLElement.prototype);
+  }
+  applyPolyfills(win, function() {
+    if (!pltMap[namespace]) {
+      var Context = {};
+      var resourcesUrl = opts.resourcesUrl || './';
+      appGlobal(namespace, Context, win, doc, resourcesUrl, hydratedCssClass);
+      // create a platform for this namespace
+            pltMap[namespace] = createPlatformMain(namespace, Context, win, doc, resourcesUrl, hydratedCssClass);
+    }
+    // polyfills have been applied if need be
+        cmpData.forEach(function(c) {
+      var HostElementConstructor;
+      if (isNative(win.customElements.define)) {
+        // native custom elements supported
+        var createHostConstructor = new Function('w', 'return class extends w.HTMLElement{}');
+        HostElementConstructor = createHostConstructor(win);
+      } else {
+        // using polyfilled custom elements
+        HostElementConstructor = function(self) {
+          return win.HTMLElement.call(this, self);
+        };
+        HostElementConstructor.prototype = Object.create(win.HTMLElement.prototype, {
+          constructor: {
+            value: HostElementConstructor,
+            configurable: true
+          }
+        });
+      }
+      // convert the static constructor data to cmp metadata
+      // define the component as a custom element
+            pltMap[namespace].defineComponent(parseComponentLoader(c), HostElementConstructor);
+    });
+  });
+}
+
+function isNative(fn) {
+  return /\{\s*\[native code\]\s*\}/.test('' + fn);
+}
+
+export { defineCustomElement, h };

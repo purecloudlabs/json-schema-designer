@@ -258,7 +258,7 @@ export class SchemaObject extends SchemaRoot {
             this.additionalProperties = json.additionalProperties;
         }
         else {
-            this.canHaveAdditionalProperties = false;
+            this.canHaveAdditionalProperties = true;
         }
         this.minProperties = json.minProperties;
         this.maxProperties = json.maxProperties;

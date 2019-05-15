@@ -1,4 +1,7 @@
 import '../../stencil.core';
+import '../../stencil.core';
+import '../../stencil.core';
+import '../../stencil.core';
 import { EventEmitter } from '../../stencil.core';
 import { SchemaRoot } from './schema';
 export declare class DesignerComponent {

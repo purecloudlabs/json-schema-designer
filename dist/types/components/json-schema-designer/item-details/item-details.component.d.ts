@@ -1,4 +1,7 @@
 import '../../../stencil.core';
+import '../../../stencil.core';
+import '../../../stencil.core';
+import '../../../stencil.core';
 import { ISchemaItem } from '../schema';
 export declare class ItemDetailsComponent {
     item: ISchemaItem;

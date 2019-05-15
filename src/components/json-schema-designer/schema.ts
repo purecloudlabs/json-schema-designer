@@ -351,7 +351,7 @@ export class SchemaObject extends SchemaRoot implements ISchemaItem {
       this.canHaveAdditionalProperties = true;
       this.additionalProperties = json.additionalProperties;
     } else {
-      this.canHaveAdditionalProperties = false;
+      this.canHaveAdditionalProperties = true;
     }
     this.minProperties = json.minProperties;
     this.maxProperties = json.maxProperties;
