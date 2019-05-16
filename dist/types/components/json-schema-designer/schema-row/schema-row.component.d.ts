@@ -1,7 +1,4 @@
 import '../../../stencil.core';
-import '../../../stencil.core';
-import '../../../stencil.core';
-import '../../../stencil.core';
 import { ISchemaItem, IHasChildren } from '../schema';
 export declare class SchemaRowComponent {
     item: ISchemaItem;
