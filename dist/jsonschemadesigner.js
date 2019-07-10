@@ -1,5 +1,138 @@
 /*!
  * Built with http://stenciljs.com
- * 2019-04-24T02:15:21
+ * 2019-06-10T18:08:57
  */
-!function(e,t,n,s,i,r,o,c,a,d,u,l,p,m){for((u=e[n]=e[n]||{}).components=a,(p=a.filter(function(e){return e[2]}).map(function(e){return e[0]})).length&&((l=t.createElement("style")).innerHTML=p.join()+"{visibility:hidden}.hydrated{visibility:inherit}",l.setAttribute("data-styles",""),t.head.insertBefore(l,t.head.firstChild)),function(e,t,n){(e["s-apps"]=e["s-apps"]||[]).push("jsonschemadesigner"),n.componentOnReady||(n.componentOnReady=function(){var t=this;function n(n){if(t.nodeName.indexOf("-")>0){for(var s=e["s-apps"],i=0,r=0;r<s.length;r++)if(e[s[r]].componentOnReady){if(e[s[r]].componentOnReady(t,n))return;i++}if(i<s.length)return void(e["s-cr"]=e["s-cr"]||[]).push([t,n])}n(null)}return e.Promise?new e.Promise(n):{then:n}})}(e,0,d),i=i||u.resourcesUrl,l=(p=t.querySelectorAll("script")).length-1;l>=0&&!(m=p[l]).src&&!m.hasAttribute("data-resources-url");l--);p=m.getAttribute("data-resources-url"),!i&&p&&(i=p),!i&&m.src&&(i=(p=m.src.split("/").slice(0,-1)).join("/")+(p.length?"/":"")+"jsonschemadesigner/"),l=t.createElement("script"),function(e,t,n,s){return!(t.search.indexOf("core=esm")>0)&&(!(!(t.search.indexOf("core=es5")>0||"file:"===t.protocol)&&e.customElements&&e.customElements.define&&e.fetch&&e.CSS&&e.CSS.supports&&e.CSS.supports("color","var(--c)")&&"noModule"in n)||function(e){try{return new Function('import("")'),!1}catch(e){}return!0}())}(e,e.location,l)?l.src=i+"jsonschemadesigner.gz2yyhti.js":(l.src=i+"jsonschemadesigner.iksptxce.js",l.setAttribute("type","module"),l.setAttribute("crossorigin",!0)),l.setAttribute("data-resources-url",i),l.setAttribute("data-namespace","jsonschemadesigner"),t.head.appendChild(l)}(window,document,"jsonschemadesigner",0,0,0,0,0,[["item-details","psdsay1i",0,[["_tickle",5],["definitions",1,0,1,1],["enumCtrlExpanded",5],["i18n",3,0,0,0,"i18n"],["item",1],["parent",1,0,1,1]]],["json-schema-designer","psdsay1i",1,[["_tickle",5],["activeTab",5],["debugmode",1,0,1,3],["exportSchema",6],["i18n",3,0,0,0,"i18n"],["inputschema",1,0,1,2],["inputtranslations",1,0,1,2],["viewmode",1,0,1,2]]],["schema-row","psdsay1i",0,[["_tickle",5],["definitions",1,0,1,1],["i18n",3,0,0,0,"i18n"],["item",1],["parent",1,0,1,1],["showChildren",5],["showDeleteConfirmationMessage",5],["showDetailsPan",5]]]],HTMLElement.prototype);
+(function(win, doc, namespace, fsNamespace, resourcesUrl, appCore, appCoreSsr, appCorePolyfilled, hydratedCssClass, components) {
+
+  function init(win, doc, namespace, fsNamespace, resourcesUrl, appCore, appCorePolyfilled, hydratedCssClass, components, HTMLElementPrototype, App, x, y, scriptElm) {
+    // create global namespace if it doesn't already exist
+    App = win[namespace] = win[namespace] || {};
+    App.components = components;
+    y = components.filter(function (c) { return c[2]; }).map(function (c) { return c[0]; });
+    if (y.length) {
+        // auto hide components until they been fully hydrated
+        // reusing the "x" and "i" variables from the args for funzies
+        x = doc.createElement('style');
+        x.innerHTML = y.join() + '{visibility:hidden}.' + hydratedCssClass + '{visibility:inherit}';
+        x.setAttribute('data-styles', '');
+        doc.head.insertBefore(x, doc.head.firstChild);
+    }
+    createComponentOnReadyPrototype(win, namespace, HTMLElementPrototype);
+    resourcesUrl = resourcesUrl || App.resourcesUrl;
+    // figure out the script element for this current script
+    y = doc.querySelectorAll('script');
+    for (x = y.length - 1; x >= 0; x--) {
+        scriptElm = y[x];
+        if (scriptElm.src || scriptElm.hasAttribute('data-resources-url')) {
+            break;
+        }
+    }
+    // get the resource path attribute on this script element
+    y = scriptElm.getAttribute('data-resources-url');
+    if (!resourcesUrl && y) {
+        // the script element has a data-resources-url attribute, always use that
+        resourcesUrl = y;
+    }
+    if (!resourcesUrl && scriptElm.src) {
+        // we don't have an exact resourcesUrl, so let's
+        // figure it out relative to this script's src and app's filesystem namespace
+        y = scriptElm.src.split('/').slice(0, -1);
+        resourcesUrl = (y.join('/')) + (y.length ? '/' : '') + fsNamespace + '/';
+    }
+    // request the core this browser needs
+    // test for native support of custom elements and fetch
+    // if either of those are not supported, then use the core w/ polyfills
+    // also check if the page was build with ssr or not
+    x = doc.createElement('script');
+    if (usePolyfills(win, win.location, x, 'import("")')) {
+        // requires the es5/polyfilled core
+        x.src = resourcesUrl + appCorePolyfilled;
+    }
+    else {
+        // let's do this!
+        x.src = resourcesUrl + appCore;
+        x.setAttribute('type', 'module');
+        x.setAttribute('crossorigin', true);
+    }
+    x.setAttribute('data-resources-url', resourcesUrl);
+    x.setAttribute('data-namespace', fsNamespace);
+    doc.head.appendChild(x);
+}
+function usePolyfills(win, location, scriptElm, dynamicImportTest) {
+    // fyi, dev mode has verbose if/return statements
+    // but it minifies to a nice 'lil one-liner ;)
+    if (location.search.indexOf('core=esm') > 0) {
+        // force esm build
+        return false;
+    }
+    if ((location.search.indexOf('core=es5') > 0) ||
+        (location.protocol === 'file:') ||
+        (!(win.customElements && win.customElements.define)) ||
+        (!win.fetch) ||
+        (!(win.CSS && win.CSS.supports && win.CSS.supports('color', 'var(--c)'))) ||
+        (!('noModule' in scriptElm))) {
+        // es5 build w/ polyfills
+        return true;
+    }
+    // final test to see if this browser support dynamic imports
+    return doesNotSupportsDynamicImports(dynamicImportTest);
+}
+function doesNotSupportsDynamicImports(dynamicImportTest) {
+    try {
+        new Function(dynamicImportTest);
+        return false;
+    }
+    catch (e) { }
+    return true;
+}
+function createComponentOnReadyPrototype(win, namespace, HTMLElementPrototype) {
+    (win['s-apps'] = win['s-apps'] || []).push(namespace);
+    if (!HTMLElementPrototype.componentOnReady) {
+        HTMLElementPrototype.componentOnReady = function componentOnReady() {
+            /*tslint:disable*/
+            var elm = this;
+            function executor(resolve) {
+                if (elm.nodeName.indexOf('-') > 0) {
+                    // window hasn't loaded yet and there's a
+                    // good chance this is a custom element
+                    var apps = win['s-apps'];
+                    var appsReady = 0;
+                    // loop through all the app namespaces
+                    for (var i = 0; i < apps.length; i++) {
+                        // see if this app has "componentOnReady" setup
+                        if (win[apps[i]].componentOnReady) {
+                            // this app's core has loaded call its "componentOnReady"
+                            if (win[apps[i]].componentOnReady(elm, resolve)) {
+                                // this component does belong to this app and would
+                                // have fired off the resolve fn
+                                // let's stop here, we're good
+                                return;
+                            }
+                            appsReady++;
+                        }
+                    }
+                    if (appsReady < apps.length) {
+                        // not all apps are ready yet
+                        // add it to the queue to be figured out when they are
+                        (win['s-cr'] = win['s-cr'] || []).push([elm, resolve]);
+                        return;
+                    }
+                }
+                // not a recognized app component
+                resolve(null);
+            }
+            // callback wasn't provided, let's return a promise
+            if (win.Promise) {
+                // use native/polyfilled promise
+                return new win.Promise(executor);
+            }
+            // promise may not have been polyfilled yet
+            return { then: executor };
+        };
+    }
+}
+
+
+  init(win, doc, namespace, fsNamespace, resourcesUrl, appCore, appCoreSsr, appCorePolyfilled, hydratedCssClass, components);
+
+  })(window, document, "jsonschemadesigner","jsonschemadesigner",0,"jsonschemadesigner.core.js","es5-build-disabled.js","hydrated",[["item-details","item-details",0,[["_tickle",5],["definitions",1,0,1,1],["enumCtrlExpanded",5],["i18n",3,0,0,0,"i18n"],["item",1],["parent",1,0,1,1]]],["json-schema-designer","item-details",1,[["_tickle",5],["activeTab",5],["debugmode",1,0,1,3],["exportSchema",6],["i18n",3,0,0,0,"i18n"],["inputschema",1,0,1,2],["inputtranslations",1,0,1,2],["viewmode",1,0,1,2]]],["schema-row","item-details",0,[["_tickle",5],["definitions",1,0,1,1],["i18n",3,0,0,0,"i18n"],["item",1],["parent",1,0,1,1],["showChildren",5],["showDeleleConfirmationMessage",5],["showDetailsPan",5]]]],HTMLElement.prototype);
