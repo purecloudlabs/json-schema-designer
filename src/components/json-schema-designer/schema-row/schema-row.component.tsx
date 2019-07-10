@@ -15,7 +15,7 @@ export class SchemaRowComponent {
 
   @State() showChildren: boolean = true;
   @State() showDetailsPan: boolean = false;
-  @State() showDeleleConfirmationMessage: boolean = false;
+  @State() showDeleteConfirmationMessage: boolean = false;
   @State() _tickle: number = 0;
 
   removeItem(item: ISchemaItem): void {
@@ -109,8 +109,6 @@ export class SchemaRowComponent {
                           <option value="object" selected={this.item.type === 'object'} class="badge badge-pill badge-primary object">{this.i18n.translate('json-schema-designer.object').toUpperCase()} {propCountDisplay}</option>
                           <option value="array" selected={this.item.type === 'array'} class="badge badge-pill badge-primary array">{this.i18n.translate('json-schema-designer.array').toUpperCase()}</option>
                           <option value="boolean" selected={this.item.type === 'boolean'} class="badge badge-pill badge-primary boolean">{this.i18n.translate('json-schema-designer.boolean').toUpperCase()}</option>
-                          <option value="null" selected={this.item.type === 'null'} class="badge badge-pill badge-primary null">{this.i18n.translate('json-schema-designer.null').toUpperCase()}</option>
-                          <option value="$ref" selected={this.item.type === '$ref'} class="badge badge-pill badge-primary $ref">{this.i18n.translate('json-schema-designer.$ref').toUpperCase()}</option>
                     </select>
                 }
                 <i class={requiredIconClass} data-toggle="tooltip" data-placement="top" data-original-title={requiredTooltip} onClick={ () => {
@@ -135,11 +133,11 @@ export class SchemaRowComponent {
                 {this.item.isRoot
                   ? <i class="fa fa-times model-remove disabled"></i>
                   : <i class="fa fa-times model-remove" onClick={() => {
-                      this.showDeleleConfirmationMessage = true;
+                      this.showDeleteConfirmationMessage = true;
                     }}>
                     </i>
                 }
-                {this.showDeleleConfirmationMessage
+                {this.showDeleteConfirmationMessage
                   ? <div class="delete-confirmation-message">
                       <div class="message">
                         {this.i18n.translate('json-schema-designer.delete?')}
@@ -148,12 +146,12 @@ export class SchemaRowComponent {
                         <i class="fa fa-check" onClick={() => {
                             if (this.item.isRoot) return;
                             this.removeItem(this.item);
-                            this.showDeleleConfirmationMessage = false;
+                            this.showDeleteConfirmationMessage = false;
                             this.rerender();
                           }}>
                           </i>
                         <i class="fa fa-times model-remove" onClick={() => {
-                          this.showDeleleConfirmationMessage = false;
+                          this.showDeleteConfirmationMessage = false;
                         }}></i>
                       </div>
                    </div>

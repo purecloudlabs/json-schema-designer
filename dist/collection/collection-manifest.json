@@ -136,7 +136,7 @@
           "name": "showChildren"
         },
         {
-          "name": "showDeleleConfirmationMessage"
+          "name": "showDeleteConfirmationMessage"
         },
         {
           "name": "showDetailsPan"

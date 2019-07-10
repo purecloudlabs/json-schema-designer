@@ -7,7 +7,7 @@ export declare class SchemaRowComponent {
     private i18n;
     showChildren: boolean;
     showDetailsPan: boolean;
-    showDeleleConfirmationMessage: boolean;
+    showDeleteConfirmationMessage: boolean;
     _tickle: number;
     removeItem(item: ISchemaItem): void;
     addNewProp(item: IHasChildren): void;
