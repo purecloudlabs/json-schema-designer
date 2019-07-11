@@ -11,7 +11,6 @@ export class SchemaRowComponent {
   @Prop() parent: any;
   @Prop() definitions: any;
   @Prop() dataTypeArray: string[];
-  @Prop() useenums: boolean;
   @Prop({ context: 'i18n' }) private i18n: any;
 
   @State() showChildren: boolean = true;
@@ -171,13 +170,13 @@ export class SchemaRowComponent {
             </div>
           </div>
           {this.showDetailsPan
-            ? <item-details class="item-details" item={ this.item } definitions={ this.definitions } parent={ this } useenums={this.useenums}></item-details>
+            ? <item-details class="item-details" item={ this.item } definitions={ this.definitions } parent={ this }></item-details>
             : <div></div>
           }
         </div>
         <div class="indent">
           {children.map((child) =>
-              <schema-row item={ child } definitions={ this.definitions } parent={ this } dataTypeArray={ this.dataTypeArray } useenums={this.useenums}></schema-row>
+              <schema-row item={ child } definitions={ this.definitions } parent={ this } dataTypeArray={ this.dataTypeArray }></schema-row>
           )}
         </div>
       </div>
