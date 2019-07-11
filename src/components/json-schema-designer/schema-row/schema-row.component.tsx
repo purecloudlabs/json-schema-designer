@@ -10,7 +10,7 @@ export class SchemaRowComponent {
   @Prop() item: ISchemaItem;
   @Prop() parent: any;
   @Prop() definitions: any;
-  @Prop() dataTypeArray: string[]; // optional
+  @Prop() dataTypeArray: string[];
   @Prop({ context: 'i18n' }) private i18n: any;
 
   @State() showChildren: boolean = true;

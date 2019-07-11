@@ -107,7 +107,7 @@ export class DesignerComponent {
   @Prop() inputtranslations: string;
   @Prop() viewmode: string = 'columns'; //tabs, columns, designerOnly
   @Prop() debugmode: boolean = false;
-  @Prop() datatypes: any; // takes an array or string representation of an array
+  @Prop() datatypes: any; // optional, takes an array or string representation of an array
 
   @Method()
   exportSchema() {
