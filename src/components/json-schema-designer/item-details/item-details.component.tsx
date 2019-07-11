@@ -321,16 +321,6 @@ export class ItemDetailsComponent {
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-sm-2">{this.i18n.translate('json-schema-designer.additional-properties')}</label>
-            <div class="col-sm-10">
-              <textarea class="form-control" value={objectItem.additionalProperties} onInput={(event) => {
-                const input = event.target as HTMLInputElement;
-                objectItem.additionalProperties = input.value;
-                this.rerender();
-              }} disabled={!objectItem.canHaveAdditionalProperties}/>
-            </div>
-          </div>
         </form>
       </div>
     );
