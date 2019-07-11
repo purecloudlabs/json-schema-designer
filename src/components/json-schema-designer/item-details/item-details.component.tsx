@@ -8,6 +8,7 @@ export class ItemDetailsComponent {
   @Prop() item: ISchemaItem;
   @Prop() parent: any;
   @Prop() definitions: any;
+  @Prop() useenums: boolean;
 
   @Prop({ context: 'i18n' }) private i18n: any;
 
@@ -117,6 +118,7 @@ export class ItemDetailsComponent {
                     </div>
                   </div>
                 </div>
+              { this.useenums ?
                 <div class="form-group">
                   <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.enumerated-values')} </label>
                   <div class="col-sm-10">
@@ -157,6 +159,8 @@ export class ItemDetailsComponent {
                     </div>
                   </div>
                 </div>
+                : <div></div>
+              }
               </div>
           }
         </form>
