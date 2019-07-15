@@ -15,6 +15,8 @@ The JSON Schema Designer is a web component that allows easy JSON Schema creatio
 * inputschema (optional) - an object containing the JSON Schema to load into the designer.
 * inputtranslation (optional) - an object containing translations for the strings within the designer.
 * viewmode (optional) - the view mode of the designer. options are "tabs", "columns" and "designerOnly" (default)
+* datatypes (optional) - list of datatypes that can be selected for each item except for root. default: ['string', 'number', 'integer', 'object', 'array', 'boolean', 'null', '$ref']
+* usedefinitions (optional) - boolean value that allows or disallows the adding of definitions to the json schema. (default: true)
 
 Note: all properties passed to the component will be stringified.
 
@@ -23,7 +25,9 @@ Note: all properties passed to the component will be stringified.
   id="json-designer"
   viewmode="designerOnly"
   inputschema={{schema}}
-  inputtranslations={{translations}}>
+  inputtranslations={{translations}}
+  datatypes={{datatypes}}
+  usedefinitions="true">
 </json-schema-designer>
 ```
 
