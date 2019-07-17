@@ -53,6 +53,11 @@
       },
       "props": [
         {
+          "name": "datatypes",
+          "type": "Any",
+          "attr": "datatypes"
+        },
+        {
           "name": "debugmode",
           "type": "Boolean",
           "attr": "debugmode"
@@ -69,6 +74,11 @@
           "name": "inputtranslations",
           "type": "String",
           "attr": "inputtranslations"
+        },
+        {
+          "name": "usedefinitions",
+          "type": "Boolean",
+          "attr": "usedefinitions"
         },
         {
           "name": "viewmode",
@@ -114,6 +124,10 @@
       "styles": {},
       "props": [
         {
+          "name": "dataTypeArray",
+          "attr": "data-type-array"
+        },
+        {
           "name": "definitions",
           "type": "Any",
           "attr": "definitions"
@@ -153,7 +167,7 @@
   "collections": [],
   "compiler": {
     "name": "@stencil/core",
-    "version": "0.10.10",
+    "version": "0.10.0",
     "typescriptVersion": "2.9.2"
   },
   "bundles": [],

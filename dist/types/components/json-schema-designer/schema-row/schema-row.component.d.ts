@@ -4,6 +4,7 @@ export declare class SchemaRowComponent {
     item: ISchemaItem;
     parent: any;
     definitions: any;
+    dataTypeArray: string[];
     private i18n;
     showChildren: boolean;
     showDetailsPan: boolean;
@@ -13,5 +14,6 @@ export declare class SchemaRowComponent {
     addNewProp(item: IHasChildren): void;
     rerender(): void;
     componentDidLoad(): void;
+    getOptions(propCountDisplay: any): any[];
     render(): JSX.Element;
 }

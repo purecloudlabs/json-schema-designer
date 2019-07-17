@@ -18,6 +18,21 @@ export class SchemaRowComponent {
     componentDidLoad() {
         $('[data-toggle="tooltip"]').tooltip();
     }
+    getOptions(propCountDisplay) {
+        let options = [];
+        for (let i = 0; i < this.dataTypeArray.length; i++) {
+            if (this.dataTypeArray[i] === 'object') {
+                options.push(h("option", { value: this.dataTypeArray[i], selected: this.item.type === this.dataTypeArray[i], class: 'badge badge-pill badge-primary ' + this.dataTypeArray[i] },
+                    this.i18n.translate('json-schema-designer.' + this.dataTypeArray[i]).toUpperCase(),
+                    " ",
+                    propCountDisplay));
+            }
+            else {
+                options.push(h("option", { value: this.dataTypeArray[i], selected: this.item.type === this.dataTypeArray[i], class: 'badge badge-pill badge-primary ' + this.dataTypeArray[i] }, this.i18n.translate('json-schema-designer.' + this.dataTypeArray[i]).toUpperCase()));
+            }
+        }
+        return options;
+    }
     render() {
         //Computed CSS Classes
         const rowClass = this.showDetailsPan ? 'js-row selected' : 'js-row';
@@ -81,18 +96,7 @@ export class SchemaRowComponent {
                                         let input = event.target;
                                         this.item.changeType(input.value);
                                         this.rerender();
-                                    } },
-                                    h("option", { value: "string", selected: this.item.type === 'string', class: "badge badge-pill badge-primary string" }, this.i18n.translate('json-schema-designer.string').toUpperCase()),
-                                    h("option", { value: "number", selected: this.item.type === 'number', class: "badge badge-pill badge-primary number" }, this.i18n.translate('json-schema-designer.number').toUpperCase()),
-                                    h("option", { value: "integer", selected: this.item.type === 'integer', class: "badge badge-pill badge-primary interger" }, this.i18n.translate('json-schema-designer.integer').toUpperCase()),
-                                    h("option", { value: "object", selected: this.item.type === 'object', class: "badge badge-pill badge-primary object" },
-                                        this.i18n.translate('json-schema-designer.object').toUpperCase(),
-                                        " ",
-                                        propCountDisplay),
-                                    h("option", { value: "array", selected: this.item.type === 'array', class: "badge badge-pill badge-primary array" }, this.i18n.translate('json-schema-designer.array').toUpperCase()),
-                                    h("option", { value: "boolean", selected: this.item.type === 'boolean', class: "badge badge-pill badge-primary boolean" }, this.i18n.translate('json-schema-designer.boolean').toUpperCase()),
-                                    h("option", { value: "null", selected: this.item.type === 'null', class: "badge badge-pill badge-primary null" }, this.i18n.translate('json-schema-designer.null').toUpperCase()),
-                                    h("option", { value: "$ref", selected: this.item.type === '$ref', class: "badge badge-pill badge-primary $ref" }, this.i18n.translate('json-schema-designer.$ref').toUpperCase())),
+                                    } }, this.getOptions(propCountDisplay)),
                             h("i", { class: requiredIconClass, "data-toggle": "tooltip", "data-placement": "top", "data-original-title": requiredTooltip, onClick: () => {
                                     if (this.item.isRoot)
                                         return;
@@ -133,12 +137,16 @@ export class SchemaRowComponent {
                 this.showDetailsPan
                     ? h("item-details", { class: "item-details", item: this.item, definitions: this.definitions, parent: this })
                     : h("div", null)),
-            h("div", { class: "indent" }, children.map((child) => h("schema-row", { item: child, definitions: this.definitions, parent: this })))));
+            h("div", { class: "indent" }, children.map((child) => h("schema-row", { item: child, definitions: this.definitions, parent: this, dataTypeArray: this.dataTypeArray })))));
     }
     static get is() { return "schema-row"; }
     static get properties() { return {
         "_tickle": {
             "state": true
+        },
+        "dataTypeArray": {
+            "type": "Any",
+            "attr": "data-type-array"
         },
         "definitions": {
             "type": "Any",

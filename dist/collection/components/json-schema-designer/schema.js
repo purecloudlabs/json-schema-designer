@@ -277,9 +277,12 @@ export class SchemaObject extends SchemaRoot {
                     return property.title === requiredItemName;
                 });
                 if (!requiredItem) {
-                    throw new Error('required items must exist as properties. Item: ' + requiredItemName);
+                    const error = new ErrorEvent('error', { message: 'required items must exist as properties. Item: ' + requiredItemName, error: new Error('required items must exist as properties. Item: ' + requiredItemName) });
+                    document.querySelector('#output-schema-designer').dispatchEvent(error);
                 }
-                requiredItem.isRequired = true;
+                else {
+                    requiredItem.isRequired = true;
+                }
             });
         }
     }

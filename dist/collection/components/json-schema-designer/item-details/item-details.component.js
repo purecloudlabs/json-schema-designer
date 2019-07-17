@@ -102,38 +102,40 @@ export class ItemDetailsComponent {
                                             } }),
                                         " ",
                                         this.i18n.translate('json-schema-designer.nullable'))))),
-                        h("div", { class: "form-group" },
-                            h("label", { class: "control-label col-sm-2" },
-                                " ",
-                                this.i18n.translate('json-schema-designer.enumerated-values'),
-                                " "),
-                            h("div", { class: "col-sm-10" },
-                                enums.map((enumObject, index) => h("div", { class: "row" },
-                                    h("div", { class: "col-sm-8" },
-                                        h("input", { type: enumObject.type, class: "form-control input-sm", value: enumObject.value, onInput: (event) => {
-                                                const input = event.target;
-                                                this.item.enum[index].value = input.value;
-                                                this.rerender();
-                                            } })),
-                                    h("div", { class: "col-sm-3" },
-                                        h("select", { class: "form-control input-sm", onInput: (event) => {
-                                                const input = event.target;
-                                                this.item.enum[index].type = input.value;
+                        this.item.type !== 'object' ?
+                            h("div", { class: "form-group" },
+                                h("label", { class: "control-label col-sm-2" },
+                                    " ",
+                                    this.i18n.translate('json-schema-designer.enumerated-values'),
+                                    " "),
+                                h("div", { class: "col-sm-10" },
+                                    enums.map((enumObject, index) => h("div", { class: "row" },
+                                        h("div", { class: "col-sm-8" },
+                                            h("input", { type: enumObject.type, class: "form-control input-sm", value: enumObject.value, onInput: (event) => {
+                                                    const input = event.target;
+                                                    this.item.enum[index].value = input.value;
+                                                    this.rerender();
+                                                } })),
+                                        h("div", { class: "col-sm-3" },
+                                            h("select", { class: "form-control input-sm", onInput: (event) => {
+                                                    const input = event.target;
+                                                    this.item.enum[index].type = input.value;
+                                                    this.rerender();
+                                                } },
+                                                h("option", { value: 'string' }, this.i18n.translate('json-schema-designer.string')),
+                                                h("option", { value: 'number' }, this.i18n.translate('json-schema-designer.number')))),
+                                        h("div", { class: "col-sm-1" },
+                                            h("i", { class: "btn fa fa-times", onClick: () => {
+                                                    this.item.removeEnumValue(index);
+                                                    this.rerender();
+                                                } })))),
+                                    h("div", null,
+                                        h("button", { type: "button", class: "btn btn-default btn-xs width100", onClick: () => {
+                                                this.item.addEnumValue();
                                                 this.rerender();
                                             } },
-                                            h("option", { value: 'string' }, this.i18n.translate('json-schema-designer.string')),
-                                            h("option", { value: 'number' }, this.i18n.translate('json-schema-designer.number')))),
-                                    h("div", { class: "col-sm-1" },
-                                        h("i", { class: "btn fa fa-times", onClick: () => {
-                                                this.item.removeEnumValue(index);
-                                                this.rerender();
-                                            } })))),
-                                h("div", null,
-                                    h("button", { type: "button", class: "btn btn-default btn-xs width100", onClick: () => {
-                                            this.item.addEnumValue();
-                                            this.rerender();
-                                        } },
-                                        h("i", { class: "fa fa-plus" })))))))));
+                                            h("i", { class: "fa fa-plus" })))))
+                            : h("div", null)))));
         const stringFields = (h("div", { class: "col-lg-6" },
             h("form", { class: "form-horizontal" },
                 h("h4", { class: "t_color bold" },
@@ -273,15 +275,7 @@ export class ItemDetailsComponent {
                                         objectItem.canHaveAdditionalProperties = input.checked;
                                         this.rerender();
                                     } }),
-                                this.i18n.translate('json-schema-designer.allow-additional-properties'))))),
-                h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" }, this.i18n.translate('json-schema-designer.additional-properties')),
-                    h("div", { class: "col-sm-10" },
-                        h("textarea", { class: "form-control", value: objectItem.additionalProperties, onInput: (event) => {
-                                const input = event.target;
-                                objectItem.additionalProperties = input.value;
-                                this.rerender();
-                            }, disabled: !objectItem.canHaveAdditionalProperties }))))));
+                                this.i18n.translate('json-schema-designer.allow-additional-properties'))))))));
         const arrayFields = (h("div", { class: "col-lg-6" },
             h("form", { class: "form-horizontal" },
                 h("h4", { class: "t_color bold" },
