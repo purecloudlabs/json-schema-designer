@@ -10,7 +10,7 @@ export class SchemaRowComponent {
   @Prop() item: ISchemaItem;
   @Prop() parent: any;
   @Prop() definitions: any;
-
+  @Prop() dataTypeArray: string[];
   @Prop({ context: 'i18n' }) private i18n: any;
 
   @State() showChildren: boolean = true;
@@ -33,6 +33,20 @@ export class SchemaRowComponent {
 
   componentDidLoad() {
     $('[data-toggle="tooltip"]').tooltip();
+  }
+
+  getOptions(propCountDisplay) {
+    let options = [];
+    for (let i = 0; i < this.dataTypeArray.length; i++) {
+      if(this.dataTypeArray[i] === 'object'){
+        options.push(<option value={this.dataTypeArray[i]} selected={this.item.type === this.dataTypeArray[i]}
+                             class={'badge badge-pill badge-primary ' + this.dataTypeArray[i]}>{this.i18n.translate('json-schema-designer.' + this.dataTypeArray[i]).toUpperCase()} {propCountDisplay}</option>)
+      } else {
+        options.push(<option value={this.dataTypeArray[i]} selected={this.item.type === this.dataTypeArray[i]}
+                             class={'badge badge-pill badge-primary ' + this.dataTypeArray[i]}>{this.i18n.translate('json-schema-designer.' + this.dataTypeArray[i]).toUpperCase()}</option>)
+      }
+    }
+    return options
   }
 
   render() {
@@ -103,14 +117,7 @@ export class SchemaRowComponent {
                         this.item.changeType(input.value);
                         this.rerender();
                        }}>
-                          <option value="string" selected={this.item.type === 'string'} class="badge badge-pill badge-primary string">{this.i18n.translate('json-schema-designer.string').toUpperCase()}</option>
-                          <option value="number" selected={this.item.type === 'number'} class="badge badge-pill badge-primary number">{this.i18n.translate('json-schema-designer.number').toUpperCase()}</option>
-                          <option value="integer" selected={this.item.type === 'integer'} class="badge badge-pill badge-primary interger">{this.i18n.translate('json-schema-designer.integer').toUpperCase()}</option>
-                          <option value="object" selected={this.item.type === 'object'} class="badge badge-pill badge-primary object">{this.i18n.translate('json-schema-designer.object').toUpperCase()} {propCountDisplay}</option>
-                          <option value="array" selected={this.item.type === 'array'} class="badge badge-pill badge-primary array">{this.i18n.translate('json-schema-designer.array').toUpperCase()}</option>
-                          <option value="boolean" selected={this.item.type === 'boolean'} class="badge badge-pill badge-primary boolean">{this.i18n.translate('json-schema-designer.boolean').toUpperCase()}</option>
-                          <option value="null" selected={this.item.type === 'null'} class="badge badge-pill badge-primary null">{this.i18n.translate('json-schema-designer.null').toUpperCase()}</option>
-                          <option value="$ref" selected={this.item.type === '$ref'} class="badge badge-pill badge-primary $ref">{this.i18n.translate('json-schema-designer.$ref').toUpperCase()}</option>
+                    {this.getOptions(propCountDisplay)}
                     </select>
                 }
                 <i class={requiredIconClass} data-toggle="tooltip" data-placement="top" data-original-title={requiredTooltip} onClick={ () => {
@@ -169,7 +176,7 @@ export class SchemaRowComponent {
         </div>
         <div class="indent">
           {children.map((child) =>
-              <schema-row item={ child } definitions={ this.definitions } parent={ this }></schema-row>
+              <schema-row item={ child } definitions={ this.definitions } parent={ this } dataTypeArray={ this.dataTypeArray }></schema-row>
           )}
         </div>
       </div>

@@ -107,6 +107,8 @@ export class DesignerComponent {
   @Prop() inputtranslations: string;
   @Prop() viewmode: string = 'columns'; //tabs, columns, designerOnly
   @Prop() debugmode: boolean = false;
+  @Prop() datatypes: any; // optional, takes an array or string representation of an array
+  @Prop() usedefinitions: boolean = true;
 
   @Method()
   exportSchema() {
@@ -183,30 +185,34 @@ export class DesignerComponent {
       this.change.emit(jsonOutput);
     }
     const definitions: ISchemaItem[] = this.workingSchema ? this.workingSchema.getDefinitions() : [];
+    const dataTypes: string[] = this.datatypes ? ( this.datatypes instanceof Array ? this.datatypes : JSON.parse(this.datatypes) ) : ['string', 'number', 'integer', 'object', 'array', 'boolean', 'null', '$ref'];
     const designer: JSX.Element = (
       <div>
         <h5> {this.i18n.translate('json-schema-designer.schema')} </h5>
-          <schema-row item={ this.workingSchema } parent={ this } definitions={ definitions }></schema-row>
+          <schema-row item={ this.workingSchema } parent={ this } definitions={ definitions } dataTypeArray={ dataTypes }></schema-row>
         { definitions.length
           ? <div>
               <h5> {this.i18n.translate('json-schema-designer.definitions')} </h5>
               {definitions.map((definition) =>
-                  <schema-row item={ definition } parent={ this } definitions={ definitions }></schema-row>
+                  <schema-row item={ definition } parent={ this } definitions={ definitions } dataTypeArray={ dataTypes }></schema-row>
               )}
             </div>
           : <div></div>
         }
-        <div class="row">
-          <div class="col-sm-12">
-            <button class="btn btn-link btn-xs pull-right" onClick={()=> {
-              this.workingSchema.addDefinition();
-              this.rerender();
-            }}>
-              <span> {this.i18n.translate('json-schema-designer.add-definition')} </span>
-              <i class="fa fa-plus"></i>
-            </button>
+        {this.usedefinitions ?
+          <div class="row">
+            <div class="col-sm-12">
+              <button class="btn btn-link btn-xs pull-right" onClick={() => {
+                this.workingSchema.addDefinition();
+                this.rerender();
+              }}>
+                <span> {this.i18n.translate('json-schema-designer.add-definition')} </span>
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
           </div>
-        </div>
+          : <div class="row"></div>
+        }
       </div>
     );
     if (this.viewmode === 'tabs') {
