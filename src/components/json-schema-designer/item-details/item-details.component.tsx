@@ -57,7 +57,7 @@ export class ItemDetailsComponent {
         <h4 class="t_color bold"> {this.i18n.translate('json-schema-designer.general')} </h4>
         <form class="form-horizontal" role="form">
           <div class="form-group">
-            <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.title')} </label>
+            <label class="col-sm-10"> {this.i18n.translate('json-schema-designer.title')} </label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="foldName" value={this.item.title} name="title" onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -67,7 +67,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.description')} </label>
+            <label class="col-sm-10"> {this.i18n.translate('json-schema-designer.description')} </label>
             <div class="col-sm-10">
               <textarea class="form-control" value={this.item.description} onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -77,7 +77,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.default')} </label>
+            <label class="col-sm-10"> {this.i18n.translate('json-schema-designer.default')} </label>
             <div class="col-sm-10">
               <input type="text" class="form-control" value={this.item.default} onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -90,7 +90,7 @@ export class ItemDetailsComponent {
             ? <div></div>
             : <div>
                 <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10">
+                  <div class="col-sm-offset-1 col-sm-10">
                     <div class="checkbox">
                       <label>
                         <input type="checkbox" checked={this.item.isRequired} onInput={(event) => {
@@ -104,7 +104,7 @@ export class ItemDetailsComponent {
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10">
+                  <div class="col-sm-offset-1 col-sm-10">
                     <div class="checkbox">
                       <label>
                         <input type="checkbox" checked={this.item.isNullable} onInput={(event) => {
@@ -119,7 +119,7 @@ export class ItemDetailsComponent {
                 </div>
               { this.item.type !== 'object' ?
                 <div class="form-group">
-                  <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.enumerated-values')} </label>
+                  <label class="col-sm-10"> {this.i18n.translate('json-schema-designer.enumerated-values')} </label>
                   <div class="col-sm-10">
                     {enums.map((enumObject, index) =>
                       <div class="row">
@@ -171,7 +171,7 @@ export class ItemDetailsComponent {
         <form class="form-horizontal">
           <h4 class="t_color bold"> {this.i18n.translate('json-schema-designer.string')} </h4>
           <div class="form-group">
-            <label class="control-label col-sm-2">{this.i18n.translate('json-schema-designer.minimum-length')}</label>
+            <label class="col-sm-10">{this.i18n.translate('json-schema-designer.minimum-length')}</label>
             <div class="col-sm-10">
               <input type="number" class="form-control" value={stringItem.minLength} min="1" onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -181,7 +181,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2">{this.i18n.translate('json-schema-designer.maximum-length')}</label>
+            <label class="col-sm-10">{this.i18n.translate('json-schema-designer.maximum-length')}</label>
             <div class="col-sm-10">
               <input type="number" class="form-control" value={stringItem.maxLength} min="1" onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -191,7 +191,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.format')} </label>
+            <label class="col-sm-10"> {this.i18n.translate('json-schema-designer.format')} </label>
             <div class="col-sm-10">
               <input type="text" class="form-control form-control-sm" value={stringItem.format} onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -201,7 +201,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.pattern')} </label>
+            <label class="col-sm-10"> {this.i18n.translate('json-schema-designer.pattern')} </label>
             <div class="col-sm-10">
               <input type="text" class="form-control" value={stringItem.pattern} min="0" onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -219,7 +219,7 @@ export class ItemDetailsComponent {
         <form class="form-horizontal">
           <h4 class="t_color bold"> {this.i18n.translate('json-schema-designer.numeric')} </h4>
           <div class="form-group">
-            <label class="control-label col-sm-2">{this.i18n.translate('json-schema-designer.minimum')}</label>
+            <label class="col-sm-10">{this.i18n.translate('json-schema-designer.minimum')}</label>
             <div class="col-sm-10">
               <input type="number" class="form-control" value={numberItem.minimum} onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -227,7 +227,7 @@ export class ItemDetailsComponent {
                 this.rerender();
               }}/>
             </div>
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-1 col-sm-10">
               <div class="checkbox">
                 <label>
                   <input type="checkbox" checked={numberItem.exclusiveMinimum} onInput={(event) => {
@@ -241,7 +241,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">{this.i18n.translate('json-schema-designer.maximum')}</label>
+            <label class="col-sm-10">{this.i18n.translate('json-schema-designer.maximum')}</label>
             <div class="col-sm-10">
               <input type="number" class="form-control" value={numberItem.maximum} onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -249,7 +249,7 @@ export class ItemDetailsComponent {
                 this.rerender();
               }}/>
             </div>
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-1 col-sm-10">
               <div class="checkbox">
                 <label><input type="checkbox" checked={numberItem.exclusiveMaximum} onInput={(event) => {
                   const input = event.target as HTMLInputElement;
@@ -260,7 +260,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.multiple-of')} </label>
+            <label class="col-sm-10"> {this.i18n.translate('json-schema-designer.multiple-of')} </label>
             <div class="col-sm-10">
               <input type="number" class="form-control" value={numberItem.multipleOf} onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -278,7 +278,7 @@ export class ItemDetailsComponent {
         <form class="form-horizontal">
           <h4 class="t_color bold"> {this.i18n.translate('json-schema-designer.object')} </h4>
           <div class="form-group">
-            <label class="control-label col-sm-2"> {this.i18n.translate('json-schema-designer.schema')} </label>
+            <label class="col-sm-10"> {this.i18n.translate('json-schema-designer.schema')} </label>
             <div class="col-sm-10">
               <input type="text" class="form-control" value={objectItem.schema} onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -288,7 +288,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2">{this.i18n.translate('json-schema-designer.minimum-properties')}</label>
+            <label class="col-sm-10">{this.i18n.translate('json-schema-designer.minimum-properties')}</label>
             <div class="col-sm-10">
               <input type="number" class="form-control" value={objectItem.minProperties} min="1" onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -298,7 +298,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2">{this.i18n.translate('json-schema-designer.maximum-properties')}</label>
+            <label class="col-sm-10">{this.i18n.translate('json-schema-designer.maximum-properties')}</label>
             <div class="col-sm-10">
               <input type="number" class="form-control" value={objectItem.maxProperties} min="1" onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -308,7 +308,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-10">
               <div class="checkbox">
                 <label>
                   <input type="checkbox" checked={objectItem.canHaveAdditionalProperties} onInput={(event) => {
@@ -330,7 +330,7 @@ export class ItemDetailsComponent {
         <form class="form-horizontal">
           <h4 class="t_color bold"> {this.i18n.translate('json-schema-designer.array')} </h4>
           <div class="form-group">
-            <label class="col-sm-2 control-label">{this.i18n.translate('json-schema-designer.minimum-items')}</label>
+            <label class="col-sm-10">{this.i18n.translate('json-schema-designer.minimum-items')}</label>
             <div class="col-sm-10">
               <input type="number" class="form-control" value={arrayItem.minItems} min="1" onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -340,7 +340,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">{this.i18n.translate('json-schema-designer.maximum-items')}</label>
+            <label class="col-sm-10">{this.i18n.translate('json-schema-designer.maximum-items')}</label>
             <div class="col-sm-10">
               <input type="number" class="form-control" value={arrayItem.maxItems} min="1" onInput={(event) => {
                 const input = event.target as HTMLInputElement;
@@ -350,7 +350,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-10">
               <div class="checkbox">
                 <label>
                   <input type="checkbox" checked={arrayItem.uniqueItems} onInput={(event) => {
@@ -364,7 +364,7 @@ export class ItemDetailsComponent {
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-10">
               <div class="checkbox">
                 <label>
                   <input type="checkbox" checked={arrayItem.additionalItems} onInput={(event) => {
@@ -385,7 +385,7 @@ export class ItemDetailsComponent {
       <div class="col-lg-12">
         <form class="form-horizontal">
           <div class="form-group">
-            <label class="col-sm-2 control-label"> {this.i18n.translate('json-schema-designer.reference')} </label>
+            <label class="col-sm-10"> {this.i18n.translate('json-schema-designer.reference')} </label>
             <div class="col-sm-10">
               <select class="form-control input-sm" onInput={(event) => {
                 const input = event.target as HTMLInputElement;
