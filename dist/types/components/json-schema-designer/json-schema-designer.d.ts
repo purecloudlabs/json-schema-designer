@@ -6,6 +6,8 @@ export declare class DesignerComponent {
     inputtranslations: string;
     viewmode: string;
     debugmode: boolean;
+    datatypes: any;
+    usedefinitions: boolean;
     exportSchema(): string;
     error: EventEmitter;
     change: EventEmitter;

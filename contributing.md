@@ -29,7 +29,8 @@ Always run tests before merging a PR or publishing. Pretty please.
 In order to publish, you need to be added to the npm project, and also a maintainer here on github. Create a new version branch, build the project, commit (with the new dist files), tag it, and push to github. Once the PR has been approved and merged, you can publish via npm.
 
     $ git checkout -b version-X.X.X
-    $ npm build
+    $ npm run-script build --prod
+    $ update the version in package.json
     $ git commit -am "version X.X.X"
     $ git tag -a vX.X.X -m "version X.X.X"
     $ git push
@@ -39,4 +40,3 @@ Once the PR has been merged to master:
 
     $ git checkout master
     $ npm publish
-

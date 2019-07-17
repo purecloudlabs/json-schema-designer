@@ -98,6 +98,7 @@ export class DesignerComponent {
     constructor() {
         this.viewmode = 'columns'; //tabs, columns, designerOnly
         this.debugmode = false;
+        this.usedefinitions = true;
         this.activeTab = 'designer';
         this._tickle = 0;
         this.lastOutput = '';
@@ -161,31 +162,34 @@ export class DesignerComponent {
             this.change.emit(jsonOutput);
         }
         const definitions = this.workingSchema ? this.workingSchema.getDefinitions() : [];
+        const dataTypes = this.datatypes ? (this.datatypes instanceof Array ? this.datatypes : JSON.parse(this.datatypes)) : ['string', 'number', 'integer', 'object', 'array', 'boolean', 'null', '$ref'];
         const designer = (h("div", null,
             h("h5", null,
                 " ",
                 this.i18n.translate('json-schema-designer.schema'),
                 " "),
-            h("schema-row", { item: this.workingSchema, parent: this, definitions: definitions }),
+            h("schema-row", { item: this.workingSchema, parent: this, definitions: definitions, dataTypeArray: dataTypes }),
             definitions.length
                 ? h("div", null,
                     h("h5", null,
                         " ",
                         this.i18n.translate('json-schema-designer.definitions'),
                         " "),
-                    definitions.map((definition) => h("schema-row", { item: definition, parent: this, definitions: definitions })))
+                    definitions.map((definition) => h("schema-row", { item: definition, parent: this, definitions: definitions, dataTypeArray: dataTypes })))
                 : h("div", null),
-            h("div", { class: "row" },
-                h("div", { class: "col-sm-12" },
-                    h("button", { class: "btn btn-link btn-xs pull-right", onClick: () => {
-                            this.workingSchema.addDefinition();
-                            this.rerender();
-                        } },
-                        h("span", null,
-                            " ",
-                            this.i18n.translate('json-schema-designer.add-definition'),
-                            " "),
-                        h("i", { class: "fa fa-plus" }))))));
+            this.usedefinitions ?
+                h("div", { class: "row" },
+                    h("div", { class: "col-sm-12" },
+                        h("button", { class: "btn btn-link btn-xs pull-right", onClick: () => {
+                                this.workingSchema.addDefinition();
+                                this.rerender();
+                            } },
+                            h("span", null,
+                                " ",
+                                this.i18n.translate('json-schema-designer.add-definition'),
+                                " "),
+                            h("i", { class: "fa fa-plus" }))))
+                : h("div", { class: "row" })));
         if (this.viewmode === 'tabs') {
             const desingerPillClass = this.activeTab === 'designer' ? 'btn btn-primary' : 'btn btn-default';
             const outputPillClass = this.activeTab === 'output' ? 'btn btn-primary' : 'btn btn-default';
@@ -231,6 +235,10 @@ export class DesignerComponent {
         "activeTab": {
             "state": true
         },
+        "datatypes": {
+            "type": "Any",
+            "attr": "datatypes"
+        },
         "debugmode": {
             "type": Boolean,
             "attr": "debugmode"
@@ -249,6 +257,10 @@ export class DesignerComponent {
         "inputtranslations": {
             "type": String,
             "attr": "inputtranslations"
+        },
+        "usedefinitions": {
+            "type": Boolean,
+            "attr": "usedefinitions"
         },
         "viewmode": {
             "type": String,

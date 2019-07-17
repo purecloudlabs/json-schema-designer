@@ -71,10 +71,12 @@ declare global {
 
   namespace StencilComponents {
     interface JsonSchemaDesigner {
+      'datatypes': any;
       'debugmode': boolean;
       'exportSchema': () => string;
       'inputschema': string;
       'inputtranslations': string;
+      'usedefinitions': boolean;
       'viewmode': string;
     }
   }
@@ -98,11 +100,13 @@ declare global {
   }
   namespace JSXElements {
     export interface JsonSchemaDesignerAttributes extends HTMLAttributes {
+      'datatypes'?: any;
       'debugmode'?: boolean;
       'inputschema'?: string;
       'inputtranslations'?: string;
       'onChange'?: (event: CustomEvent) => void;
       'onError'?: (event: CustomEvent) => void;
+      'usedefinitions'?: boolean;
       'viewmode'?: string;
     }
   }
@@ -113,6 +117,7 @@ declare global {
 
   namespace StencilComponents {
     interface SchemaRow {
+      'dataTypeArray': string[];
       'definitions': any;
       'item': ISchemaItem;
       'parent': any;
@@ -138,6 +143,7 @@ declare global {
   }
   namespace JSXElements {
     export interface SchemaRowAttributes extends HTMLAttributes {
+      'dataTypeArray'?: string[];
       'definitions'?: any;
       'item'?: ISchemaItem;
       'parent'?: any;
