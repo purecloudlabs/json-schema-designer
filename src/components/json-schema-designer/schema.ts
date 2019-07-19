@@ -248,7 +248,7 @@ export abstract class SchemaRoot extends SchemaBasic implements IHasChildren {
   addDefinition() {
     if (!this.definitions) this.definitions = {};
 
-    const newDef = new SchemaBasic({}, this);
+    const newDef = new SchemaString({}, this);
     newDef.isDefinition = true;
     this.definitions[newDef._id] = newDef
   }
@@ -413,7 +413,7 @@ export class SchemaObject extends SchemaRoot implements ISchemaItem {
   }
 
   addChild(): void {
-    const newProp = new SchemaBasic({}, this)
+    const newProp = new SchemaString({}, this)
     this.properties[newProp._id] = newProp;
   }
 
@@ -491,7 +491,7 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
 
   addChild(): void {
     const title = 'Item ' + (this.getChildren().length + 1);
-    this.items.push(new SchemaBasic({ title }, this));
+    this.items.push(new SchemaString({ title }, this));
   }
 
   getChildren(): ISchemaItem[] {
