@@ -26,6 +26,7 @@ export declare function createAppropriateSchemaItem(json: any, parent: IHasChild
 export declare class SchemaBasic implements ISchemaItem {
     title: string;
     type: string;
+    _appropriateTypes: string[];
     description: string;
     isRequired: boolean;
     parent: IHasChildren;
@@ -42,6 +43,9 @@ export declare class SchemaBasic implements ISchemaItem {
     jsonSchema(): any;
     changeType(targetType: string): this;
     copy(type: string): ISchemaItem;
+    hasAppropriateType(): boolean;
+    setAppropriateType(): void;
+    checkAppropriateType(): void;
 }
 export declare abstract class SchemaRoot extends SchemaBasic implements IHasChildren {
     isRoot: boolean;
@@ -63,6 +67,7 @@ export declare class SchemaString extends SchemaBasic {
     maxLength: number;
     pattern: string;
     format: string;
+    _appropriateTypes: string[];
     constructor(json: any, parent: IHasChildren);
     jsonSchema(): any;
 }
@@ -72,6 +77,7 @@ export declare class SchemaNumeric extends SchemaBasic {
     exclusiveMinimum: boolean;
     maximum: number;
     exclusiveMaximum: boolean;
+    _appropriateTypes: string[];
     constructor(json: any, parent: IHasChildren);
     jsonSchema(): any;
 }
@@ -90,6 +96,7 @@ export declare class SchemaObject extends SchemaRoot implements ISchemaItem {
     additionalProperties: any;
     minProperties: number;
     maxProperties: number;
+    _appropriateTypes: string[];
     constructor(json: any, parent: IHasChildren);
     jsonSchema(): any;
     removeChild(_id: string): void;
@@ -105,6 +112,7 @@ export declare class SchemaArray extends SchemaRoot implements ISchemaItem {
     maxItems: number;
     uniqueItems: boolean;
     isRoot: boolean;
+    _appropriateTypes: string[];
     constructor(json: any, parent: IHasChildren);
     jsonSchema(): any;
     removeChild(id: string): void;

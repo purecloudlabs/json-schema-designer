@@ -41,7 +41,7 @@ export class ItemDetailsComponent {
                 " "),
             h("form", { class: "form-horizontal", role: "form" },
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" },
+                    h("label", { class: "col-sm-10" },
                         " ",
                         this.i18n.translate('json-schema-designer.title'),
                         " "),
@@ -52,7 +52,7 @@ export class ItemDetailsComponent {
                                 this.rerender();
                             } }))),
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" },
+                    h("label", { class: "col-sm-10" },
                         " ",
                         this.i18n.translate('json-schema-designer.description'),
                         " "),
@@ -63,7 +63,7 @@ export class ItemDetailsComponent {
                                 this.rerender();
                             } }))),
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" },
+                    h("label", { class: "col-sm-10" },
                         " ",
                         this.i18n.translate('json-schema-designer.default'),
                         " "),
@@ -77,7 +77,7 @@ export class ItemDetailsComponent {
                     ? h("div", null)
                     : h("div", null,
                         h("div", { class: "form-group" },
-                            h("div", { class: "col-sm-offset-2 col-sm-10" },
+                            h("div", { class: "col-sm-offset-1 col-sm-10" },
                                 h("div", { class: "checkbox" },
                                     h("label", null,
                                         h("input", { type: "checkbox", checked: this.item.isRequired, onInput: (event) => {
@@ -90,7 +90,7 @@ export class ItemDetailsComponent {
                                         " ",
                                         this.i18n.translate('json-schema-designer.required'))))),
                         h("div", { class: "form-group" },
-                            h("div", { class: "col-sm-offset-2 col-sm-10" },
+                            h("div", { class: "col-sm-offset-1 col-sm-10" },
                                 h("div", { class: "checkbox" },
                                     h("label", null,
                                         h("input", { type: "checkbox", checked: this.item.isNullable, onInput: (event) => {
@@ -104,7 +104,7 @@ export class ItemDetailsComponent {
                                         this.i18n.translate('json-schema-designer.nullable'))))),
                         this.item.type !== 'object' ?
                             h("div", { class: "form-group" },
-                                h("label", { class: "control-label col-sm-2" },
+                                h("label", { class: "col-sm-10" },
                                     " ",
                                     this.i18n.translate('json-schema-designer.enumerated-values'),
                                     " "),
@@ -143,7 +143,7 @@ export class ItemDetailsComponent {
                     this.i18n.translate('json-schema-designer.string'),
                     " "),
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" }, this.i18n.translate('json-schema-designer.minimum-length')),
+                    h("label", { class: "col-sm-10" }, this.i18n.translate('json-schema-designer.minimum-length')),
                     h("div", { class: "col-sm-10" },
                         h("input", { type: "number", class: "form-control", value: stringItem.minLength, min: "1", onInput: (event) => {
                                 const input = event.target;
@@ -151,7 +151,7 @@ export class ItemDetailsComponent {
                                 this.rerender();
                             } }))),
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" }, this.i18n.translate('json-schema-designer.maximum-length')),
+                    h("label", { class: "col-sm-10" }, this.i18n.translate('json-schema-designer.maximum-length')),
                     h("div", { class: "col-sm-10" },
                         h("input", { type: "number", class: "form-control", value: stringItem.maxLength, min: "1", onInput: (event) => {
                                 const input = event.target;
@@ -159,7 +159,7 @@ export class ItemDetailsComponent {
                                 this.rerender();
                             } }))),
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" },
+                    h("label", { class: "col-sm-10" },
                         " ",
                         this.i18n.translate('json-schema-designer.format'),
                         " "),
@@ -170,7 +170,7 @@ export class ItemDetailsComponent {
                                 this.rerender();
                             } }))),
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" },
+                    h("label", { class: "col-sm-10" },
                         " ",
                         this.i18n.translate('json-schema-designer.pattern'),
                         " "),
@@ -187,14 +187,14 @@ export class ItemDetailsComponent {
                     this.i18n.translate('json-schema-designer.numeric'),
                     " "),
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" }, this.i18n.translate('json-schema-designer.minimum')),
+                    h("label", { class: "col-sm-10" }, this.i18n.translate('json-schema-designer.minimum')),
                     h("div", { class: "col-sm-10" },
                         h("input", { type: "number", class: "form-control", value: numberItem.minimum, onInput: (event) => {
                                 const input = event.target;
                                 numberItem.minimum = Number(input.value);
                                 this.rerender();
                             } })),
-                    h("div", { class: "col-sm-offset-2 col-sm-10" },
+                    h("div", { class: "col-sm-offset-1 col-sm-10" },
                         h("div", { class: "checkbox" },
                             h("label", null,
                                 h("input", { type: "checkbox", checked: numberItem.exclusiveMinimum, onInput: (event) => {
@@ -204,14 +204,14 @@ export class ItemDetailsComponent {
                                     } }),
                                 this.i18n.translate('json-schema-designer.exclusive'))))),
                 h("div", { class: "form-group" },
-                    h("label", { class: "col-sm-2 control-label" }, this.i18n.translate('json-schema-designer.maximum')),
+                    h("label", { class: "col-sm-10" }, this.i18n.translate('json-schema-designer.maximum')),
                     h("div", { class: "col-sm-10" },
                         h("input", { type: "number", class: "form-control", value: numberItem.maximum, onInput: (event) => {
                                 const input = event.target;
                                 numberItem.maximum = Number(input.value);
                                 this.rerender();
                             } })),
-                    h("div", { class: "col-sm-offset-2 col-sm-10" },
+                    h("div", { class: "col-sm-offset-1 col-sm-10" },
                         h("div", { class: "checkbox" },
                             h("label", null,
                                 h("input", { type: "checkbox", checked: numberItem.exclusiveMaximum, onInput: (event) => {
@@ -223,7 +223,7 @@ export class ItemDetailsComponent {
                                 this.i18n.translate('json-schema-designer.exclusive'),
                                 " ")))),
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" },
+                    h("label", { class: "col-sm-10" },
                         " ",
                         this.i18n.translate('json-schema-designer.multiple-of'),
                         " "),
@@ -240,7 +240,7 @@ export class ItemDetailsComponent {
                     this.i18n.translate('json-schema-designer.object'),
                     " "),
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" },
+                    h("label", { class: "col-sm-10" },
                         " ",
                         this.i18n.translate('json-schema-designer.schema'),
                         " "),
@@ -251,7 +251,7 @@ export class ItemDetailsComponent {
                                 this.rerender();
                             } }))),
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" }, this.i18n.translate('json-schema-designer.minimum-properties')),
+                    h("label", { class: "col-sm-10" }, this.i18n.translate('json-schema-designer.minimum-properties')),
                     h("div", { class: "col-sm-10" },
                         h("input", { type: "number", class: "form-control", value: objectItem.minProperties, min: "1", onInput: (event) => {
                                 const input = event.target;
@@ -259,7 +259,7 @@ export class ItemDetailsComponent {
                                 this.rerender();
                             } }))),
                 h("div", { class: "form-group" },
-                    h("label", { class: "control-label col-sm-2" }, this.i18n.translate('json-schema-designer.maximum-properties')),
+                    h("label", { class: "col-sm-10" }, this.i18n.translate('json-schema-designer.maximum-properties')),
                     h("div", { class: "col-sm-10" },
                         h("input", { type: "number", class: "form-control", value: objectItem.maxProperties, min: "1", onInput: (event) => {
                                 const input = event.target;
@@ -267,7 +267,7 @@ export class ItemDetailsComponent {
                                 this.rerender();
                             } }))),
                 h("div", { class: "form-group" },
-                    h("div", { class: "col-sm-offset-2 col-sm-10" },
+                    h("div", { class: "col-sm-10" },
                         h("div", { class: "checkbox" },
                             h("label", null,
                                 h("input", { type: "checkbox", checked: objectItem.canHaveAdditionalProperties, onInput: (event) => {
@@ -283,7 +283,7 @@ export class ItemDetailsComponent {
                     this.i18n.translate('json-schema-designer.array'),
                     " "),
                 h("div", { class: "form-group" },
-                    h("label", { class: "col-sm-2 control-label" }, this.i18n.translate('json-schema-designer.minimum-items')),
+                    h("label", { class: "col-sm-10" }, this.i18n.translate('json-schema-designer.minimum-items')),
                     h("div", { class: "col-sm-10" },
                         h("input", { type: "number", class: "form-control", value: arrayItem.minItems, min: "1", onInput: (event) => {
                                 const input = event.target;
@@ -291,7 +291,7 @@ export class ItemDetailsComponent {
                                 this.rerender();
                             } }))),
                 h("div", { class: "form-group" },
-                    h("label", { class: "col-sm-2 control-label" }, this.i18n.translate('json-schema-designer.maximum-items')),
+                    h("label", { class: "col-sm-10" }, this.i18n.translate('json-schema-designer.maximum-items')),
                     h("div", { class: "col-sm-10" },
                         h("input", { type: "number", class: "form-control", value: arrayItem.maxItems, min: "1", onInput: (event) => {
                                 const input = event.target;
@@ -299,7 +299,7 @@ export class ItemDetailsComponent {
                                 this.rerender();
                             } }))),
                 h("div", { class: "form-group" },
-                    h("div", { class: "col-sm-offset-2 col-sm-10" },
+                    h("div", { class: "col-sm-10" },
                         h("div", { class: "checkbox" },
                             h("label", null,
                                 h("input", { type: "checkbox", checked: arrayItem.uniqueItems, onInput: (event) => {
@@ -309,7 +309,7 @@ export class ItemDetailsComponent {
                                     } }),
                                 this.i18n.translate('json-schema-designer.unique-items'))))),
                 h("div", { class: "form-group" },
-                    h("div", { class: "col-sm-offset-2 col-sm-10" },
+                    h("div", { class: "col-sm-10" },
                         h("div", { class: "checkbox" },
                             h("label", null,
                                 h("input", { type: "checkbox", checked: arrayItem.additionalItems, onInput: (event) => {
@@ -321,7 +321,7 @@ export class ItemDetailsComponent {
         const refFields = (h("div", { class: "col-lg-12" },
             h("form", { class: "form-horizontal" },
                 h("div", { class: "form-group" },
-                    h("label", { class: "col-sm-2 control-label" },
+                    h("label", { class: "col-sm-10" },
                         " ",
                         this.i18n.translate('json-schema-designer.reference'),
                         " "),

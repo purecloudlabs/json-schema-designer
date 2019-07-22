@@ -37,6 +37,7 @@ function _generateId() {
 }
 export class SchemaBasic {
     constructor(json, parent) {
+        this._appropriateTypes = ['string', 'number', 'integer', 'object', 'array', 'boolean', 'null', '$ref'];
         if (json._id) {
             this._id = json._id;
         }
@@ -77,9 +78,6 @@ export class SchemaBasic {
                     this.type = typeItem;
                 }
             });
-        }
-        else {
-            this.type = json.type || 'string';
         }
     }
     addEnumValue() {
@@ -152,6 +150,22 @@ export class SchemaBasic {
         };
         return createAppropriateSchemaItem(valuesToCopy, this.parent);
     }
+    hasAppropriateType() {
+        if (!this._appropriateTypes || !this._appropriateTypes.length) {
+            return true;
+        }
+        return this._appropriateTypes.includes(this.type);
+    }
+    setAppropriateType() {
+        if (!this.type) {
+            this.type = this._appropriateTypes[0];
+        }
+    }
+    checkAppropriateType() {
+        if (!this.hasAppropriateType()) {
+            console.error('attempting to create SchemaItem', this, 'with inappropriate type', this.type);
+        }
+    }
 }
 export class SchemaRoot extends SchemaBasic {
     constructor(json, parent) {
@@ -190,7 +204,7 @@ export class SchemaRoot extends SchemaBasic {
     addDefinition() {
         if (!this.definitions)
             this.definitions = {};
-        const newDef = new SchemaBasic({}, this);
+        const newDef = new SchemaString({}, this);
         newDef.isDefinition = true;
         this.definitions[newDef._id] = newDef;
     }
@@ -198,10 +212,16 @@ export class SchemaRoot extends SchemaBasic {
 export class SchemaString extends SchemaBasic {
     constructor(json, parent) {
         super(json, parent);
+        this._appropriateTypes = ['string'];
         this.minLength = json.minLength;
         this.maxLength = json.maxLength;
         this.pattern = json.pattern;
         this.format = json.format;
+        if (!json.type) {
+            this.type = this._appropriateTypes[0];
+        }
+        this.setAppropriateType();
+        this.checkAppropriateType();
     }
     jsonSchema() {
         let output = super.jsonSchema();
@@ -215,11 +235,14 @@ export class SchemaString extends SchemaBasic {
 export class SchemaNumeric extends SchemaBasic {
     constructor(json, parent) {
         super(json, parent);
+        this._appropriateTypes = ['number', 'integer'];
         this.multipleOf = json.multipleOf;
         this.minimum = json.minimum;
         this.exclusiveMinimum = json.exclusiveMinimum;
         this.maximum = json.maximum;
         this.exclusiveMaximum = json.exclusiveMaximum;
+        this.setAppropriateType();
+        this.checkAppropriateType();
     }
     jsonSchema() {
         let output = super.jsonSchema();
@@ -247,6 +270,7 @@ export class SchemaObject extends SchemaRoot {
     //dependancies: any; TODO: Advanced Feature
     constructor(json, parent) {
         super(json, parent);
+        this._appropriateTypes = ['object'];
         this.type = 'object';
         this.schema = json.$schema;
         this.properties = {};
@@ -285,6 +309,8 @@ export class SchemaObject extends SchemaRoot {
                 }
             });
         }
+        this.setAppropriateType();
+        this.checkAppropriateType();
     }
     jsonSchema() {
         let output = super.jsonSchema();
@@ -315,7 +341,7 @@ export class SchemaObject extends SchemaRoot {
         }
     }
     addChild() {
-        const newProp = new SchemaBasic({}, this);
+        const newProp = new SchemaString({}, this);
         this.properties[newProp._id] = newProp;
     }
     getChildren() {
@@ -333,6 +359,7 @@ export class SchemaObject extends SchemaRoot {
 export class SchemaArray extends SchemaRoot {
     constructor(json, parent) {
         super(json, parent);
+        this._appropriateTypes = ['array'];
         this.schema = json.$schema;
         this.items = [];
         let items = json.items || { title: 'Item 1' };
@@ -340,6 +367,8 @@ export class SchemaArray extends SchemaRoot {
         items.forEach((item) => {
             this.items.push(createAppropriateSchemaItem(item, this));
         });
+        this.setAppropriateType();
+        this.checkAppropriateType();
     }
     jsonSchema() {
         let output = super.jsonSchema();
@@ -379,7 +408,7 @@ export class SchemaArray extends SchemaRoot {
     }
     addChild() {
         const title = 'Item ' + (this.getChildren().length + 1);
-        this.items.push(new SchemaBasic({ title }, this));
+        this.items.push(new SchemaString({ title }, this));
     }
     getChildren() {
         return this.items;
