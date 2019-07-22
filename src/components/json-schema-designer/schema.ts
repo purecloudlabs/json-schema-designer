@@ -68,6 +68,7 @@ function _generateId() {
 export class SchemaBasic implements ISchemaItem {
   title: string;
   type: string;
+  _appropriateTypes: string[] = ['string', 'number', 'integer', 'object', 'array', 'boolean', 'null', '$ref'];
   description: string;
   isRequired: boolean;
   parent: IHasChildren;
@@ -123,8 +124,6 @@ export class SchemaBasic implements ISchemaItem {
           this.type = typeItem;
         }
       });
-    } else {
-      this.type = json.type || 'string';
     }
   }
 
@@ -201,6 +200,24 @@ export class SchemaBasic implements ISchemaItem {
     }
     return createAppropriateSchemaItem(valuesToCopy, this.parent);
   }
+
+  hasAppropriateType() {
+    if (!this._appropriateTypes || !this._appropriateTypes.length) {
+      return true;
+    }
+    return this._appropriateTypes.includes(this.type)
+  }
+
+  setAppropriateType() {
+    if (!this.type) {
+      this.type = this._appropriateTypes[0];
+    }
+  }
+  checkAppropriateType() {
+    if (!this.hasAppropriateType()) {
+      console.error('attempting to create SchemaItem', this, 'with inappropriate type', this.type);
+    }
+  }
 }
 
 export abstract class SchemaRoot extends SchemaBasic implements IHasChildren {
@@ -248,7 +265,7 @@ export abstract class SchemaRoot extends SchemaBasic implements IHasChildren {
   addDefinition() {
     if (!this.definitions) this.definitions = {};
 
-    const newDef = new SchemaBasic({}, this);
+    const newDef = new SchemaString({}, this);
     newDef.isDefinition = true;
     this.definitions[newDef._id] = newDef
   }
@@ -264,6 +281,7 @@ export class SchemaString extends SchemaBasic {
   maxLength: number;
   pattern: string;
   format: string;
+  _appropriateTypes = ['string'];
 
   constructor (json: any, parent: IHasChildren) {
     super(json, parent);
@@ -271,6 +289,11 @@ export class SchemaString extends SchemaBasic {
     this.maxLength = json.maxLength;
     this.pattern = json.pattern;
     this.format = json.format;
+    if (!json.type) {
+      this.type = this._appropriateTypes[0];
+    }
+    this.setAppropriateType();
+    this.checkAppropriateType();
   }
 
   jsonSchema(): any {
@@ -289,6 +312,7 @@ export class SchemaNumeric extends SchemaBasic {
   exclusiveMinimum: boolean;
   maximum: number;
   exclusiveMaximum: boolean;
+  _appropriateTypes = ['number', 'integer'];
 
   constructor (json: any, parent: IHasChildren) {
     super(json, parent);
@@ -297,6 +321,8 @@ export class SchemaNumeric extends SchemaBasic {
     this.exclusiveMinimum = json.exclusiveMinimum;
     this.maximum = json.maximum;
     this.exclusiveMaximum = json.exclusiveMaximum;
+    this.setAppropriateType();
+    this.checkAppropriateType();
   }
 
   jsonSchema(): any {
@@ -335,6 +361,9 @@ export class SchemaObject extends SchemaRoot implements ISchemaItem {
   additionalProperties: any;
   minProperties: number;
   maxProperties: number;
+
+  _appropriateTypes = ['object'];
+
 
   //dependancies: any; TODO: Advanced Feature
 
@@ -378,6 +407,8 @@ export class SchemaObject extends SchemaRoot implements ISchemaItem {
         }
       });
     }
+    this.setAppropriateType();
+    this.checkAppropriateType();
   }
 
   jsonSchema(): any {
@@ -413,7 +444,7 @@ export class SchemaObject extends SchemaRoot implements ISchemaItem {
   }
 
   addChild(): void {
-    const newProp = new SchemaBasic({}, this)
+    const newProp = new SchemaString({}, this)
     this.properties[newProp._id] = newProp;
   }
 
@@ -438,6 +469,7 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
   maxItems: number;
   uniqueItems: boolean;
   isRoot: boolean;
+  _appropriateTypes = ['array'];
 
   constructor (json: any, parent: IHasChildren) {
     super(json, parent);
@@ -449,6 +481,8 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
     items.forEach((item) => {
       this.items.push(createAppropriateSchemaItem(item, this));
     });
+    this.setAppropriateType();
+    this.checkAppropriateType();
   }
 
   jsonSchema(): any {
@@ -491,7 +525,7 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
 
   addChild(): void {
     const title = 'Item ' + (this.getChildren().length + 1);
-    this.items.push(new SchemaBasic({ title }, this));
+    this.items.push(new SchemaString({ title }, this));
   }
 
   getChildren(): ISchemaItem[] {
