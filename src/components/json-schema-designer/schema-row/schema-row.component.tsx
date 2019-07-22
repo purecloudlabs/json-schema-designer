@@ -15,7 +15,7 @@ export class SchemaRowComponent {
 
   @State() showChildren: boolean = true;
   @State() showDetailsPan: boolean = false;
-  @State() showDeleleConfirmationMessage: boolean = false;
+  @State() showDeleteConfirmationMessage: boolean = false;
   @State() _tickle: number = 0;
 
   removeItem(item: ISchemaItem): void {
@@ -142,25 +142,25 @@ export class SchemaRowComponent {
                 {this.item.isRoot
                   ? <i class="fa fa-times model-remove disabled"></i>
                   : <i class="fa fa-times model-remove" onClick={() => {
-                      this.showDeleleConfirmationMessage = true;
+                      this.showDeleteConfirmationMessage = true;
                     }}>
                     </i>
                 }
-                {this.showDeleleConfirmationMessage
+                {this.showDeleteConfirmationMessage
                   ? <div class="delete-confirmation-message">
-                      <div class="message">
+                      <div class="message delete-message">
                         {this.i18n.translate('json-schema-designer.delete?')}
                       </div>
                       <div class="buttons">
                         <i class="fa fa-check" onClick={() => {
                             if (this.item.isRoot) return;
                             this.removeItem(this.item);
-                            this.showDeleleConfirmationMessage = false;
+                            this.showDeleteConfirmationMessage = false;
                             this.rerender();
                           }}>
                           </i>
                         <i class="fa fa-times model-remove" onClick={() => {
-                          this.showDeleleConfirmationMessage = false;
+                          this.showDeleteConfirmationMessage = false;
                         }}></i>
                       </div>
                    </div>
