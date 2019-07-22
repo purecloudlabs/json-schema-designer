@@ -110,7 +110,7 @@
 				border-bottom: 0;
 				align-items: center;
 				justify-content: space-evenly;
-				width: 150px;
+				width: 175px;
 
 				.disabled {
 					opacity: 0.3;
@@ -126,7 +126,7 @@
 				border-right: 0;
 				border-top: 0;
 				border-bottom: 0;
-				width: 60px;
+				width: 70px;
 				align-items: center;
 				justify-content: space-evenly;
 
@@ -139,7 +139,15 @@
           display: flex;
           background: white;
           flex-direction: column;
+          width: fit-content;
+          min-width: 70px;
+          height: 100%;
+          padding: 2px;
+          border: 1px solid #dae2ea;
 
+          .delete-message {
+            align-self: center;
+          }
           .buttons {
             display: flex;
             justify-content: space-around;

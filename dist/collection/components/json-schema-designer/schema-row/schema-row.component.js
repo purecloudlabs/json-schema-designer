@@ -2,7 +2,7 @@ export class SchemaRowComponent {
     constructor() {
         this.showChildren = true;
         this.showDetailsPan = false;
-        this.showDeleleConfirmationMessage = false;
+        this.showDeleteConfirmationMessage = false;
         this._tickle = 0;
     }
     removeItem(item) {
@@ -117,21 +117,21 @@ export class SchemaRowComponent {
                             this.item.isRoot
                                 ? h("i", { class: "fa fa-times model-remove disabled" })
                                 : h("i", { class: "fa fa-times model-remove", onClick: () => {
-                                        this.showDeleleConfirmationMessage = true;
+                                        this.showDeleteConfirmationMessage = true;
                                     } }),
-                            this.showDeleleConfirmationMessage
+                            this.showDeleteConfirmationMessage
                                 ? h("div", { class: "delete-confirmation-message" },
-                                    h("div", { class: "message" }, this.i18n.translate('json-schema-designer.delete?')),
+                                    h("div", { class: "message delete-message" }, this.i18n.translate('json-schema-designer.delete?')),
                                     h("div", { class: "buttons" },
                                         h("i", { class: "fa fa-check", onClick: () => {
                                                 if (this.item.isRoot)
                                                     return;
                                                 this.removeItem(this.item);
-                                                this.showDeleleConfirmationMessage = false;
+                                                this.showDeleteConfirmationMessage = false;
                                                 this.rerender();
                                             } }),
                                         h("i", { class: "fa fa-times model-remove", onClick: () => {
-                                                this.showDeleleConfirmationMessage = false;
+                                                this.showDeleteConfirmationMessage = false;
                                             } })))
                                 : h("div", null, " ")))),
                 this.showDetailsPan
@@ -166,7 +166,7 @@ export class SchemaRowComponent {
         "showChildren": {
             "state": true
         },
-        "showDeleleConfirmationMessage": {
+        "showDeleteConfirmationMessage": {
             "state": true
         },
         "showDetailsPan": {
