@@ -476,7 +476,7 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
     this.schema = json.$schema;
     this.items = [];
 
-    let items = json.items || { title: 'Item 1' };
+    let items = json.items || { title: 'Item 1', type: 'string' };
     items = items.length ? items : [items];
     items.forEach((item) => {
       this.items.push(createAppropriateSchemaItem(item, this));
