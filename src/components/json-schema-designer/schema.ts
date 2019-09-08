@@ -88,6 +88,7 @@ export class SchemaBasic implements ISchemaItem {
       this._id = _generateId();
     }
     this.title = json.title;
+    this.type = json.type;
     this.description = json.description;
     this.parent = parent;
     isRoot: false;
