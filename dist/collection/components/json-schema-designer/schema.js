@@ -45,6 +45,7 @@ export class SchemaBasic {
             this._id = _generateId();
         }
         this.title = json.title;
+        this.type = json.type;
         this.description = json.description;
         this.parent = parent;
         isRoot: false;
@@ -362,7 +363,7 @@ export class SchemaArray extends SchemaRoot {
         this._appropriateTypes = ['array'];
         this.schema = json.$schema;
         this.items = [];
-        let items = json.items || { title: 'Item 1' };
+        let items = json.items || { title: 'Item 1', type: 'string' };
         items = items.length ? items : [items];
         items.forEach((item) => {
             this.items.push(createAppropriateSchemaItem(item, this));
