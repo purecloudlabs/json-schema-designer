@@ -20,6 +20,7 @@ export function createAppropriateSchemaItem(json, parent) {
             case 'string':
                 return new SchemaString(json, parent);
             case 'integer':
+                return new SchemaInteger(json, parent);
             case 'number':
                 return new SchemaNumeric(json, parent);
             default:
@@ -237,6 +238,28 @@ export class SchemaNumeric extends SchemaBasic {
     constructor(json, parent) {
         super(json, parent);
         this._appropriateTypes = ['number', 'integer'];
+        this.multipleOf = json.multipleOf;
+        this.minimum = json.minimum;
+        this.exclusiveMinimum = json.exclusiveMinimum;
+        this.maximum = json.maximum;
+        this.exclusiveMaximum = json.exclusiveMaximum;
+        this.setAppropriateType();
+        this.checkAppropriateType();
+    }
+    jsonSchema() {
+        let output = super.jsonSchema();
+        output.multipleOf = this.multipleOf ? this.multipleOf : undefined;
+        output.minimum = this.minimum ? this.minimum : undefined;
+        output.exclusiveMinimum = this.exclusiveMinimum ? this.exclusiveMinimum : undefined;
+        output.maximum = this.maximum ? this.maximum : undefined;
+        output.exclusiveMaximum = this.exclusiveMaximum ? this.exclusiveMaximum : undefined;
+        return output;
+    }
+}
+export class SchemaInteger extends SchemaNumeric {
+    constructor(json, parent) {
+        super(json, parent);
+        this._appropriateTypes = ['integer'];
         this.multipleOf = json.multipleOf;
         this.minimum = json.minimum;
         this.exclusiveMinimum = json.exclusiveMinimum;
