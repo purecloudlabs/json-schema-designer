@@ -48,6 +48,7 @@ export function createAppropriateSchemaItem(json: any, parent: IHasChildren) : I
       case 'string':
         return new SchemaString(json, parent);
       case 'integer':
+        return new SchemaInteger(json, parent);
       case 'number':
         return new SchemaNumeric(json, parent);
       default:
@@ -337,6 +338,36 @@ export class SchemaNumeric extends SchemaBasic {
   }
 }
 
+export class SchemaInteger extends SchemaNumeric {
+  multipleOf: number;
+  minimum: number;
+  exclusiveMinimum: boolean;
+  maximum: number;
+  exclusiveMaximum: boolean;
+  _appropriateTypes = ['integer'];
+
+  constructor (json: any, parent: IHasChildren) {
+    super(json, parent);
+    this.multipleOf = json.multipleOf;
+    this.minimum = json.minimum;
+    this.exclusiveMinimum = json.exclusiveMinimum;
+    this.maximum = json.maximum;
+    this.exclusiveMaximum = json.exclusiveMaximum;
+    this.setAppropriateType();
+    this.checkAppropriateType();
+  }
+
+  jsonSchema(): any {
+    let output = super.jsonSchema();
+    output.multipleOf = this.multipleOf ? this.multipleOf : undefined;
+    output.minimum = this.minimum ? this.minimum : undefined;
+    output.exclusiveMinimum = this.exclusiveMinimum ? this.exclusiveMinimum : undefined;
+    output.maximum = this.maximum ? this.maximum : undefined;
+    output.exclusiveMaximum = this.exclusiveMaximum ? this.exclusiveMaximum : undefined;
+    return output;
+  }
+}
+
 export class SchemaReference extends SchemaBasic {
   $ref: string;
 
@@ -390,7 +421,7 @@ export class SchemaObject extends SchemaRoot implements ISchemaItem {
       Object.entries(json.properties).forEach((entry: any[]) => {
         let key: string= entry[0];
         let value: any = entry[1];
-        value.title = key
+        value.title = key;
         const newProperty = createAppropriateSchemaItem(value, this);
         this.properties[newProperty._id] = newProperty;
       });
