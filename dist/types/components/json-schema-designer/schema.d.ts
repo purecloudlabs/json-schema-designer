@@ -81,6 +81,16 @@ export declare class SchemaNumeric extends SchemaBasic {
     constructor(json: any, parent: IHasChildren);
     jsonSchema(): any;
 }
+export declare class SchemaInteger extends SchemaNumeric {
+    multipleOf: number;
+    minimum: number;
+    exclusiveMinimum: boolean;
+    maximum: number;
+    exclusiveMaximum: boolean;
+    _appropriateTypes: string[];
+    constructor(json: any, parent: IHasChildren);
+    jsonSchema(): any;
+}
 export declare class SchemaReference extends SchemaBasic {
     $ref: string;
     constructor(json: any, parent: IHasChildren);
