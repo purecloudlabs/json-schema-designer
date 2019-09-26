@@ -1,5 +1,5 @@
 import { Component, Prop, State } from '@stencil/core';
-import { ISchemaItem, SchemaReference, SchemaString, SchemaNumeric, SchemaObject, SchemaArray } from '../schema';
+import { ISchemaItem, SchemaReference, SchemaString, SchemaNumeric, SchemaObject, SchemaArray, SchemaInteger } from '../schema';
 
 @Component({
   tag: 'item-details'
@@ -43,6 +43,7 @@ export class ItemDetailsComponent {
     const stringItem = this.item as SchemaString;
     const numberItem = this.item as SchemaNumeric;
     const objectItem = this.item as SchemaObject;
+    const integerItem = this.item as SchemaInteger;
     const arrayItem = this.item as SchemaArray;
 
     const enums = this.item.enum ? this.item.enum : [];
@@ -273,6 +274,65 @@ export class ItemDetailsComponent {
       </div>
     );
 
+    const integerFields: JSX.Element = (
+      <div class="col-lg-6">
+        <form class="form-horizontal">
+          <h4 class="t_color bold"> {this.i18n.translate('json-schema-designer.integer')} </h4>
+          <div class="form-group">
+            <label class="col-sm-10">{this.i18n.translate('json-schema-designer.minimum')}</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" value={integerItem.minimum} onInput={(event) => {
+                const input = event.target as HTMLInputElement;
+                integerItem.minimum = Number(input.value);
+                this.rerender();
+              }}/>
+            </div>
+            <div class="col-sm-offset-1 col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" checked={integerItem.exclusiveMinimum} onInput={(event) => {
+                    const input = event.target as HTMLInputElement;
+                    integerItem.exclusiveMinimum = input.checked;
+                    this.rerender();
+                  }}/>
+                  {this.i18n.translate('json-schema-designer.exclusive')}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-10">{this.i18n.translate('json-schema-designer.maximum')}</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" value={integerItem.maximum} onInput={(event) => {
+                const input = event.target as HTMLInputElement;
+                integerItem.maximum = Number(input.value);
+                this.rerender();
+              }}/>
+            </div>
+            <div class="col-sm-offset-1 col-sm-10">
+              <div class="checkbox">
+                <label><input type="checkbox" checked={integerItem.exclusiveMaximum} onInput={(event) => {
+                  const input = event.target as HTMLInputElement;
+                  integerItem.exclusiveMaximum = input.checked;
+                  this.rerender();
+                }}/> {this.i18n.translate('json-schema-designer.exclusive')} </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-10"> {this.i18n.translate('json-schema-designer.multiple-of')} </label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" value={integerItem.multipleOf} onInput={(event) => {
+                const input = event.target as HTMLInputElement;
+                integerItem.multipleOf = Number(input.value);
+                this.rerender();
+              }}/>
+            </div>
+          </div>
+        </form>
+      </div>
+    );
+
     const objectFields: JSX.Element = (
       <div class="col-lg-6">
         <form class="form-horizontal">
@@ -412,6 +472,8 @@ export class ItemDetailsComponent {
         typeSpecificFields = stringFields;
         break;
       case 'integer':
+        typeSpecificFields = integerFields;
+        break;
       case 'number':
         typeSpecificFields = numberFields;
         break;
