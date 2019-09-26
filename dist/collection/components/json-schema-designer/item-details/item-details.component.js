@@ -28,7 +28,6 @@ export class ItemDetailsComponent {
         const stringItem = this.item;
         const numberItem = this.item;
         const objectItem = this.item;
-        const integerItem = this.item;
         const arrayItem = this.item;
         const enums = this.item.enum ? this.item.enum : [];
         let definitionReferences = [];
@@ -234,59 +233,6 @@ export class ItemDetailsComponent {
                                 numberItem.multipleOf = Number(input.value);
                                 this.rerender();
                             } }))))));
-        const integerFields = (h("div", { class: "col-lg-6" },
-            h("form", { class: "form-horizontal" },
-                h("h4", { class: "t_color bold" },
-                    " ",
-                    this.i18n.translate('json-schema-designer.integer'),
-                    " "),
-                h("div", { class: "form-group" },
-                    h("label", { class: "col-sm-10" }, this.i18n.translate('json-schema-designer.minimum')),
-                    h("div", { class: "col-sm-10" },
-                        h("input", { type: "number", class: "form-control", value: integerItem.minimum, onInput: (event) => {
-                                const input = event.target;
-                                integerItem.minimum = Number(input.value);
-                                this.rerender();
-                            } })),
-                    h("div", { class: "col-sm-offset-1 col-sm-10" },
-                        h("div", { class: "checkbox" },
-                            h("label", null,
-                                h("input", { type: "checkbox", checked: integerItem.exclusiveMinimum, onInput: (event) => {
-                                        const input = event.target;
-                                        integerItem.exclusiveMinimum = input.checked;
-                                        this.rerender();
-                                    } }),
-                                this.i18n.translate('json-schema-designer.exclusive'))))),
-                h("div", { class: "form-group" },
-                    h("label", { class: "col-sm-10" }, this.i18n.translate('json-schema-designer.maximum')),
-                    h("div", { class: "col-sm-10" },
-                        h("input", { type: "number", class: "form-control", value: integerItem.maximum, onInput: (event) => {
-                                const input = event.target;
-                                integerItem.maximum = Number(input.value);
-                                this.rerender();
-                            } })),
-                    h("div", { class: "col-sm-offset-1 col-sm-10" },
-                        h("div", { class: "checkbox" },
-                            h("label", null,
-                                h("input", { type: "checkbox", checked: integerItem.exclusiveMaximum, onInput: (event) => {
-                                        const input = event.target;
-                                        integerItem.exclusiveMaximum = input.checked;
-                                        this.rerender();
-                                    } }),
-                                " ",
-                                this.i18n.translate('json-schema-designer.exclusive'),
-                                " ")))),
-                h("div", { class: "form-group" },
-                    h("label", { class: "col-sm-10" },
-                        " ",
-                        this.i18n.translate('json-schema-designer.multiple-of'),
-                        " "),
-                    h("div", { class: "col-sm-10" },
-                        h("input", { type: "number", class: "form-control", value: integerItem.multipleOf, onInput: (event) => {
-                                const input = event.target;
-                                integerItem.multipleOf = Number(input.value);
-                                this.rerender();
-                            } }))))));
         const objectFields = (h("div", { class: "col-lg-6" },
             h("form", { class: "form-horizontal" },
                 h("h4", { class: "t_color bold" },
@@ -395,8 +341,6 @@ export class ItemDetailsComponent {
                 typeSpecificFields = stringFields;
                 break;
             case 'integer':
-                typeSpecificFields = integerFields;
-                break;
             case 'number':
                 typeSpecificFields = numberFields;
                 break;
