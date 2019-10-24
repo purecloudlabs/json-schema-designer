@@ -8,6 +8,7 @@ export class ItemDetailsComponent {
   @Prop() item: ISchemaItem;
   @Prop() parent: any;
   @Prop() definitions: any;
+  @Prop() usenullable: boolean = true;
 
   @Prop({ context: 'i18n' }) private i18n: any;
 
@@ -367,20 +368,22 @@ export class ItemDetailsComponent {
               }}/>
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-sm-10">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" checked={objectItem.canHaveAdditionalProperties} onInput={(event) => {
-                  const input = event.target as HTMLInputElement;
-                  objectItem.canHaveAdditionalProperties = input.checked;
-                  this.rerender();
-                  }}/>
-                  {this.i18n.translate('json-schema-designer.allow-additional-properties')}
-                </label>
+          { this.usenullable ?
+            <div class="form-group">
+              <div class="col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" checked={objectItem.canHaveAdditionalProperties} onInput={(event) => {
+                    const input = event.target as HTMLInputElement;
+                    objectItem.canHaveAdditionalProperties = input.checked;
+                    this.rerender();
+                    }}/>
+                    {this.i18n.translate('json-schema-designer.allow-additional-properties')}
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
+            : <span></span> }
         </form>
       </div>
     );

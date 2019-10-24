@@ -61,6 +61,7 @@ declare global {
       'definitions'?: any;
       'item'?: ISchemaItem;
       'parent'?: any;
+      'usenullable'?: boolean;
     }
   }
 }
@@ -77,6 +78,7 @@ declare global {
       'inputtranslations': string;
       'usedefinitions': boolean;
       'viewmode': string;
+      'usenullable'?: boolean;
     }
   }
 
@@ -107,6 +109,7 @@ declare global {
       'onError'?: (event: CustomEvent) => void;
       'usedefinitions'?: boolean;
       'viewmode'?: string;
+      'usenullable'?: boolean;
     }
   }
 }
@@ -146,6 +149,7 @@ declare global {
       'definitions'?: any;
       'item'?: ISchemaItem;
       'parent'?: any;
+      'usenullable'?: boolean;
     }
   }
 }

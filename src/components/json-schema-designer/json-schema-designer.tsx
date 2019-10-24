@@ -109,6 +109,7 @@ export class DesignerComponent {
   @Prop() debugmode: boolean = false;
   @Prop() datatypes: any; // optional, takes an array or string representation of an array
   @Prop() usedefinitions: boolean = true;
+  @Prop() usenullable: boolean = true;
 
   @Method()
   exportSchema() {
@@ -189,12 +190,12 @@ export class DesignerComponent {
     const designer: JSX.Element = (
       <div>
         <h5> {this.i18n.translate('json-schema-designer.schema')} </h5>
-          <schema-row item={ this.workingSchema } parent={ this } definitions={ definitions } dataTypeArray={ dataTypes }></schema-row>
+          <schema-row item={ this.workingSchema } parent={ this } definitions={ definitions } dataTypeArray={ dataTypes } usenullable={this.usenullable}></schema-row>
         { definitions.length
           ? <div>
               <h5> {this.i18n.translate('json-schema-designer.definitions')} </h5>
               {definitions.map((definition) =>
-                  <schema-row item={ definition } parent={ this } definitions={ definitions } dataTypeArray={ dataTypes }></schema-row>
+                  <schema-row item={ definition } parent={ this } definitions={ definitions } dataTypeArray={ dataTypes } usenullable={this.usenullable}></schema-row>
               )}
             </div>
           : <div></div>
