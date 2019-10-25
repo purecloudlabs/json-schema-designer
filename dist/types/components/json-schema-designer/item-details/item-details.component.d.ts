@@ -4,6 +4,7 @@ export declare class ItemDetailsComponent {
     item: ISchemaItem;
     parent: any;
     definitions: any;
+    usenullable: boolean;
     private i18n;
     enumCtrlExpanded: boolean;
     _tickle: number;

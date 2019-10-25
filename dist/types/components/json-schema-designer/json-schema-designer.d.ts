@@ -8,6 +8,7 @@ export declare class DesignerComponent {
     debugmode: boolean;
     datatypes: any;
     usedefinitions: boolean;
+    usenullable: boolean;
     exportSchema(): string;
     error: EventEmitter;
     change: EventEmitter;

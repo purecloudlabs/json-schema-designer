@@ -6,6 +6,7 @@ export declare class SchemaRowComponent {
     definitions: any;
     dataTypeArray: string[];
     private i18n;
+    usenullable: boolean;
     showChildren: boolean;
     showDetailsPan: boolean;
     showDeleteConfirmationMessage: boolean;

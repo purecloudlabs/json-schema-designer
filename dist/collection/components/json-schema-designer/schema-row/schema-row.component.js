@@ -135,9 +135,9 @@ export class SchemaRowComponent {
                                             } })))
                                 : h("div", null, " ")))),
                 this.showDetailsPan
-                    ? h("item-details", { class: "item-details", item: this.item, definitions: this.definitions, parent: this })
+                    ? h("item-details", { class: "item-details", item: this.item, definitions: this.definitions, parent: this, usenullable: this.usenullable })
                     : h("div", null)),
-            h("div", { class: "indent" }, children.map((child) => h("schema-row", { item: child, definitions: this.definitions, parent: this, dataTypeArray: this.dataTypeArray })))));
+            h("div", { class: "indent" }, children.map((child) => h("schema-row", { item: child, definitions: this.definitions, parent: this, dataTypeArray: this.dataTypeArray, usenullable: this.usenullable })))));
     }
     static get is() { return "schema-row"; }
     static get properties() { return {
@@ -171,6 +171,10 @@ export class SchemaRowComponent {
         },
         "showDetailsPan": {
             "state": true
+        },
+        "usenullable": {
+            "type": Boolean,
+            "attr": "usenullable"
         }
     }; }
 }

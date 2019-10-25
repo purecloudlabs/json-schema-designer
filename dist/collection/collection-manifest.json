@@ -20,6 +20,11 @@
           "name": "parent",
           "type": "Any",
           "attr": "parent"
+        },
+        {
+          "name": "usenullable",
+          "type": "Boolean",
+          "attr": "usenullable"
         }
       ],
       "states": [
@@ -81,6 +86,11 @@
           "attr": "usedefinitions"
         },
         {
+          "name": "usenullable",
+          "type": "Boolean",
+          "attr": "usenullable"
+        },
+        {
           "name": "viewmode",
           "type": "String",
           "attr": "viewmode"
@@ -140,6 +150,11 @@
           "name": "parent",
           "type": "Any",
           "attr": "parent"
+        },
+        {
+          "name": "usenullable",
+          "type": "Boolean",
+          "attr": "usenullable"
         }
       ],
       "states": [
