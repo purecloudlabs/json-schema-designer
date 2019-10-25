@@ -8,6 +8,7 @@ export class ItemDetailsComponent {
   @Prop() item: ISchemaItem;
   @Prop() parent: any;
   @Prop() definitions: any;
+  @Prop() usenullable: boolean;
 
   @Prop({ context: 'i18n' }) private i18n: any;
 
@@ -104,6 +105,7 @@ export class ItemDetailsComponent {
                     </div>
                   </div>
                 </div>
+              { this.usenullable ?
                 <div class="form-group">
                   <div class="col-sm-offset-1 col-sm-10">
                     <div class="checkbox">
@@ -118,6 +120,7 @@ export class ItemDetailsComponent {
                     </div>
                   </div>
                 </div>
+                : <div></div> }
               { this.item.type !== 'object' ?
                 <div class="form-group">
                   <label class="col-sm-10"> {this.i18n.translate('json-schema-designer.enumerated-values')} </label>
@@ -367,20 +370,20 @@ export class ItemDetailsComponent {
               }}/>
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-sm-10">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" checked={objectItem.canHaveAdditionalProperties} onInput={(event) => {
-                  const input = event.target as HTMLInputElement;
-                  objectItem.canHaveAdditionalProperties = input.checked;
-                  this.rerender();
-                  }}/>
-                  {this.i18n.translate('json-schema-designer.allow-additional-properties')}
-                </label>
+            <div class="form-group">
+              <div class="col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" checked={objectItem.canHaveAdditionalProperties} onInput={(event) => {
+                    const input = event.target as HTMLInputElement;
+                    objectItem.canHaveAdditionalProperties = input.checked;
+                    this.rerender();
+                    }}/>
+                    {this.i18n.translate('json-schema-designer.allow-additional-properties')}
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
         </form>
       </div>
     );

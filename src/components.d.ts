@@ -36,6 +36,7 @@ declare global {
       'definitions': any;
       'item': ISchemaItem;
       'parent': any;
+      'usenullable': boolean;
     }
   }
 
@@ -61,6 +62,7 @@ declare global {
       'definitions'?: any;
       'item'?: ISchemaItem;
       'parent'?: any;
+      'usenullable'?: boolean;
     }
   }
 }
@@ -76,6 +78,7 @@ declare global {
       'inputschema': string;
       'inputtranslations': string;
       'usedefinitions': boolean;
+      'usenullable': boolean;
       'viewmode': string;
     }
   }
@@ -106,6 +109,7 @@ declare global {
       'onChange'?: (event: CustomEvent) => void;
       'onError'?: (event: CustomEvent) => void;
       'usedefinitions'?: boolean;
+      'usenullable'?: boolean;
       'viewmode'?: string;
     }
   }
@@ -120,6 +124,7 @@ declare global {
       'definitions': any;
       'item': ISchemaItem;
       'parent': any;
+      'usenullable': boolean;
     }
   }
 
@@ -146,6 +151,7 @@ declare global {
       'definitions'?: any;
       'item'?: ISchemaItem;
       'parent'?: any;
+      'usenullable'?: boolean;
     }
   }
 }

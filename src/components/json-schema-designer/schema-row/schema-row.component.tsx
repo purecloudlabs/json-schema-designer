@@ -12,6 +12,7 @@ export class SchemaRowComponent {
   @Prop() definitions: any;
   @Prop() dataTypeArray: string[];
   @Prop({ context: 'i18n' }) private i18n: any;
+  @Prop() usenullable: boolean;
 
   @State() showChildren: boolean = true;
   @State() showDetailsPan: boolean = false;
@@ -58,7 +59,6 @@ export class SchemaRowComponent {
     const descriptionIconClass: string = this.item.description ? 'fa fa-comment model-comment pointer' : 'fa fa-comment model-comment pointer disabled';
 
     const requiredTooltip: string = this.item.isRequired ? this.i18n.translate('json-schema-designer.required') : this.i18n.translate('json-schema-designer.not-required');
-
     //Handle Child Elements
     const objectItem = this.item as SchemaObject;
     const propCountDisplay: string = objectItem.properties ? '(' + objectItem.getChildren().length + ')' : '(0)';
@@ -170,13 +170,13 @@ export class SchemaRowComponent {
             </div>
           </div>
           {this.showDetailsPan
-            ? <item-details class="item-details" item={ this.item } definitions={ this.definitions } parent={ this }></item-details>
+            ? <item-details class="item-details" item={ this.item } definitions={ this.definitions } parent={ this } usenullable={ this.usenullable }></item-details>
             : <div></div>
           }
         </div>
         <div class="indent">
           {children.map((child) =>
-              <schema-row item={ child } definitions={ this.definitions } parent={ this } dataTypeArray={ this.dataTypeArray }></schema-row>
+              <schema-row item={ child } definitions={ this.definitions } parent={ this } dataTypeArray={ this.dataTypeArray } usenullable={ this.usenullable }></schema-row>
           )}
         </div>
       </div>
