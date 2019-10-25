@@ -90,19 +90,21 @@ export class ItemDetailsComponent {
                                             }, disabled: this.item.isRoot }),
                                         " ",
                                         this.i18n.translate('json-schema-designer.required'))))),
-                        h("div", { class: "form-group" },
-                            h("div", { class: "col-sm-offset-1 col-sm-10" },
-                                h("div", { class: "checkbox" },
-                                    h("label", null,
-                                        h("input", { type: "checkbox", checked: this.item.isNullable, onInput: (event) => {
-                                                if (this.item.isRoot)
-                                                    return;
-                                                const input = event.target;
-                                                this.item.isNullable = input.checked;
-                                                this.rerender();
-                                            } }),
-                                        " ",
-                                        this.i18n.translate('json-schema-designer.nullable'))))),
+                        this.usenullable ?
+                            h("div", { class: "form-group" },
+                                h("div", { class: "col-sm-offset-1 col-sm-10" },
+                                    h("div", { class: "checkbox" },
+                                        h("label", null,
+                                            h("input", { type: "checkbox", checked: this.item.isNullable, onInput: (event) => {
+                                                    if (this.item.isRoot)
+                                                        return;
+                                                    const input = event.target;
+                                                    this.item.isNullable = input.checked;
+                                                    this.rerender();
+                                                } }),
+                                            " ",
+                                            this.i18n.translate('json-schema-designer.nullable')))))
+                            : h("div", null),
                         this.item.type !== 'object' ?
                             h("div", { class: "form-group" },
                                 h("label", { class: "col-sm-10" },
@@ -437,6 +439,10 @@ export class ItemDetailsComponent {
         "parent": {
             "type": "Any",
             "attr": "parent"
+        },
+        "usenullable": {
+            "type": Boolean,
+            "attr": "usenullable"
         }
     }; }
 }

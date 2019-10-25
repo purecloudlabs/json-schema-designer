@@ -99,6 +99,7 @@ export class DesignerComponent {
         this.viewmode = 'columns'; //tabs, columns, designerOnly
         this.debugmode = false;
         this.usedefinitions = true;
+        this.usenullable = true;
         this.activeTab = 'designer';
         this._tickle = 0;
         this.lastOutput = '';
@@ -163,19 +164,20 @@ export class DesignerComponent {
         }
         const definitions = this.workingSchema ? this.workingSchema.getDefinitions() : [];
         const dataTypes = this.datatypes ? (this.datatypes instanceof Array ? this.datatypes : JSON.parse(this.datatypes)) : ['string', 'number', 'integer', 'object', 'array', 'boolean', 'null', '$ref'];
+        const useNullable = this.usenullable;
         const designer = (h("div", null,
             h("h5", null,
                 " ",
                 this.i18n.translate('json-schema-designer.schema'),
                 " "),
-            h("schema-row", { item: this.workingSchema, parent: this, definitions: definitions, dataTypeArray: dataTypes }),
+            h("schema-row", { item: this.workingSchema, parent: this, definitions: definitions, dataTypeArray: dataTypes, usenullable: useNullable }),
             definitions.length
                 ? h("div", null,
                     h("h5", null,
                         " ",
                         this.i18n.translate('json-schema-designer.definitions'),
                         " "),
-                    definitions.map((definition) => h("schema-row", { item: definition, parent: this, definitions: definitions, dataTypeArray: dataTypes })))
+                    definitions.map((definition) => h("schema-row", { item: definition, parent: this, definitions: definitions, dataTypeArray: dataTypes, usenullable: useNullable })))
                 : h("div", null),
             this.usedefinitions ?
                 h("div", { class: "row" },
@@ -261,6 +263,10 @@ export class DesignerComponent {
         "usedefinitions": {
             "type": Boolean,
             "attr": "usedefinitions"
+        },
+        "usenullable": {
+            "type": Boolean,
+            "attr": "usenullable"
         },
         "viewmode": {
             "type": String,
