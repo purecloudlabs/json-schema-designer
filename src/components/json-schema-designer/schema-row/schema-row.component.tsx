@@ -89,12 +89,12 @@ export class SchemaRowComponent {
                 {showChildrenElement}
               </div>
               {this.item.isDefinition
-                ? <input class="model-title" type="text" value={this.item.definitionName} placeholder="<Definition Name>" onInput={(event) => {
+                ? <input class="model-title" type="text" value={this.item.definitionName} placeholder={'<' + this.i18n.translate('json-schema-designer.definition-name') + '>'} onInput={(event) => {
                     let input = event.target as HTMLInputElement;
                     this.item.definitionName = input.value;
                     this.rerender();
                   }}/>
-                : <input class="model-title" type="text" value={this.item.title} placeholder="<Title>" onInput={(event) => {
+                : <input class="model-title" type="text" value={this.item.title} placeholder={'<' + this.i18n.translate('json-schema-designer.title') + '>'} onInput={(event) => {
                     let input = event.target as HTMLInputElement;
                     this.item.title = input.value;
                     this.rerender();

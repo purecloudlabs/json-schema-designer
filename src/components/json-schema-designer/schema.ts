@@ -1,3 +1,5 @@
+import i18n from "../../global/i18n";
+
 export interface ISchemaItem {
   title: string;
   type: string;
@@ -508,7 +510,7 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
     this.schema = json.$schema;
     this.items = [];
 
-    let items = json.items || { title: 'Item 1', type: 'string' };
+    let items = json.items || { title: i18n.translate('json-schema-designer.item', {num: 1}), type: 'string' };
     items = items.length ? items : [items];
     items.forEach((item) => {
       this.items.push(createAppropriateSchemaItem(item, this));
@@ -541,7 +543,7 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
   removeChild(id: string): void {
     let itemRemoved: boolean = false;
     this.items = this.items.filter((item) => {
-        if (item._id = id) {
+        if (item._id == id) {
           itemRemoved = true;
         }
         return item._id != id;
@@ -556,7 +558,7 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
   }
 
   addChild(): void {
-    const title = 'Item ' + (this.getChildren().length + 1);
+    const title = i18n.translate('json-schema-designer.item',{ num: this.getChildren().length + 1});
     this.items.push(new SchemaString({ title }, this));
   }
 
