@@ -68,9 +68,7 @@ export default (function() {
         }
         if (options) {
           for ( const key of Object.keys(options)){
-            console.log(key);
             translationBranch = translationBranch.replace('{{'+key+'}}', options[key]);
-            console.log(translationBranch)
           }
         }
         return translationBranch;
