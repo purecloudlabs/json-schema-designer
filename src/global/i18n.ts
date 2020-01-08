@@ -41,14 +41,16 @@ const defaultTranslations: any = {
     "maximum-items": "Maximum Items",
     "unique-items": "Unique Items",
     "reference": "Reference",
-    "view-mode-not-supported": "View Mode Not Supported"
+    "view-mode-not-supported": "View Mode Not Supported",
+    "definition-name": "Definition Name",
+    "item": "Item {{num}}"
   }
 };
 
 export default (function() {
   const i18n = {
     translations: defaultTranslations,
-    translate(untranslated: string) {
+    translate(untranslated: string, options : object = {}) {
       // translation can be in json or table format
       // do translation table lookup
       if (this.translations[untranslated]) {
@@ -62,6 +64,11 @@ export default (function() {
           if (!translationBranch) {
             console.error('translation not found for', untranslated);
             return untranslated;
+          }
+        }
+        if (options) {
+          for ( const key of Object.keys(options)){
+            translationBranch = translationBranch.replace('{{'+key+'}}', options[key]);
           }
         }
         return translationBranch;
