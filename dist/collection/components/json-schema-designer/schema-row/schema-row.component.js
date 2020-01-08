@@ -68,12 +68,12 @@ export class SchemaRowComponent {
                     h("div", { class: "title-group" },
                         h("div", { class: "obj-exp", onClick: () => { this.showChildren = !this.showChildren; } }, showChildrenElement),
                         this.item.isDefinition
-                            ? h("input", { class: "model-title", type: "text", value: this.item.definitionName, placeholder: "<Definition Name>", onInput: (event) => {
+                            ? h("input", { class: "model-title", type: "text", value: this.item.definitionName, placeholder: '<' + this.i18n.translate('json-schema-designer.definition-name') + '>', onInput: (event) => {
                                     let input = event.target;
                                     this.item.definitionName = input.value;
                                     this.rerender();
                                 } })
-                            : h("input", { class: "model-title", type: "text", value: this.item.title, placeholder: "<Title>", onInput: (event) => {
+                            : h("input", { class: "model-title", type: "text", value: this.item.title, placeholder: '<' + this.i18n.translate('json-schema-designer.title') + '>', onInput: (event) => {
                                     let input = event.target;
                                     this.item.title = input.value;
                                     this.rerender();
