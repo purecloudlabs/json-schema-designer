@@ -81,7 +81,7 @@ export class SchemaRowComponent {
                     h("div", { class: "model-icons" },
                         h("div", { class: "model-info" },
                             this.item.isRoot
-                                ? h("select", { class: typeDisplayClass, onInput: (event) => {
+                                ? h("select", { class: typeDisplayClass, onChange: (event) => {
                                         let input = event.target;
                                         this.parent.changeRootType(input.value);
                                         this.rerender();
@@ -92,7 +92,7 @@ export class SchemaRowComponent {
                                         " ",
                                         propCountDisplay),
                                     h("option", { value: "array", selected: this.item.type === 'array', class: "badge badge-pill badge-primary array" }, this.i18n.translate('json-schema-designer.array').toUpperCase()))
-                                : h("select", { class: typeDisplayClass, onInput: (event) => {
+                                : h("select", { class: typeDisplayClass, onChange: (event) => {
                                         let input = event.target;
                                         this.item.changeType(input.value);
                                         this.rerender();
