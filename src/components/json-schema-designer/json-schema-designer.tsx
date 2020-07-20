@@ -2,7 +2,7 @@ import { Component, Prop, State, Method, Watch, Event, EventEmitter } from '@ste
 import { ISchemaItem, SchemaRoot, createAppropriateSchemaItem } from './schema';
 
 const TEST_DEFINITIONS = {
-  "purecloudGroupIdFilterList": {
+  "genesysCloudIdFilterList": {
     "type": [
       "null",
       "array"
@@ -32,7 +32,7 @@ const TEST_SCHEMAS = [
     "properties": {
       "displayType": {
         "default": "widget",
-        "description": "Dictates the way the application will appear and function inside of PureCloud",
+        "description": "Dictates the way the application will appear and function inside of Genesys Cloud",
         "type": "string",
         "title": "Application Type",
         "enum": [
@@ -42,11 +42,11 @@ const TEST_SCHEMAS = [
         ]
       },
       "groupFilter": {
-        "$ref": "#/definitions/purecloudGroupIdFilterList"
+        "$ref": "#/definitions/genesysCloudGroupIdFilterList"
       },
       "numbertype": {
         "default": "widget",
-        "description": "Dictates the way the application will appear and function inside of PureCloud",
+        "description": "Dictates the way the application will appear and function inside of Genesys Cloud",
         "type": "number",
         "title": "Application Type",
         "enum": [
