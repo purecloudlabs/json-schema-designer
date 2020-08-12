@@ -568,7 +568,7 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
 
   replaceChild(newItem: ISchemaItem) {
     this.items.forEach((item : ISchemaItem, index: number) => {
-      if (item.title === newItem.title) {
+      if (item._id === newItem._id) {
         this.items[index] = newItem;
       } else if (this.definitions[newItem._id]){
         this.definitions[newItem._id] = newItem;
