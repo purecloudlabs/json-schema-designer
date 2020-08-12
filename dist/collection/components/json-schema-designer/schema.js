@@ -440,7 +440,7 @@ export class SchemaArray extends SchemaRoot {
     }
     replaceChild(newItem) {
         this.items.forEach((item, index) => {
-            if (item.title === newItem.title) {
+            if (item._id === newItem._id) {
                 this.items[index] = newItem;
             }
             else if (this.definitions[newItem._id]) {
