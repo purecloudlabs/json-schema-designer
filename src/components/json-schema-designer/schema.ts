@@ -472,7 +472,7 @@ export class SchemaObject extends SchemaRoot implements ISchemaItem {
   removeChild(_id: string): void {
     if (this.properties[_id]) {
       delete this.properties[_id];
-    } else if (this.definitions[_id]){
+    } else if (this.definitions && this.definitions[_id]){
       delete this.definitions[_id];
     }
   }
@@ -489,7 +489,7 @@ export class SchemaObject extends SchemaRoot implements ISchemaItem {
   replaceChild(newItem: ISchemaItem) {
     if (this.properties[newItem._id]) {
       this.properties[newItem._id] = newItem;
-    } else if (this.definitions[newItem._id]){
+    } else if (this.definitions && this.definitions[newItem._id]){
       this.definitions[newItem._id] = newItem;
     }
   }
@@ -570,7 +570,7 @@ export class SchemaArray extends SchemaRoot implements ISchemaItem {
     this.items.forEach((item : ISchemaItem, index: number) => {
       if (item._id === newItem._id) {
         this.items[index] = newItem;
-      } else if (this.definitions[newItem._id]){
+      } else if (this.definitions && this.definitions[newItem._id]){
         this.definitions[newItem._id] = newItem;
       }
     });
