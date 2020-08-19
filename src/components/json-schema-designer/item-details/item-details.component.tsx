@@ -50,9 +50,11 @@ export class ItemDetailsComponent {
     const enums = this.item.enum ? this.item.enum : [];
 
     let definitionReferences = [];
-    this.definitions.forEach((definition) => {
-      definitionReferences = definitionReferences.concat(this._getDefinitionReferences(definition, '#/definitions/'));
-    })
+    if (this.definitions) {
+      this.definitions.forEach((definition) => {
+        definitionReferences = definitionReferences.concat(this._getDefinitionReferences(definition, '#/definitions/'));
+      })
+    }
 
     const basicFields: JSX.Element = (
       <div class="col-lg-6 border-right">
