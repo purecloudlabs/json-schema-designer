@@ -361,7 +361,7 @@ export class SchemaObject extends SchemaRoot {
         if (this.properties[_id]) {
             delete this.properties[_id];
         }
-        else if (this.definitions[_id]) {
+        else if (this.definitions && this.definitions[_id]) {
             delete this.definitions[_id];
         }
     }
@@ -376,7 +376,7 @@ export class SchemaObject extends SchemaRoot {
         if (this.properties[newItem._id]) {
             this.properties[newItem._id] = newItem;
         }
-        else if (this.definitions[newItem._id]) {
+        else if (this.definitions && this.definitions[newItem._id]) {
             this.definitions[newItem._id] = newItem;
         }
     }
@@ -443,7 +443,7 @@ export class SchemaArray extends SchemaRoot {
             if (item._id === newItem._id) {
                 this.items[index] = newItem;
             }
-            else if (this.definitions[newItem._id]) {
+            else if (this.definitions && this.definitions[newItem._id]) {
                 this.definitions[newItem._id] = newItem;
             }
         });

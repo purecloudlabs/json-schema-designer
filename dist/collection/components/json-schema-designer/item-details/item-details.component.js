@@ -32,9 +32,11 @@ export class ItemDetailsComponent {
         const arrayItem = this.item;
         const enums = this.item.enum ? this.item.enum : [];
         let definitionReferences = [];
-        this.definitions.forEach((definition) => {
-            definitionReferences = definitionReferences.concat(this._getDefinitionReferences(definition, '#/definitions/'));
-        });
+        if (this.definitions) {
+            this.definitions.forEach((definition) => {
+                definitionReferences = definitionReferences.concat(this._getDefinitionReferences(definition, '#/definitions/'));
+            });
+        }
         const basicFields = (h("div", { class: "col-lg-6 border-right" },
             h("h4", { class: "t_color bold" },
                 " ",
